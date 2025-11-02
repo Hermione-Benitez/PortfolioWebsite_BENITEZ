@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - BENITEZ_PortfolioWebsite</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/BENITEZ_PortfolioWebsite.styles.css" asp-append-version="true" />
+
+    <style>
+        /* 🌟 FIX 1: Add CSS Reset to eliminate default body margin and set box-sizing 🌟 */
+        html, body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box; /* Good practice for layout */
+            overflow-x: hidden; /* Prevents horizontal scrollbar if elements slightly exceed 100% width */
+        }
+
+        /* Transparent navbar (default) */
+        .transparent-navbar {
+            background-color: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            transition: all 0.4s ease-in-out;
+            padding: 25px 25px;
+            z-index: 9999;
+        }
+
+            /* Navbar link styling */
+            .transparent-navbar .nav-link {
+                color: #ffffff !important;
+                transition: color 0.3s ease;
+                font-weight: 600;
+            }
+
+                .transparent-navbar .nav-link:hover {
+                    color: #d1b3ff !important;
+                }
+
+            /* Navbar when scrolled */
+            .transparent-navbar.scrolled {
+                background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(20,0,40,0.95) 100%) !important;
+                backdrop-filter: blur(6px);
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+            }
+
+        /* Optional transition improvement */
+        .navbar {
+            transition: background-color 0.4s ease, box-shadow 0.4s ease;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm transparent-navbar fixed-top">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link text-white fw-semibold" asp-controller="Home" asp-action="Index">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white fw-semibold" asp-controller="Home" asp-action="Achievements">Achievements</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white fw-semibold" asp-controller="Home" asp-action="Experiences">Experiences</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white fw-semibold" asp-controller="Home" asp-action="Education">Education</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main role="main" class="pb-3">
+        @RenderBody()
+    </main>
+
+    <script>
+        window.addEventListener('scroll', function () {
+            const navbar = document.querySelector('.transparent-navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
