@@ -3,116 +3,115 @@
 }
 
 <style>
+
     html, body {
         margin: 0;
         padding: 0;
-        box-sizing: border-box;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        overflow-x: hidden;
+        width: 100%;
+        height: 100%;
+        background-image: url('/images/bg.png'); /* Add your background image here */
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-attachment: fixed; /* This makes the background image stay put for a moving effect */
+        color: white;
+        font-family: 'Poppins', sans-serif;
+        overflow-x: hidden; /* hides any unwanted horizontal scroll */
     }
 
-    .Parallax {
-        position: relative;
+    .container, .container-fluid {
+        padding: 0 !important;
+        margin: 0 !important;
+        max-width: 100% !important;
+    }
+
+    /* HERO SECTION */
+    .section-background {
+        background-image: url('/images/hermione.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        width: 100vw;
+        height: 100vh;
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 100vh;
-        width: 100vw;
+        overflow: hidden;
+        box-sizing: border-box;
     }
 
-    #text {
-        position: absolute;
-        font-size: 15vw;
-        color: #ffff;
-        opacity: 0.4;
-        font-family: Arial;
-        font-weight: 900;
-    }
 
-    .Parallax img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        object-fit: cover;
-    }
 </style>
 
+<div class="section-background">
+    <div class="text-center">
+    </div>
+</div>
 
-<body>
-    <section class="Parallax">
-        <img src="~/images/bg.png" id="bg">
-        <h1 id="text">HERMIONE</h1>
-        <img src="~/images/hermisolo.png" id="hermisolo">
-    </section>
+<section class="hover-section">
+    <h2>All About Hermione</h2>
+    <div class="card-container">
+        <div class="info-card">
+            <h3>She's born in</h3>
+            <p>October 25, 2005 at Quezon City, Philippines.</p>
+        </div>
+        <div class="info-card">
+            <h3>She has so many hobbies</h3>
+            <p>Dancing, Singing, Drawing, Listening to music, Reading books, and watching movies, and many more on the list.</p>
+        </div>
+        <div class="info-card">
+            <h3>Her life motto is</h3>
+            <p>“Every day is a blessing and there’s so much that could happen in a day, so live your life to the fullest.”</p>
+        </div>
+        <div class="info-card">
+            <h3>Favorite color</h3>
+            <p>She loves shades of purple, representing creativity and imagination.</p>
+        </div>
+        <div class="info-card">
+            <h3>Dream career</h3>
+            <p>To become a professional graphic designer and to pursue her passion in creative industry someday.</p>
+        </div>
+        <div class="info-card">
+            <h3>Family</h3>
+            <p>She has been living with her mother’s side of the family ever since, along with one sibling.</p>
+        </div>
+        <div class="info-card">
+            <h3>Academics</h3>
+            <p>She has been a consistent honor student since her junior high school up to her college journey.</p>
+        </div>
+    </div>
+</section>
 
-    <section class="hover-section">
-        <h2>All About Hermione</h2>
-        <div class="card-container">
-            <div class="info-card">
-                <h3>She's born in</h3>
-                <p>October 25, 2005 at Quezon City, Philippines.</p>
-            </div>
-            <div class="info-card">
-                <h3>She has so many hobbies</h3>
-                <p>Dancing, Singing, Drawing, Listening to music, Reading books, and watching movies, and many more on the list.</p>
-            </div>
-            <div class="info-card">
-                <h3>Her life motto is</h3>
-                <p>“Every day is a blessing and there’s so much that could happen in a day, so live your life to the fullest.”</p>
-            </div>
-            <div class="info-card">
-                <h3>Favorite color</h3>
-                <p>She loves shades of purple, representing creativity and imagination.</p>
-            </div>
-            <div class="info-card">
-                <h3>Dream career</h3>
-                <p>To become a professional graphic designer and to pursue her passion in creative industry someday.</p>
-            </div>
-            <div class="info-card">
-                <h3>Family</h3>
-                <p>She has been living with her mother’s side of the family ever since, along with one sibling.</p>
-            </div>
-            <div class="info-card">
-                <h3>Academics</h3>
-                <p>She has been a consistent honor student since her junior high school up to her college journey.</p>
+
+<footer class="footer-section">
+    <div class="footer-content">
+        <div class="footer-column">
+            <h3>Get In Touch</h3>
+            <p>Quezon City, Metro Manila, Philippines</p>
+            <p>
+                <a href="mailto:benitezhermione@gmail.com">benitezhermione@gmail.com</a>
+            </p>
+            <p>
+                <a href="tel:+639396204267">(+63) 939 620 4267</a>
+            </p>
+        </div>
+        <div class="footer-column">
+            <h3>Connect</h3>
+            <div class="social-icons">
+                <a href="#" aria-label="LinkedIn">🔗</a>
+                <a href="#" aria-label="Behance">🎨</a>
+                <a href="#" aria-label="Instagram">📸</a>
+                <a href="#" aria-label="Facebook">📘</a>
             </div>
         </div>
-    </section>
-
-    <footer class="footer-section">
-        <div class="footer-content">
-            <div class="footer-column">
-                <h3>Get In Touch</h3>
-                <p>Quezon City, Metro Manila, Philippines</p>
-                <p>
-                    <a href="mailto:hermione.j@email.com">hermione.j@email.com</a>
-                </p>
-                <p>
-                    <a href="tel:+639123456789">(+63) 912 345 6789</a>
-                </p>
-            </div>
-            <div class="footer-column">
-                <h3>Connect</h3>
-                <div class="social-icons">
-                    <a href="#" aria-label="LinkedIn">🔗</a>
-                    <a href="#" aria-label="Behance">🎨</a>
-                    <a href="#" aria-label="Instagram">📸</a>
-                    <a href="#" aria-label="Facebook">📘</a>
-                </div>
-            </div>
-            <div class="footer-column">
-                <h3>Portfolio Focus</h3>
-                <p>Graphic Design</p>
-                <p>UI/UX Prototyping</p>
-                <p>Video Editing</p>
-            </div>
+        <div class="footer-column">
+            <h3>Portfolio Focus</h3>
+            <p>Basic Information</p>
+            <p>Graphic Design Portfolio</p>
+            <p>Achievements and Experiences</p>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 Hermione B. Benitez. All Rights Reserved.</p>
-        </div>
-    </footer>
-
-</body>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2025 Hermione B. Benitez. All Rights Reserved.</p>
+    </div>
+</footer>
