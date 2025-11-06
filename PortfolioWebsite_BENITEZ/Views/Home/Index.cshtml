@@ -192,7 +192,7 @@
             flex: 0 0 5em;
             height: 7.5em;
             padding: 0.7em;
-            background-color: #d1b3ff;
+            background-color: white;
             border-radius: 30px;
             font-size: 3em;
             font-weight: 600;
@@ -373,7 +373,7 @@
     }
 
         .video-container video {
-            width: 80%;
+            width: 30%;
             max-width: 900px;
             border-radius: 20px;
             box-shadow: 0 0 30px rgba(167, 95, 255, 0.4);
@@ -613,17 +613,23 @@
     </section>
 
     <section class="video-section">
-        <h2>Featured Video</h2>
+        <h2>Sample Work</h2>
         <p class="video-description">
-            Here’s a short video that highlights Hermione’s creative journey — from concept design to final digital art.
+            Here’s a short video that highlights Hermione’s creative journey in producing the main poster of <br>
+            MUSA's Theater Play titled "Sa Loob ng Utak ni Juana" that was featured on September 15, 2025.
         </p>
         <div class="video-container">
-            <video controls poster="/images/video-thumbnail.jpg">
-                <source src="/videos/hermione-showreel.mp4" type="video/mp4">
+            <video autoplay muted loop playsinline controls poster="@Url.Content("~/images/samplethumbnail.png")">
+                <source src="@Url.Content("~/images/sample.mp4")" type="video/mp4" />
                 Your browser does not support the video tag.
             </video>
         </div>
+
+        <a class="nav-link text-white fw-semibold" asp-controller="Home" asp-action="Portfolio">
+            Click Here to View More of Her Work
+        </a>
     </section>
+
 
     <footer class="footer-section">
         <div class="footer-content">

@@ -21,6 +21,16 @@ namespace PortfolioWebsite_BENITEZ.Controllers
             return View();
         }
 
+        public IActionResult Portfolio()
+        {
+            return View();
+        }
+
+        public IActionResult Contact()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();

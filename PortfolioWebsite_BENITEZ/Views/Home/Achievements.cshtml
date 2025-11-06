@@ -7,7 +7,6 @@
         margin: 0;
         padding: 0;
         width: 100%;
-        height: 100%;
         color: white;
         font-family: 'Poppins', sans-serif;
         overflow-x: hidden;
@@ -31,7 +30,7 @@
         }
 
         .bg-video:-webkit-full-screen {
-            display: none !important;
+            display: none;
         }
 
     @@media (min-aspect-ratio: 16/9) {
@@ -57,10 +56,14 @@
     section {
         padding: 60px 20px;
         text-align: center;
-        backdrop-filter: blur(5px);
-        background: rgba(0, 0, 0, 0.5);
+        align-items: center;
+        backdrop-filter: blur(10px);
         border-radius: 15px;
         margin: 40px;
+    }
+
+    .Org-roles {
+        margin-top: 120px;
     }
 
     h2 {
@@ -72,18 +75,40 @@
     .card-container {
         display: block;
         align-items: center;
+        animation: movedown 1s linear forwards;
+        opacity: 0;
+    }
+    @@keyframes movedown {
+        0% {
+            transform: translateY(-30px);
+            opacity: 0;
+        }
+        100% {
+            transform: translateY(0);
+            opacity: 1;
+        }
     }
 
     .card-container::after {
         content: "";
         position: absolute;
         width: 6px;
-        height: 79%;
+        height: 93%;
         background: white;
-        top: 13%;
+        top: 5.8%;
         left: 48.5%;
         margin-left: -3px;
         z-index: -1;
+        animation: moveline 6s linear forwards;
+    }
+    @@keyframes moveline {
+        0% {
+            height: 0;
+        }
+        100% {
+            height: 90%;
+        }
+
     }
 
     .info-card {
@@ -172,7 +197,7 @@
 <body>
 
     <div class="bg-video">
-        <video autoplay muted loop plays-inline>
+        <video autoplay muted loop>
             <source src="~/images/bgvideo.mp4" type="video/mp4" />
         </video>
     </div>
@@ -194,7 +219,7 @@
             <div class="info-card left-card">
                 <h2>3</h2>
                 <h3>Lupon Layout Artist</h3>
-                <p>PUPQC Mag-aaral ng Unibersidad sa Sining at Adhila (MUSA) 2024–2025</p>
+                <p>PUPQC Mag-aaral ng Unibersidad sa Sining at Adhika (MUSA) 2024–2025</p>
             </div>
             <div class="info-card right-card">
                 <h2>4</h2>
@@ -209,7 +234,7 @@
             <div class="info-card right-card">
                 <h2>6</h2>
                 <h3>Lupon ng Malikhaing Paggawa</h3>
-                <p>PUPQC MUSA 2025–2026</p>
+                <p>PUPQC Mag-aaral ng Unibersidad sa Sining at Adhika (MUSA) 2024–2025</p>
             </div>
             <div class="info-card left-card">
                 <h2>7</h2>
@@ -319,4 +344,5 @@
             <p>&copy; 2025 Hermione B. Benitez. All Rights Reserved.</p>
         </div>
     </footer>
+
 </body>
