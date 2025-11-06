@@ -65,13 +65,25 @@
 
     h2 {
         font-size: 2em;
-        margin-bottom: 20px;
+        margin-bottom: 50px;
         font-weight: 700;
     }
 
     .card-container {
         display: block;
         align-items: center;
+    }
+
+    .card-container::after {
+        content: "";
+        position: absolute;
+        width: 6px;
+        height: 79%;
+        background: white;
+        top: 13%;
+        left: 48.5%;
+        margin-left: -3px;
+        z-index: -1;
     }
 
     .info-card {
@@ -92,10 +104,35 @@
         .left-card {
             left: 4%;
         }
+        .left-card h2 {
+            position: absolute;
+            width: 40px;
+            background-color: white;
+            color: #6300a5;
+            font-weight: 700;
+            border-radius: 50%;
+            top: 50px;
+            right: -60px;
+            z-index: 10;
+        }
 
         .right-card {
             left: 50%;
         }
+
+        .right-card h2 {
+            position: absolute;
+            width: 40px;
+            background-color: white;
+            color: #6300a5;
+            font-weight: 700;
+            border-radius: 50%;
+            top: 50px;
+            left: -60px;
+            z-index: 10;
+        }
+
+
 
     .footer-section {
         background: rgba(0, 0, 0, 0.8);
@@ -145,38 +182,47 @@
         <h2>Academic Organizational Roles</h2>
         <div class="card-container">
             <div class="info-card left-card">
+                <h2>1</h2>
                 <h3>Public Information Officer</h3>
                 <p>Integrity Warriors of Komhay (IWK) 2020–2021 in Commonwealth High School</p>
             </div>
             <div class="info-card right-card">
+                <h2>2</h2>
                 <h3>Creative Technical Platform Officer</h3>
                 <p>PUPQC Council of Leaders 2023–2024</p>
             </div>
             <div class="info-card left-card">
+                <h2>3</h2>
                 <h3>Lupon Layout Artist</h3>
                 <p>PUPQC Mag-aaral ng Unibersidad sa Sining at Adhila (MUSA) 2024–2025</p>
             </div>
             <div class="info-card right-card">
+                <h2>4</h2>
                 <h3>Public Information Officer</h3>
                 <p>PUPQC Commonwealth Information Society 2024–2025</p>
             </div>
             <div class="info-card left-card">
+                <h2>5</h2>
                 <h3>GDG WebDev Member</h3>
                 <p>Google Developer Group 2024–2025</p>
             </div>
             <div class="info-card right-card">
+                <h2>6</h2>
                 <h3>Lupon ng Malikhaing Paggawa</h3>
                 <p>PUPQC MUSA 2025–2026</p>
             </div>
             <div class="info-card left-card">
+                <h2>7</h2>
                 <h3>Creatives Member</h3>
                 <p>PUPQC Sinagtala (2025)</p>
             </div>
             <div class="info-card right-card">
+                <h2>8</h2>
                 <h3>Class Vice President</h3>
                 <p>BSIT 3-2 A.Y. 2024–2025 and 2025–2026</p>
             </div>
             <div class="info-card left-card">
+                <h2>9</h2>
                 <h3>Vice President for Internal Affairs</h3>
                 <p>PUPQC Commonwealth Information Society 2025–2026</p>
             </div>
@@ -188,26 +234,32 @@
         <h2>Experiences and Awards</h2>
         <div class="card-container">
             <div class="info-card left-card">
+                <h2>1</h2>
                 <h3>Program Usherette</h3>
                 <p>Commonwealth High School Work Immersion Seminar (2023)</p>
             </div>
             <div class="info-card right-card">
+                <h2>2</h2>
                 <h3>STEM Registration Volunteer</h3>
                 <p>Commonwealth High School (2023)</p>
             </div>
             <div class="info-card left-card">
+                <h2>3</h2>
                 <h3>Certificate & Invitation Committee</h3>
                 <p>MUSA General Assembly: The Rise of Benders (2024)</p>
             </div>
             <div class="info-card right-card">
+                <h2>4</h2>
                 <h3>IT General Assembly Facilitator</h3>
                 <p>CommITs Start-up Event (2024)</p>
             </div>
             <div class="info-card left-card">
+                <h2>5</h2>
                 <h3>CommITs External Partnership Attendee</h3>
                 <p>FEU JPCS: Ground Zero (2024) • UP Diliman: Disruptive Innovations (2024)</p>
             </div>
             <div class="info-card right-card">
+                <h2>6</h2>
                 <h3>Certificate & Invitation Committee</h3>
                 <p>
                     MUSA Street Indak Fighter (2025)<br>
@@ -216,18 +268,22 @@
                 </p>
             </div>
             <div class="info-card left-card">
+                <h2>7</h2>
                 <h3>Game Facilitator</h3>
                 <p>CommITs IT Esports Events (2025)</p>
             </div>
             <div class="info-card right-card">
+                <h2>8</h2>
                 <h3>IT Competition Watcher</h3>
                 <p>CommITs Hackathon: Case Closed & Prototype (2025)</p>
             </div>
             <div class="info-card left-card">
+                <h2>9</h2>
                 <h3>Project Manager & Full Stack Developer</h3>
                 <p>PUPQC Gym Reservation System (2025)</p>
             </div>
             <div class="info-card right-card">
+                <h2>10</h2>
                 <h3>Back-End & Database Developer</h3>
                 <p>Pet Health and Vaccination Record System (2025)</p>
             </div>
