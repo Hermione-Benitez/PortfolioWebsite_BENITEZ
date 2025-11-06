@@ -9,15 +9,15 @@
     <link rel="stylesheet" href="~/BENITEZ_PortfolioWebsite.styles.css" asp-append-version="true" />
 
     <style>
-        /* 🌟 FIX 1: Add CSS Reset to eliminate default body margin and set box-sizing 🌟 */
+       
         html, body {
             margin: 0;
             padding: 0;
-            box-sizing: border-box; /* Good practice for layout */
-            overflow-x: hidden; /* Prevents horizontal scrollbar if elements slightly exceed 100% width */
+            box-sizing: border-box; 
+            overflow-x: hidden;
         }
 
-        /* Transparent navbar (default) */
+
         .transparent-navbar {
             background-color: transparent !important;
             border: none !important;
@@ -27,7 +27,7 @@
             z-index: 9999;
         }
 
-            /* Navbar link styling */
+
             .transparent-navbar .nav-link {
                 color: #ffffff !important;
                 transition: color 0.3s ease;
@@ -38,14 +38,13 @@
                     color: #d1b3ff !important;
                 }
 
-            /* Navbar when scrolled */
             .transparent-navbar.scrolled {
                 background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(20,0,40,0.95) 100%) !important;
                 backdrop-filter: blur(6px);
                 box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
             }
 
-        /* Optional transition improvement */
+
         .navbar {
             transition: background-color 0.4s ease, box-shadow 0.4s ease;
         }
