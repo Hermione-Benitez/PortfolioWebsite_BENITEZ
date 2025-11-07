@@ -85,26 +85,37 @@
 
     .link-container {
         display: flex;
+        flex-wrap: wrap;
+        align-items: center;
         width: 100%;
-        margin-bottom: 10px;
+        margin-bottom: 30px;
     }
 
         .link-container img {
-            width: 4vw;
+            width: 5vw;
             height: 100%;
-            padding-top: 10px;
+            margin-right: 10px;
+            border-radius: 50%;
         }
 
     .download-button {
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        background-color: #f0f0f0;
+        border: 1px solid #d1b3ff;
         border-radius: 50px;
-        padding: 20px;
-        width: 100%;
+        margin: 10px;
+        padding: 10px 20px;
+        width: 150px;
+        text-decoration: none;
+        color: #4e04a9;
+        transition: all 0.3s ease;
+        display: flex;
+        text-align: center;
     }
 
         .download-button:hover {
-            transform: translateY(-10px) scale(1.03);
-            background: rgba(167, 95, 255, 0.3);
+            transform: translateY(-5px) scale(1.03);
+            background: #e9e2f5;
             box-shadow: 0 6px 20px rgba(167, 95, 255, 0.4);
         }
     .pubmats-section-2 {
@@ -174,7 +185,7 @@
     .footer-section {
         background-color: #0d0d0d;
         color: #aaa;
-        padding: 40px 0 20px;
+        padding: 40px 20px 20px;
         text-align: center;
     }
 
@@ -184,28 +195,102 @@
         max-width: 1200px;
         margin: 0 auto 30px;
         padding: 0 20px;
+        flex-wrap: nowrap;
     }
 
-    .footer-column h3 {
-        color: #fff;
-        margin-bottom: 15px;
+    .footer-column {
+        flex: 1;
+        padding: 0 15px;
+        text-align: left;
     }
 
-    .footer-column a {
-        color: #d1b3ff;
-        text-decoration: none;
-    }
+        .footer-column h3 {
+            color: #fff;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .footer-column a {
+            color: #d1b3ff;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+            .footer-column a:hover {
+                color: #fff;
+            }
 
     .footer-bottom {
         border-top: 1px solid #333;
         padding-top: 20px;
-        font-size: 0.9em;
+        font-size: 0.85em;
+        text-align: center;
     }
 
-    .social-icons a img {
-        margin: 0 10px;
-        width: 5vw;
-        border-radius: 50px;
+    .social-icons {
+        display: flex;
+        gap: 15px;
+    }
+
+        .social-icons a img {
+            width: 100%;
+            height: 35px;
+            border-radius: 50%;
+            margin: 0;
+            transition: transform 0.2s;
+        }
+
+            .social-icons a img:hover {
+                transform: scale(1.1);
+            }
+
+    @@media (max-width: 768px) {
+        .hover-section {
+            padding: 20px 10px 80px;
+        }
+
+        .resume-card {
+            flex-direction: column;
+            align-items: center;
+        }
+
+            .resume-card img {
+                width: 90%;
+                max-width: 400px;
+                margin-bottom: 20px;
+            }
+
+        .info-card {
+            width: 90%;
+            margin: 0;
+        }
+
+        .download-button {
+            width: 45%;
+            margin: 5px;
+            font-size: 0.9rem;
+            padding: 8px 15px;
+        }
+
+        .link-container {
+            justify-content: space-around;
+        }
+
+        .footer-content {
+            flex-direction: column;
+            gap: 30px;
+            padding: 0 10px;
+        }
+
+        .footer-column {
+            flex: none;
+            padding: 0 0 20px 0;
+            text-align: center;
+        }
+
+        .social-icons {
+            justify-content: center;
+        }
     }
 
 </style>
@@ -263,7 +348,6 @@
                     <h3>Other Pre-made Book Covers </h3>
                     <p>Visit my Facebook selling account for more Book Cover Designs.</p>
                     <div class="link-container">
-                        <img src="~/images/fblogo.png" />
                         <a href="https://www.facebook.com/profile.php?id=100083759557247" class="download-button">Yuni Graphics</a>
                     </div>
                 </div>
@@ -344,11 +428,9 @@
                     <p>The provided digital assets are intended for the presentation and academic use only. Credits to the rightful owners of these images.</p>
                     <h3>These PubMats belongs to the following organization.</h3>
                     <div class="link-container">
-                        <img src="~/images/fblogo.png" />
                         <a href="https://www.facebook.com/MUSAPUPQUEZONCITY" class="download-button">MUSA PUP QC </a>
                     </div>
                     <div class="link-container">
-                        <img src="~/images/fblogo.png" />
                         <a href="https://www.facebook.com/CommITSPUPQC" class="download-button">PUP QC COMMITS</a>
                     </div>
                 </div>
