@@ -21,8 +21,7 @@
     }
 
     .pubmats-section {
-        margin: 60px auto;
-        padding: 20px;
+        padding: 50px 100px;
         max-width: 2000px;
         text-align: center;
         background-color: transparent;
@@ -53,9 +52,10 @@
     }
 
         .pubmat:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px) scale(1.03);
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
         }
+
 
         .pubmat img {
             width: 100%;
@@ -69,9 +69,107 @@
         padding: 20px;
         font-size: 1rem;
         line-height: 1.5;
-        color: #333;
+        color: #6300a5;
     }
 
+    .pubmat-details {
+        padding: 20px;
+        font-size: 1rem;
+        line-height: 1.5;
+        color: #6300a5;
+        background-color: white;
+        border-radius: 25px;
+        text-align: justify;
+
+    }
+
+    .link-container {
+        display: flex;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+        .link-container img {
+            width: 4vw;
+            height: 100%;
+            padding-top: 10px;
+        }
+
+    .download-button {
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+        border-radius: 50px;
+        padding: 20px;
+        width: 100%;
+    }
+
+        .download-button:hover {
+            transform: translateY(-10px) scale(1.03);
+            background: rgba(167, 95, 255, 0.3);
+            box-shadow: 0 6px 20px rgba(167, 95, 255, 0.4);
+        }
+    .pubmats-section-2 {
+        padding: 100px;
+        width: 100%;
+        text-align: center;
+        background-color: white;
+    }
+
+        .pubmats-section-2 h1 {
+            font-size: 2.5rem;
+            margin: 40px;
+            color: #6300a5;
+        }
+
+    .pubmat-details-2 {
+        padding: 20px;
+        font-size: 1rem;
+        line-height: 1.5;
+        color: white;
+        background-color: #6300a5;
+        border-radius: 25px;
+        text-align: justify;
+    }
+
+        .pubmat-details-2 h3 {
+            color: white;
+        }
+
+        .pubmat-details-2 p {
+            margin-bottom: 20px;
+            color: white;
+        }
+
+    .pubmat-2 {
+        background: #fff;
+        color: #6300a5;
+        border-radius: 25px;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        max-width: 90%;
+    }
+
+        .pubmat-2:hover {
+            transform: translateY(-10px) scale(1.03);
+            background: rgba(167, 95, 255, 0.3);
+            box-shadow: 0 6px 20px rgba(167, 95, 255, 0.4);
+        }
+
+
+        .pubmat-2 img {
+            width: 100%;
+            height: 100%x;
+            object-fit: cover;
+            border-top-left-radius: 25px;
+            border-top-right-radius: 25px;
+        }
+
+    .info-text-2 {
+        padding: 20px;
+        font-size: 1rem;
+        line-height: 1.5;
+        color: #6300a5;
+    }
 
     .footer-section {
         background-color: #0d0d0d;
@@ -116,8 +214,7 @@
 <body>
     <div class="header">.</div>
     <div class="pubmats-section">
-        <h1>Commissioned Book Covers</h1>
-        
+        <h1>Commissioned Book Covers</h1> 
         <div class="pubmats-container">
             <div class="pubmat">
                 <img src="~/images/portfolio/10_20251107_173148_0002.jpg" />
@@ -130,34 +227,133 @@
             <div class="pubmat">
                 <img src="~/images/portfolio/bc1_20251107_173148_0000.jpg" />
                 <div class="info-text">
-                    <h3>Title</h3>
-                    <p>Description</p>
+                    <h3>Playing The Bad Guys</h3>
+                    <p>by HourlyOppa</p>
+                    <p>Book Cover made from combined elements and images from Canva.</p>
                 </div>
             </div>
             <div class="pubmat">
                 <img src="~/images/portfolio/9_20251107_173148_0001.jpg" />
                 <div class="info-text">
-                    <h3>Title</h3>
-                    <p>Description</p>
+                    <h3>Beneath The Sunset</h3>
+                    <p>by Scentink</p>
+                    <p>Fully illustrated Book Cover made from IbisPaint with fonts used from Canva.</p>
                 </div>
             </div>
             <div class="pubmat">
                 <img src="~/images/portfolio/1.jpg" />
                 <div class="info-text">
-                    <h3>Title</h3>
-                    <p>Description</p>
+                    <h3>PINNACLE</h3>
+                    <p>by Aira Aisyunice, Et. Al.</p>
+                    <p>A Book Cover made for a lesson plan, it is a combination of elements and images from Canva.</p>
                 </div>
             </div>
             <div class="pubmat">
                 <img src="~/images/portfolio/2.jpg" />
                 <div class="info-text">
-                    <h3>Title</h3>
-                    <p>Description</p>
+                    <h3>A Dance of Sun and Moon</h3>
+                    <p>by SaturnFaye24</p>
+                    <p>A fantasy book made from Canva, combining artistic typography and combination of elements.</p>
+                </div>
+            </div>
+            <div class="pubmat-details">
+                <div class="info-text">
+                    <h3>Disclaimer</h3>
+                    <p>The provided digital assets are intended for the presentation and academic use only. These images are already sold by the respective owners.</p>
+                    <h3>Other Pre-made Book Covers </h3>
+                    <p>Visit my Facebook selling account for more Book Cover Designs.</p>
+                    <div class="link-container">
+                        <img src="~/images/fblogo.png" />
+                        <a href="https://www.facebook.com/profile.php?id=100083759557247" class="download-button">Yuni Graphics</a>
+                    </div>
                 </div>
             </div>
         </div>
-      
+    </div>
 
+    <div class="pubmats-section-2">
+        <h1>Commissioned Book Covers</h1>
+        <div class="pubmats-container">
+            <div class="pubmat-2">
+                <img src="~/images/samplethumbnail.png" />
+                <div class="info-text-2">
+                    <h3>Pain From The Past</h3>
+                    <p>by Black_Peny</p>
+                    <p>Fully illustrated Book Cover made from IbisPaint.</p>
+                </div>
+            </div>
+            <div class="pubmat-2">
+                <img src="~/images/portfolio/mental health.png" />
+                <div class="info-text-2">
+                    <h3>Playing The Bad Guys</h3>
+                    <p>by HourlyOppa</p>
+                    <p>Book Cover made from combined elements and images from Canva.</p>
+                </div>
+            </div>
+            <div class="pubmat-2">
+                <img src="~/images/portfolio/musa official statement pubmat.png" />
+                <div class="info-text-2">
+                    <h3>Beneath The Sunset</h3>
+                    <p>by Scentink</p>
+                    <p>Fully illustrated Book Cover made from IbisPaint with fonts used from Canva.</p>
+                </div>
+            </div>
+            <div class="pubmat-2">
+                <img src="~/images/portfolio/valentine's day.png" />
+                <div class="info-text-2">
+                    <h3>PINNACLE</h3>
+                    <p>by Aira Aisyunice, Et. Al.</p>
+                    <p>A Book Cover made for a lesson plan, it is a combination of elements and images from Canva.</p>
+                </div>
+            </div>
+            <div class="pubmat-2">
+                <img src="~/images/portfolio/ppt musa 2nd ga (morning).png" />
+                <div class="info-text-2">
+                    <h3>A Dance of Sun and Moon</h3>
+                    <p>by SaturnFaye24</p>
+                    <p>A fantasy book made from Canva, combining artistic typography and combination of elements.</p>
+                </div>
+            </div>
+            <div class="pubmat-2">
+                <img src="~/images/portfolio/musa ppt.png" />
+                <div class="info-text-2">
+                    <h3>A Dance of Sun and Moon</h3>
+                    <p>by SaturnFaye24</p>
+                    <p>A fantasy book made from Canva, combining artistic typography and combination of elements.</p>
+                </div>
+            </div>
+            <div class="pubmat-2">
+                <img src="~/images/portfolio/musa front page (1).png" />
+                <div class="info-text-2">
+                    <h3>A Dance of Sun and Moon</h3>
+                    <p>by SaturnFaye24</p>
+                    <p>A fantasy book made from Canva, combining artistic typography and combination of elements.</p>
+                </div>
+            </div>
+            <div class="pubmat-2">
+                <img src="~/images/portfolio/commits front page (2).png" />
+                <div class="info-text-2">
+                    <h3>A Dance of Sun and Moon</h3>
+                    <p>by SaturnFaye24</p>
+                    <p>A fantasy book made from Canva, combining artistic typography and combination of elements.</p>
+                </div>
+            </div>
+            <div class="pubmat-details-2">
+                <div class="info-text-2">
+                    <h3>Disclaimer</h3>
+                    <p>The provided digital assets are intended for the presentation and academic use only. Credits to the rightful owners of these images.</p>
+                    <h3>These PubMats belongs to the following organization.</h3>
+                    <div class="link-container">
+                        <img src="~/images/fblogo.png" />
+                        <a href="https://www.facebook.com/MUSAPUPQUEZONCITY" class="download-button">MUSA PUP QC </a>
+                    </div>
+                    <div class="link-container">
+                        <img src="~/images/fblogo.png" />
+                        <a href="https://www.facebook.com/CommITSPUPQC" class="download-button">PUP QC COMMITS</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <footer class="footer-section">
