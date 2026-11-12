@@ -5,735 +5,1009 @@
 
 @section Styles {
 <style>
-    html, body {
+    body {
         background-image: url('/images/bg.webp');
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center center;
         background-attachment: fixed;
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        overflow-x: hidden;
     }
 
+    /* ===== HERO PARALLAX SCENE ===== */
     .Parallax {
         position: relative;
         display: flex;
         justify-content: center;
         align-items: center;
         height: 100vh;
+        min-height: 580px;
         width: 100%;
         overflow: hidden;
     }
 
-    #text {
-        position: absolute;
-        font-size: 10vw;
-        color: #fff;
-        font-family: 'Arial', sans-serif;
-        font-weight: 900;
-        white-space: nowrap;
-    }
-
     .Parallax img {
         position: absolute;
-        top: 0;
-        left: 0;
+        inset: 0;
         width: 100%;
         height: 100%;
         pointer-events: none;
         object-fit: cover;
+        will-change: transform;
     }
 
-    .title {
-        text-align: center;
-        padding: 60px 20px 70px;
-        color: #fff;
-        width: 100%;
-        background-color: #6300a5;
+    #bg {
+        z-index: 1;
     }
 
-        .title p {
-            font-size: 1.1em;
-            margin-bottom: 5px;
-        }
-
-    #Hi {
-        font-size: clamp(1.6rem, 3vw, 2.8rem);
-        margin-bottom: 5px;
-    }
-    .text-changer {
-        font-size: clamp(1.3rem, 3vw, 2.6rem);
-        font-weight: 700;
-        margin: 15px;
-        padding: 0;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-    }
-        .aspiringroles {
-            height: 2em;
-            overflow: hidden;
-            position: relative;
-            margin-left: 15px;
-            color: #d1b3ff;
-        }
-        .role {
-            display: block;
-            height: 100%;
-            font-size: 1.1em;
-            padding-left: 6px;
-            color: #bc5bff;
-            animation: role-change 10s infinite;
-        }
-    @@keyframes role-change {
-        0% {transform: translateY(0);}
-        20% {transform: translateY(0);}
-        25% {transform: translateY(-100%);}
-        40% {transform: translateY(-100%);}
-        45% {transform: translateY(-200%);}
-        60% {transform: translateY(-200%);}
-        65% {transform: translateY(-300%);}
-        80% {transform: translateY(-300%);}
-        85% {transform: translateY(-400%);}
-        100% {transform: translateY(-400%);}
+    #purpleflare {
+        z-index: 2;
     }
 
-    .hover-section {
-        color: #fff;
-        padding: 100px 20px 150px;
-        min-height: 80vh;
+    #text {
         position: relative;
-        z-index: 10;
-        text-align: center;
-        background-color: white;
+        z-index: 3;
+        font-family: var(--font-display);
+        font-size: clamp(2rem, 9.5vw, 9rem);
+        font-weight: 800;
+        letter-spacing: 0.02em;
+        color: #ffffff;
+        white-space: nowrap;
+        text-shadow: 0 12px 45px rgba(12, 0, 32, 0.75), 0 0 38px rgba(208, 170, 255, 0.42);
+        user-select: none;
+        will-change: transform;
+        margin: 0;
     }
 
-        .hover-section h2 {
-            font-size: clamp(2rem, 4vw, 3rem);
-            color: #6300a5;
-            margin-bottom: 40px;
-        }
+    #hermisolo {
+        z-index: 4;
+        object-position: center center;
+    }
 
-    .card-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        max-width: 1500px;
+    #transition {
+        z-index: 5;
+    }
+
+    .hero-top-badge {
+        position: absolute;
+        bottom: clamp(104px, 14vh, 134px);
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 6;
+        max-width: calc(100vw - 32px);
+        pointer-events: none;
+        text-align: center;
+    }
+
+    .hero-top-badge .eyebrow-pill {
+        white-space: nowrap;
+        font-size: clamp(0.68rem, 2.2vw, 0.82rem);
+        padding: 6px 14px;
+    }
+
+    .hero-scroll-cue {
+        position: absolute;
+        bottom: clamp(44px, 7vh, 78px);
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 6;
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        color: #f3e8ff;
+        text-decoration: none;
+        font-size: 0.78rem;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        padding: 8px 16px;
+        border-radius: 999px;
+        background: rgba(14, 5, 30, 0.52);
+        border: 1px solid rgba(208, 170, 255, 0.3);
+        backdrop-filter: blur(10px);
+        transition: background-color 0.25s ease, transform 0.25s ease;
+    }
+
+    .hero-scroll-cue:hover {
+        color: #ffffff;
+        background: rgba(99, 0, 165, 0.65);
+        transform: translateX(-50%) translateY(-2px);
+    }
+
+    .hero-scroll-cue svg {
+        animation: scroll-bob 1.8s ease-in-out infinite;
+    }
+
+    @@keyframes scroll-bob {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(4px); }
+    }
+
+    /* ===== INTRO & ROLE TICKER ===== */
+    .title {
+        position: relative;
+        z-index: 6;
+        text-align: center;
+        padding: 56px 20px 92px;
+        scroll-margin-top: 72px;
+        color: #ffffff;
+        width: 100%;
+        background: linear-gradient(180deg, #6300a5 0%, #3d0070 42%, #130526 82%, rgba(6, 2, 15, 0.92) 100%);
+    }
+
+    .title-inner {
+        max-width: 920px;
         margin: 0 auto;
     }
 
-    .info-card {
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 20px;
-        padding: 25px;
-        color: #6300a5;
-        margin: 10px;
-        width: 300px;
-        text-align: left;
+    #Hi {
+        font-family: var(--font-display);
+        font-size: clamp(1.9rem, 4vw, 3.2rem);
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        margin-bottom: 18px;
+        color: #ffffff;
+    }
+
+    .text-changer {
+        font-size: clamp(1.15rem, 2.6vw, 2rem);
+        font-weight: 700;
+        margin: 0 auto 24px;
+        display: inline-flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .text-changer-prefix {
+        margin: 0;
+        color: #f4ebff;
+    }
+
+    .aspiringroles {
+        display: inline-block;
+        height: 1.65em;
+        line-height: 1.65em;
+        overflow: hidden;
+        padding: 0 20px;
+        border-radius: 999px;
+        background: rgba(14, 4, 30, 0.45);
+        border: 1px solid rgba(255, 255, 255, 0.28);
+        box-shadow: 0 8px 28px rgba(10, 0, 30, 0.35);
         backdrop-filter: blur(10px);
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
     }
 
-        .info-card:hover {
-            transform: translateY(-10px) scale(1.05);
-            background: rgba(167, 95, 255, 0.3);
-            box-shadow: 0 6px 20px rgba(167, 95, 255, 0.4);
+    .role-track {
+        display: flex;
+        flex-direction: column;
+        animation: role-change 11s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+    }
+
+    .role {
+        display: block;
+        height: 1.65em;
+        line-height: 1.65em;
+        white-space: nowrap;
+        font-weight: 800;
+        background: linear-gradient(90deg, #ffffff, #f0abfc, #c4b5fd);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+
+    @@keyframes role-change {
+        0%, 14% { transform: translateY(0); }
+        19%, 34% { transform: translateY(-16.6667%); }
+        39%, 54% { transform: translateY(-33.3333%); }
+        59%, 74% { transform: translateY(-50%); }
+        79%, 94% { transform: translateY(-66.6667%); }
+        100% { transform: translateY(-83.3333%); }
+    }
+
+    .intro-bio {
+        font-size: clamp(0.98rem, 1.3vw, 1.12rem);
+        color: #eadcff;
+        max-width: 780px;
+        margin: 0 auto 28px;
+        line-height: 1.75;
+    }
+
+    .intro-stats {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+        margin-bottom: 30px;
+    }
+
+    .intro-stat-pill {
+        padding: 8px 16px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        font-size: 0.86rem;
+        font-weight: 600;
+        color: #f8f5ff;
+    }
+
+    .intro-actions {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 14px;
+    }
+
+    /* ===== BENTO SECTION ("Get to know her more") ===== */
+    .hover-section {
+        position: relative;
+        z-index: 6;
+        padding: 90px 20px 100px;
+        background: linear-gradient(180deg, rgba(6, 2, 15, 0.94) 0%, rgba(16, 6, 36, 0.9) 55%, rgba(6, 2, 15, 0.85) 100%);
+        text-align: center;
+    }
+
+    .section-header {
+        max-width: 760px;
+        margin: 0 auto 48px;
+    }
+
+    .bento-grid {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 20px;
+    }
+
+    .info-card {
+        padding: 26px 24px;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: 12px;
+    }
+
+    .bento-card--wide {
+        grid-column: span 2;
+        background: linear-gradient(135deg, rgba(99, 0, 165, 0.28), rgba(20, 8, 42, 0.82));
+    }
+
+    .bento-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 14px;
+        background: rgba(168, 85, 247, 0.16);
+        border: 1px solid rgba(208, 170, 255, 0.3);
+        color: var(--orchid-glow);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    .bento-tag {
+        font-size: 0.72rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--magenta-flare);
+    }
+
+    .info-card h3 {
+        font-family: var(--font-display);
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #ffffff;
+        margin: 0;
+    }
+
+    .info-card p {
+        font-size: 0.95rem;
+        line-height: 1.65;
+        color: var(--text-secondary);
+        margin: 0;
+    }
+
+    .color-swatch-row {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: auto;
+        padding-top: 6px;
+    }
+
+    .swatch-dot {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+    }
+
+    @@media (max-width: 1024px) {
+        .bento-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
         }
 
-        .info-card h3 {
-            font-size: 1.3rem;
-            color: #4e04a9;
-            margin-bottom: 10px;
+        .bento-card--wide {
+            grid-column: span 2;
+        }
+    }
+
+    @@media (max-width: 600px) {
+        .bento-grid {
+            grid-template-columns: 1fr;
         }
 
-        .info-card p {
-            font-size: 0.95rem;
-            line-height: 1.5;
+        .bento-card--wide {
+            grid-column: span 1;
         }
+    }
 
+    /* ===== SKILLS INFINITE MARQUEE ===== */
     .Skill-section {
-        background-color: transparent;
+        position: relative;
+        z-index: 6;
+        padding: 90px 0 80px;
+        background: rgba(6, 2, 15, 0.62);
+        backdrop-filter: blur(8px);
+        text-align: center;
     }
-        .Skill-section h2 {
-            text-align: center;
-            color: #fff;
-            padding: 60px 20px 40px;
-            font-size: clamp(2rem, 4vw, 3rem);
-        }
+
+    .Skill-section .section-header {
+        padding: 0 20px;
+    }
 
     .Skills {
-        min-height: 420px;
-        gap: 1em;
         display: flex;
-        padding: 20px 0 40px;
-        align-items: flex-start;
-        overflow-x: auto;
-        justify-content: flex-start;
+        gap: 0;
+        overflow: hidden;
+        padding: 20px 0 36px;
+        -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+        mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
     }
 
     .skillgroup {
         display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 1em;
-        animation: spin 15s infinite linear;
+        flex-shrink: 0;
+        align-items: stretch;
+        gap: 24px;
+        padding-right: 24px;
+        animation: spin 26s linear infinite;
+        will-change: transform;
     }
 
-        .Skills::-webkit-scrollbar {
-            display: none;
-        }
-        .skill {
-            flex: 0 0 280px;
-            min-height: 320px;
-            padding: 28px 24px;
-            background-color: white;
-            border-radius: 30px;
-            font-weight: 600;
-            margin: 0 10px;
-            align-content: flex-start;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-            .skill:hover {
-                transform: translateY(-5px);
-                box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-        }
-        .skill h3 {
-            font-weight: 600;
-            font-size: 1.45rem;
-            color: #2d006b;
-        }
-        .skill p {
-            font-size: 0.95rem;
-            font-weight: 400;
-            color: #333;
-            margin-top: 12px;
-            text-align: start;
-            line-height: 1.5;
-        }
+    .Skills:hover .skillgroup {
+        animation-play-state: paused;
+    }
+
+    .skill {
+        flex: 0 0 300px;
+        min-height: 290px;
+        padding: 28px 24px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: 12px;
+        text-align: left;
+    }
+
+    .skill-badge {
+        align-self: flex-start;
+        padding: 5px 12px;
+        border-radius: 999px;
+        font-size: 0.74rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: #f3e8ff;
+        background: rgba(168, 85, 247, 0.22);
+        border: 1px solid rgba(208, 170, 255, 0.3);
+    }
+
+    .skill h3 {
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: 1.35rem;
+        color: #ffffff;
+        margin: 0;
+    }
+
+    .skill p {
+        font-size: 0.94rem;
+        font-weight: 400;
+        color: var(--text-secondary);
+        margin: 0;
+        line-height: 1.65;
+    }
+
     @@keyframes spin {
-        from {translate: 0;}
-        to {translate: -100%;}
+        from { transform: translate3d(0, 0, 0); }
+        to { transform: translate3d(-100%, 0, 0); }
     }
 
+    .marquee-hint {
+        color: var(--text-muted);
+        font-size: 0.82rem;
+        margin-top: 4px;
+    }
+
+    /* ===== CURRENT ROLES & RESPONSIBILITIES ===== */
     .roles-section {
-        color: white;
-        padding: 60px 20px;
+        position: relative;
+        z-index: 6;
+        padding: 90px 20px;
+        background: linear-gradient(180deg, rgba(6, 2, 15, 0.65), rgba(14, 5, 30, 0.85));
         text-align: center;
     }
 
-        .roles-section h2 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 40px;
-            text-align: left;
-            max-width: 1200px;
-            margin-left: auto;
-            margin-right: auto;
-            padding: 0 10px;
-        }
-
     .roles-grid {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 25px;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 24px;
         max-width: 1200px;
         margin: 0 auto;
     }
 
     .role-item {
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 20px;
-        overflow: hidden;
-        width: 280px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-        transition: all 0.3s ease;
         display: flex;
         flex-direction: column;
+        text-align: left;
     }
-
-        .role-item:hover {
-            transform: translateY(-10px) scale(1.03);
-            background: rgba(167, 95, 255, 0.3);
-            box-shadow: 0 6px 20px rgba(167, 95, 255, 0.4);
-        }
 
     .role-item-image {
+        position: relative;
         width: 100%;
-        height: 200px;
-        background-color: #e0f2f7;
+        height: 270px;
         overflow: hidden;
-        border-top-left-radius: 20px;
-        border-top-right-radius: 20px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        background: #140826;
     }
 
-        .role-item-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
+    .role-item-image::after {
+        content: "";
+        position: absolute;
+        inset: auto 0 0 0;
+        height: 45%;
+        background: linear-gradient(180deg, transparent, rgba(16, 7, 32, 0.92));
+        pointer-events: none;
+    }
+
+    .role-item-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 20%;
+        display: block;
+        transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .role-item:hover .role-item-image img {
+        transform: scale(1.07);
+    }
+
+    .role-period-badge {
+        position: absolute;
+        bottom: 12px;
+        left: 14px;
+        z-index: 2;
+        padding: 4px 11px;
+        border-radius: 999px;
+        background: rgba(10, 4, 24, 0.82);
+        border: 1px solid rgba(208, 170, 255, 0.35);
+        color: var(--orchid-glow);
+        font-size: 0.74rem;
+        font-weight: 700;
+        backdrop-filter: blur(8px);
+    }
 
     .role-item-details {
-        padding: 20px;
-        text-align: left;
+        padding: 20px 22px 24px;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        gap: 10px;
         flex-grow: 1;
     }
 
-        .role-item-details h3 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 10px;
-            color: #d0aaff;
-            line-height: 1.3;
-        }
-
-        .role-item-details p {
-            font-size: 0.9rem;
-            line-height: 1.4;
-            color: #ccc;
-        }
-
-    @@media (max-width: 1200px) {
-        .role-item {
-            width: 250px;
-        }
+    .role-item-details h3 {
+        font-family: var(--font-display);
+        font-size: 1.08rem;
+        font-weight: 700;
+        color: #ffffff;
+        line-height: 1.35;
+        margin: 0;
     }
 
-    @@media (max-width: 992px) {
-        .role-item {
-            width: 45%;
-            max-width: 350px;
-        }
-
-        .roles-grid {
-            gap: 20px;
-        }
-    }
-
-    @@media (max-width: 768px) {
-        .roles-section h2 {
-            text-align: center;
-        }
-
-        .role-item {
-            width: 90%;
-            max-width: 400px;
-        }
-    }
-
-    @@media (max-width: 480px) {
-        .roles-section h2 {
-            font-size: 2rem;
-            margin-bottom: 30px;
-        }
-
-        .role-item-image {
-            height: 180px;
-        }
-    }
-
-    .video-section {
-        background: transparent;
-        text-align: center;
-        padding: 80px 20px;
-    }
-
-        .video-section h2 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: #d0aaff;
-        }
-
-    .video-description {
-        font-size: 1rem;
-        color: #ccc;
-        max-width: 800px;
-        margin: 0 auto 40px;
+    .role-item-details p {
+        font-size: 0.9rem;
         line-height: 1.6;
+        color: var(--text-secondary);
+        margin: 0;
     }
 
-    .video-container {
-        display: flex;
-        justify-content: center;
+    @@media (max-width: 1100px) {
+        .roles-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+    }
+
+    @@media (max-width: 600px) {
+        .roles-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    /* ===== SAMPLE WORK VIDEO SHOWCASE ===== */
+    .video-section {
+        position: relative;
+        z-index: 6;
+        padding: 80px 20px 110px;
+        background: rgba(6, 2, 15, 0.82);
+    }
+
+    .video-showcase-card {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: clamp(24px, 4vw, 44px);
+        display: grid;
+        grid-template-columns: minmax(260px, 420px) 1fr;
+        gap: clamp(24px, 4vw, 48px);
         align-items: center;
     }
 
-        .video-container video {
-            width: 30%;
-            max-width: 900px;
-            border-radius: 20px;
-            box-shadow: 0 0 30px rgba(167, 95, 255, 0.4);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-            .video-container video:hover {
-                transform: scale(1.02);
-                box-shadow: 0 0 40px rgba(208, 170, 255, 0.5);
-            }
-
-    @@media (max-width: 768px) {
-        .video-container video {
-            width: 95%;
-        }
-
-        .video-section h2 {
-            font-size: 2rem;
-        }
-
-        .video-description {
-            font-size: 0.95rem;
-        }
+    .video-frame {
+        position: relative;
+        border-radius: 22px;
+        padding: 10px;
+        background: linear-gradient(135deg, rgba(168, 85, 247, 0.4), rgba(224, 86, 253, 0.2));
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 40px rgba(168, 85, 247, 0.28);
     }
 
-    .footer-section {
-        background-color: #0d0d0d;
-        color: #aaa;
-        padding: 40px 20px 20px;
-        text-align: center;
+    .video-frame video {
+        width: 100%;
+        display: block;
+        border-radius: 16px;
+        background: #080312;
     }
 
-    .footer-content {
-        display: flex;
-        justify-content: space-around;
-        max-width: 1200px;
-        margin: 0 auto 30px;
-        padding: 0 20px;
-        flex-wrap: nowrap;
-    }
-
-    .footer-column {
-        flex: 1;
-        padding: 0 15px;
+    .video-copy {
         text-align: left;
     }
 
-        .footer-column h3 {
-            color: #fff;
-            margin-bottom: 15px;
-            font-size: 1.1rem;
-        }
-
-        .footer-column a {
-            color: #d1b3ff;
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-
-            .footer-column a:hover {
-                color: #fff;
-            }
-
-    .footer-bottom {
-        border-top: 1px solid #333;
-        padding-top: 20px;
-        font-size: 0.85em;
-        text-align: center;
+    .video-copy h2 {
+        font-family: var(--font-display);
+        font-size: clamp(1.8rem, 3.2vw, 2.5rem);
+        font-weight: 800;
+        color: #ffffff;
+        margin: 14px 0 12px;
     }
 
-    .social-icons {
+    .video-description {
+        font-size: 1rem;
+        color: var(--text-secondary);
+        line-height: 1.75;
+        margin-bottom: 22px;
+    }
+
+    .tool-chip-row {
         display: flex;
-        gap: 15px;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 28px;
     }
 
-        .social-icons a img {
-            width: 35px;
-            height: 35px;
-            object-fit: cover;
-            border-radius: 50%;
-            margin: 0;
-            transition: transform 0.2s;
-        }
+    .tool-chip {
+        padding: 6px 14px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(208, 170, 255, 0.22);
+        color: #e9d5ff;
+        font-size: 0.84rem;
+        font-weight: 600;
+    }
 
-            .social-icons a img:hover {
-                transform: scale(1.1);
-            }
+    .video-cta-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+    }
 
-    @@media (max-width: 768px) {
-        .hover-section {
-            padding: 40px 10px 80px;
-        }
-
-        .info-card {
-            width: 90%;
-            margin: 8px 0;
-        }
-
-        .footer-content {
-            flex-direction: column;
-            gap: 30px;
-            padding: 0 10px;
-        }
-
-        .footer-column {
-            flex: none;
-            padding: 0 0 20px 0;
+    @@media (max-width: 860px) {
+        .video-showcase-card {
+            grid-template-columns: 1fr;
             text-align: center;
         }
 
-        .social-icons {
+        .video-frame {
+            max-width: 420px;
+            margin: 0 auto;
+        }
+
+        .video-copy {
+            text-align: center;
+        }
+
+        .tool-chip-row,
+        .video-cta-row {
             justify-content: center;
+        }
+    }
+
+    @@media (prefers-reduced-motion: reduce) {
+        .role-track,
+        .skillgroup,
+        .hero-scroll-cue svg {
+            animation: none;
+        }
+
+        .Skills {
+            overflow-x: auto;
         }
     }
 </style>
 }
 
-    <section class="Parallax">
-        <img src="~/images/bg.webp" alt="Background landscape" id="bg" />
-        <img src="~/images/purpleflare.webp" alt="" id="purpleflare" />
-        <h1 id="text">HERMIONE</h1>
-        <img src="~/images/hermisolo.webp" alt="Hermione Benitez portrait" id="hermisolo" />
-        <img src="~/images/transition.webp" alt="" id="transition" />
-    </section>
+<section class="Parallax" data-hero-section>
+    <img src="~/images/bg.webp" alt="Background landscape" id="bg" />
+    <img src="~/images/purpleflare.webp" alt="" id="purpleflare" />
+    <div class="hero-top-badge">
+        <span class="eyebrow-pill"><span class="eyebrow-dot"></span> BSIT • Creative Designer • Developer</span>
+    </div>
+    <h1 id="text">HERMIONE</h1>
+    <img src="~/images/hermisolo.webp" alt="Hermione Benitez portrait" id="hermisolo" />
+    <img src="~/images/transition.webp" alt="" id="transition" />
+    <a href="#about-intro" class="hero-scroll-cue" aria-label="Scroll to introduction">
+        <span>Scroll</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M6 9l6 6 6-6"></path>
+        </svg>
+    </a>
+</section>
 
-    <section class="title">
-        <h1 id="Hi">Hi! She's Hermione Benitez.</h1>
+<section class="title" id="about-intro">
+    <div class="title-inner" data-reveal="up">
+        <h2 id="Hi">Hi! She's Hermione Benitez.</h2>
         <div class="text-changer">
-            <p>An Aspiring</p>
-            <div class="aspiringroles">
-                <span class="role">UI/UX Designer</span>
-                <span class="role">Graphic Designer</span>
-                <span class="role">Frontend Developer</span>
-                <span class="role">Quality Assurance</span>
-                <span class="role">System Architecture</span>
-            </div>
-        </div>
-        <p>She studies the field of Information Technology from 2023 – Present.<br>
-        Has extensive experience in campus organizations, primarily focusing on creative digital work.<br>
-        She also developed several systems during her college days with the role of Project Manager, Full Stack Developer, <br>
-        Database Manager, and a System Architect.</p>
-    </section>
-
-    <section class="hover-section">
-        <h2>Get to know her more</h2>
-        <div class="card-container">
-            <div class="info-card">
-                <h3>She's born in</h3>
-                <p>October 25, 2005 at Quezon City, Philippines.</p>
-            </div>
-            <div class="info-card">
-                <h3>She has so many hobbies</h3>
-                <p>Dancing, Singing, Drawing, Listening to music, Reading books, and watching movies, and many more on the list.</p>
-            </div>
-            <div class="info-card">
-                <h3>Her life motto is</h3>
-                <p>“Every day is a blessing and there’s so much that could happen in a day, so live your life to the fullest.”</p>
-            </div>
-            <div class="info-card">
-                <h3>Favorite color</h3>
-                <p>She loves shades of purple, representing creativity and imagination.</p>
-            </div>
-            <div class="info-card">
-                <h3>Dream career</h3>
-                <p>To become a professional graphic designer and to pursue her passion in creative industry someday.</p>
-            </div>
-            <div class="info-card">
-                <h3>Family</h3>
-                <p>She has been living with her mother’s side of the family ever since, along with one sibling.</p>
-            </div>
-            <div class="info-card">
-                <h3>Academics</h3>
-                <p>She has been a consistent honor student since her junior high school up to her college journey.</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="Skill-section">
-        <h2>Her Skills</h2>
-        <div class="Skills">
-            <div class="skillgroup">
-                <div class="skill">
-                    <h3>Graphic Designing</h3>
-                    <p>Skilled in creating publication materials and other digital products using Canva and Ibispaint. Can do image manipulation, retouching, and creating detailed graphics for various media.</p>
-                </div>
-                <div class="skill">
-                    <h3>Attention to Details</h3>
-                    <p>
-                        Ability to design informative and accurate digital product relating to the intended purpose of the message. Details given for a certain task are thoroughly evaluated and executed.
-                    </p>
-                </div>
-                <div class="skill">
-                    <h3>Flexible and Resilient</h3>
-                    <p>
-                        Can work under pressure and complying to the given task on or before the due date with great quality.
-                    </p>
-                </div>
-                <div class="skill">
-                    <h3>Critical Thinking</h3>
-                    <p>
-                        Strong capacity for analyzing information, problem-solving, and making well-reasoned judgments in complex situations.
-                    </p>
-                </div>
-                <div class="skill">
-                    <h3>Effective Communication</h3>
-                    <p>
-                        Addresses all the concerns and clarifies the given information ahead of time to maintain an aligned ideas with the stakeholders.
-                    </p>
-                </div>
-            </div>
-            <div aria-hidden="true" class="skillgroup">
-                <div class="skill">
-                    <h3>Graphic Designing</h3>
-                    <p>Skilled in creating publication materials and other digital products using Canva and Ibispaint. Can do image manipulation, retouching, and creating detailed graphics for various media.</p>
-                </div>
-                <div class="skill">
-                    <h3>Attention to Details</h3>
-                    <p>
-                        Ability to design informative and accurate digital product relating to the intended purpose of the message. Details given for a certain task are thoroughly evaluated and executed.
-                    </p>
-                </div>
-                <div class="skill">
-                    <h3>Flexible and Resilient</h3>
-                    <p>
-                        Can work under pressure and complying to the given task on or before the due date with great quality.
-                    </p>
-                </div>
-                <div class="skill">
-                    <h3>Critical Thinking</h3>
-                    <p>
-                        Strong capacity for analyzing information, problem-solving, and making well-reasoned judgments in complex situations.
-                    </p>
-                </div>
-                <div class="skill">
-                    <h3>Effective Communication</h3>
-                    <p>
-                        Addresses all the concerns and clarifies the given information ahead of time to maintain an aligned ideas with the stakeholders.
-                    </p>
+            <p class="text-changer-prefix">An Aspiring</p>
+            <div class="aspiringroles" aria-live="polite">
+                <div class="role-track">
+                    <span class="role">UI/UX Designer</span>
+                    <span class="role">Graphic Designer</span>
+                    <span class="role">Frontend Developer</span>
+                    <span class="role">Quality Assurance</span>
+                    <span class="role">System Architecture</span>
+                    <span class="role" aria-hidden="true">UI/UX Designer</span>
                 </div>
             </div>
         </div>
-
-    </section>
-
-    <section class="roles-section">
-        <h2>Current Roles and Responsibilities</h2>
-        <div class="roles-grid">
-            <div class="role-item">
-                <div class="role-item-image">
-                    <img src="~/images/commits.webp" alt="CommITs Vice President in Internal Affairs" loading="lazy" />
-                </div>
-                <div class="role-item-details">
-                    <h3>Vice President in Internal Affairs, CommITs 2024-2025</h3>
-                    <p>Provides services for the IT community at PUP Quezon City as the Vice President for Internal Affairs, responsible for addressing concerns within the organization and the student community.</p>
-                </div>
-            </div>
-
-            <div class="role-item">
-                <div class="role-item-image">
-                    <img src="~/images/musa.jpeg" alt="Lupon ng Malikhaing Paggawa, MUSA" loading="lazy" />
-                </div>
-                <div class="role-item-details">
-                    <h3>Lupon ng Malikhaing Paggawa, MUSA 2024-2025</h3>
-                    <p>Actively maintaining the good quality of publication materials for MUSA organization as a Lupon ng Malikhaing Paggawa and a Quality Assurance.</p>
-                </div>
-            </div>
-
-            <div class="role-item">
-                <div class="role-item-image">
-                    <img src="~/images/class.jpeg" alt="Class Vice President, BSIT 3-2" loading="lazy" />
-                </div>
-                <div class="role-item-details">
-                    <h3>Class Vice President, BSIT 3-2 2024-2025</h3>
-                    <p>Worked in a two year consecutive (2024-2025 and 2025-2026) a Class Vice President for BSIT 3-2, acting as a support officer for the President in facilitating the class.</p>
-                </div>
-            </div>
-
-            <div class="role-item">
-                <div class="role-item-image">
-                    <img src="~/images/sinagtala.webp" alt="Creatives Member, Sinagtala" loading="lazy" />
-                </div>
-                <div class="role-item-details">
-                    <h3>Creatives Member, Sinagtala 2024-2025</h3>
-                    <p>Participated as a creative member that is responsible in developing digital publication materials for the 27th Founding Anniversary of PUP Quezon City Campus happened on the month of September 2025.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="video-section">
-        <h2>Sample Work</h2>
-        <p class="video-description">
-            Here’s a short video that highlights Hermione’s creative journey in producing the main poster of <br>
-            MUSA's Theater Play titled "Sa Loob ng Utak ni Juana" that was featured on September 15, 2025.
+        <p class="intro-bio">
+            She studies the field of Information Technology from 2023 – Present, combining creative digital craftsmanship with technical leadership.
+            She has extensive experience across campus organizations focusing on creative visual media, and has led systems development as a Project Manager, Full Stack Developer, Database Manager, and System Architect.
         </p>
-        <div class="video-container">
+        <div class="intro-stats">
+            <span class="intro-stat-pill">PUPQC BSIT (2023 – Present)</span>
+            <span class="intro-stat-pill">9+ Organizational Roles</span>
+            <span class="intro-stat-pill">13+ Published Artworks</span>
+        </div>
+        <div class="intro-actions">
+            <a class="btn-glow" asp-controller="Home" asp-action="Portfolio">
+                Explore Her Portfolio
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                </svg>
+            </a>
+            <a class="btn-glass" asp-controller="Home" asp-action="Contact">Resume &amp; Contact</a>
+        </div>
+    </div>
+</section>
+
+<section class="hover-section">
+    <div class="section-header" data-reveal="up">
+        <span class="eyebrow-pill"><span class="eyebrow-dot"></span> Personal Profile</span>
+        <h2 class="section-heading gradient-text mt-3">Get to know her more</h2>
+        <p class="section-subtitle">Beyond the code and pixels—here are the values, roots, and inspirations that fuel Hermione's creativity.</p>
+    </div>
+
+    <div class="bento-grid">
+        <article class="glass-card info-card" data-spotlight data-reveal="up" data-delay="0">
+            <span class="bento-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            </span>
+            <span class="bento-tag">Origin</span>
+            <h3>She's born in</h3>
+            <p>October 25, 2005 at Quezon City, Philippines.</p>
+        </article>
+
+        <article class="glass-card info-card" data-spotlight data-reveal="up" data-delay="70">
+            <span class="bento-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.586 7.586"></path></svg>
+            </span>
+            <span class="bento-tag">Passions</span>
+            <h3>She has so many hobbies</h3>
+            <p>Dancing, Singing, Drawing, Listening to music, Reading books, watching movies, and many more on the list.</p>
+        </article>
+
+        <article class="glass-card info-card bento-card--wide" data-spotlight data-reveal="up" data-delay="140">
+            <span class="bento-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8l-6.2 4.5 2.4-7.4L2 9.4h7.6L12 2z"></path></svg>
+            </span>
+            <span class="bento-tag">Philosophy</span>
+            <h3>Her life motto is</h3>
+            <p>“Every day is a blessing and there’s so much that could happen in a day, so live your life to the fullest.”</p>
+        </article>
+
+        <article class="glass-card info-card" data-spotlight data-reveal="up" data-delay="60">
+            <span class="bento-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r=".5"></circle><circle cx="17.5" cy="10.5" r=".5"></circle><circle cx="8.5" cy="7.5" r=".5"></circle><circle cx="6.5" cy="12.5" r=".5"></circle><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"></path></svg>
+            </span>
+            <span class="bento-tag">Aesthetic</span>
+            <h3>Favorite color</h3>
+            <p>She loves shades of purple, representing creativity and imagination.</p>
+            <div class="color-swatch-row" aria-hidden="true">
+                <span class="swatch-dot" style="background:#6300a5;"></span>
+                <span class="swatch-dot" style="background:#a855f7;"></span>
+                <span class="swatch-dot" style="background:#d0aaff;"></span>
+            </div>
+        </article>
+
+        <article class="glass-card info-card" data-spotlight data-reveal="up" data-delay="120">
+            <span class="bento-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+            </span>
+            <span class="bento-tag">Ambition</span>
+            <h3>Dream career</h3>
+            <p>To become a professional graphic designer and pursue her passion in the creative industry someday.</p>
+        </article>
+
+        <article class="glass-card info-card" data-spotlight data-reveal="up" data-delay="180">
+            <span class="bento-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            </span>
+            <span class="bento-tag">Roots</span>
+            <h3>Family</h3>
+            <p>She has been living with her mother’s side of the family ever since, along with one sibling.</p>
+        </article>
+
+        <article class="glass-card info-card" data-spotlight data-reveal="up" data-delay="240">
+            <span class="bento-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
+            </span>
+            <span class="bento-tag">Excellence</span>
+            <h3>Academics</h3>
+            <p>She has been a consistent honor student since her junior high school up to her college journey.</p>
+        </article>
+    </div>
+</section>
+
+<section class="Skill-section">
+    <div class="section-header" data-reveal="up">
+        <span class="eyebrow-pill"><span class="eyebrow-dot"></span> Capabilities</span>
+        <h2 class="section-heading gradient-text mt-3">Her Skills</h2>
+        <p class="section-subtitle">A versatile toolkit spanning digital visual arts, stakeholder communication, and disciplined execution.</p>
+    </div>
+
+    <div class="Skills">
+        <div class="skillgroup">
+            <div class="glass-card skill" data-spotlight>
+                <span class="skill-badge">Canva • IbisPaint</span>
+                <h3>Graphic Designing</h3>
+                <p>Skilled in creating publication materials and digital products using Canva and IbisPaint. Experienced in image manipulation, retouching, and detailed graphics for various media.</p>
+            </div>
+            <div class="glass-card skill" data-spotlight>
+                <span class="skill-badge">Visual Precision</span>
+                <h3>Attention to Details</h3>
+                <p>Ability to design informative and accurate digital products aligned with the intended message. Every specification and layout detail is thoroughly evaluated and executed.</p>
+            </div>
+            <div class="glass-card skill" data-spotlight>
+                <span class="skill-badge">Deadline Driven</span>
+                <h3>Flexible and Resilient</h3>
+                <p>Performs effectively under pressure while consistently delivering assigned tasks on or before due dates with high visual and technical quality.</p>
+            </div>
+            <div class="glass-card skill" data-spotlight>
+                <span class="skill-badge">Problem Solving</span>
+                <h3>Critical Thinking</h3>
+                <p>Strong capacity for analyzing information, solving design and system challenges, and making well-reasoned judgments in complex situations.</p>
+            </div>
+            <div class="glass-card skill" data-spotlight>
+                <span class="skill-badge">Team Alignment</span>
+                <h3>Effective Communication</h3>
+                <p>Addresses concerns proactively and clarifies requirements ahead of time to keep ideas seamlessly aligned with teams and stakeholders.</p>
+            </div>
+        </div>
+
+        <div aria-hidden="true" class="skillgroup">
+            <div class="glass-card skill" data-spotlight>
+                <span class="skill-badge">Canva • IbisPaint</span>
+                <h3>Graphic Designing</h3>
+                <p>Skilled in creating publication materials and digital products using Canva and IbisPaint. Experienced in image manipulation, retouching, and detailed graphics for various media.</p>
+            </div>
+            <div class="glass-card skill" data-spotlight>
+                <span class="skill-badge">Visual Precision</span>
+                <h3>Attention to Details</h3>
+                <p>Ability to design informative and accurate digital products aligned with the intended message. Every specification and layout detail is thoroughly evaluated and executed.</p>
+            </div>
+            <div class="glass-card skill" data-spotlight>
+                <span class="skill-badge">Deadline Driven</span>
+                <h3>Flexible and Resilient</h3>
+                <p>Performs effectively under pressure while consistently delivering assigned tasks on or before due dates with high visual and technical quality.</p>
+            </div>
+            <div class="glass-card skill" data-spotlight>
+                <span class="skill-badge">Problem Solving</span>
+                <h3>Critical Thinking</h3>
+                <p>Strong capacity for analyzing information, solving design and system challenges, and making well-reasoned judgments in complex situations.</p>
+            </div>
+            <div class="glass-card skill" data-spotlight>
+                <span class="skill-badge">Team Alignment</span>
+                <h3>Effective Communication</h3>
+                <p>Addresses concerns proactively and clarifies requirements ahead of time to keep ideas seamlessly aligned with teams and stakeholders.</p>
+            </div>
+        </div>
+    </div>
+    <p class="marquee-hint">Hover any skill card to pause the carousel</p>
+</section>
+
+<section class="roles-section">
+    <div class="section-header" data-reveal="up">
+        <span class="eyebrow-pill"><span class="eyebrow-dot"></span> Campus Leadership</span>
+        <h2 class="section-heading gradient-text mt-3">Current Roles and Responsibilities</h2>
+        <p class="section-subtitle">Actively serving student communities through creative direction, organizational leadership, and collaborative service.</p>
+    </div>
+
+    <div class="roles-grid">
+        <article class="glass-card role-item" data-spotlight data-reveal="up" data-delay="0">
+            <div class="role-item-image">
+                <img src="~/images/commits.webp" alt="CommITs Vice President in Internal Affairs" loading="lazy" />
+                <span class="role-period-badge">2024 – 2025</span>
+            </div>
+            <div class="role-item-details">
+                <h3>Vice President in Internal Affairs, CommITs</h3>
+                <p>Provides services for the IT community at PUP Quezon City as Vice President for Internal Affairs, addressing concerns within the organization and student community.</p>
+            </div>
+        </article>
+
+        <article class="glass-card role-item" data-spotlight data-reveal="up" data-delay="80">
+            <div class="role-item-image">
+                <img src="~/images/musa.jpeg" alt="Lupon ng Malikhaing Paggawa, MUSA" loading="lazy" />
+                <span class="role-period-badge">2024 – 2025</span>
+            </div>
+            <div class="role-item-details">
+                <h3>Lupon ng Malikhaing Paggawa, MUSA</h3>
+                <p>Actively maintains the creative quality of publication materials for the MUSA organization as part of Lupon ng Malikhaing Paggawa and Quality Assurance.</p>
+            </div>
+        </article>
+
+        <article class="glass-card role-item" data-spotlight data-reveal="up" data-delay="160">
+            <div class="role-item-image">
+                <img src="~/images/class.jpeg" alt="Class Vice President, BSIT 3-2" loading="lazy" />
+                <span class="role-period-badge">2024 – 2026</span>
+            </div>
+            <div class="role-item-details">
+                <h3>Class Vice President, BSIT 3-2</h3>
+                <p>Served two consecutive academic years (2024–2025 and 2025–2026) as Class Vice President for BSIT 3-2, supporting the President in facilitating class operations.</p>
+            </div>
+        </article>
+
+        <article class="glass-card role-item" data-spotlight data-reveal="up" data-delay="240">
+            <div class="role-item-image">
+                <img src="~/images/sinagtala.webp" alt="Creatives Member, Sinagtala" loading="lazy" />
+                <span class="role-period-badge">Sept 2025</span>
+            </div>
+            <div class="role-item-details">
+                <h3>Creatives Member, Sinagtala</h3>
+                <p>Developed digital publication materials for the 27th Founding Anniversary of PUP Quezon City Campus held in September 2025.</p>
+            </div>
+        </article>
+    </div>
+
+    <div class="mt-5" data-reveal="up">
+        <a class="btn-glass" asp-controller="Home" asp-action="Achievements">
+            Explore Full Leadership &amp; Award Timeline
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M5 12h14M12 5l7 7-7 7"></path>
+            </svg>
+        </a>
+    </div>
+</section>
+
+<section class="video-section">
+    <div class="glass-card video-showcase-card" data-spotlight data-reveal="up">
+        <div class="video-frame">
             <video controls autoplay muted loop playsinline preload="metadata" poster="/images/samplethumbnail.webp">
                 <source src="~/images/lv_0_20251107005003.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
             </video>
         </div>
 
-        <a class="nav-link text-white fw-semibold mt-4 d-inline-block" asp-controller="Home" asp-action="Portfolio">
-            Click Here to View More of Her Work
-        </a>
-    </section>
-
-
-    <footer class="footer-section">
-        <div class="footer-content">
-            <div class="footer-column">
-                <h3>Get In Touch</h3>
-                <p>Quezon City, Metro Manila, Philippines</p>
-                <p>
-                    <a href="mailto:benitezhermione@gmail.com">benitezhermione@gmail.com</a>
-                </p>
-                <p>
-                    <a href="tel:+639396204267">(+63) 939 620 4267</a>
-                </p>
+        <div class="video-copy">
+            <span class="eyebrow-pill"><span class="eyebrow-dot"></span> Featured Process Reel</span>
+            <h2>Sample Work</h2>
+            <p class="video-description">
+                Here’s a short behind-the-scenes reel highlighting Hermione’s creative process in crafting the main poster for MUSA’s Theater Play titled <strong>“Sa Loob ng Utak ni Juana”</strong>, featured on September 15, 2025.
+            </p>
+            <div class="tool-chip-row">
+                <span class="tool-chip">Image Manipulation</span>
+                <span class="tool-chip">IbisPaint</span>
+                <span class="tool-chip">Canva</span>
+                <span class="tool-chip">CapCut</span>
             </div>
-            <div class="footer-column">
-                <h3>Connect</h3>
-                <div class="social-icons">
-                    <a href="https://www.linkedin.com/in/hermione-benitez-934335334/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><img src="~/images/linkedin.jpg" alt="LinkedIn" /></a>
-                    <a href="https://github.com/Hermione-Benitez" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><img src="~/images/github.png" alt="GitHub" /></a>
-                    <a href="https://www.facebook.com/lekantier.jinpier" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><img src="~/images/fblogo.png" alt="Facebook" /></a>
-                </div>
-            </div>
-            <div class="footer-column">
-                <h3>Portfolio Focus</h3>
-                <p>Basic Information</p>
-                <p>Graphic Design Portfolio</p>
-                <p>Achievements and Experiences</p>
+            <div class="video-cta-row">
+                <a class="btn-glow" asp-controller="Home" asp-action="Portfolio">
+                    Click Here to View More of Her Work
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M5 12h14M12 5l7 7-7 7"></path>
+                    </svg>
+                </a>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 Hermione B. Benitez. All Rights Reserved.</p>
-        </div>
-    </footer>
+    </div>
+</section>
 
 @section Scripts {
-    <script>
-        let bg = document.getElementById("bg");
-        let hermisolo = document.getElementById("hermisolo");
-        let text = document.getElementById("text");
-        let purpleflare = document.getElementById("purpleflare");
+<script>
+    (() => {
+        const bg = document.getElementById('bg');
+        const hermisolo = document.getElementById('hermisolo');
+        const text = document.getElementById('text');
+        const purpleflare = document.getElementById('purpleflare');
+        const parallax = document.querySelector('.Parallax');
+        const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-        window.addEventListener("scroll", function () {
-            let value = window.scrollY;
+        if (prefersReduced || !parallax) return;
 
-            if (bg) bg.style.top = value * 0.5 + "px";
-            if (text) {
-                text.style.marginTop = value * 1.1 + "px";
-                text.style.marginLeft = value * 0.5 + "px";
+        let scrollValue = window.scrollY || 0;
+        let pointerX = 0;
+        let pointerY = 0;
+        let rafPending = false;
+
+        function applyParallax() {
+            const heroLimit = parallax.offsetHeight + 180;
+            if (scrollValue <= heroLimit) {
+                if (bg) {
+                    bg.style.transform = `translate3d(${pointerX * -8}px, ${scrollValue * 0.45 + pointerY * -8}px, 0) scale(1.04)`;
+                }
+                if (purpleflare) {
+                    purpleflare.style.transform = `translate3d(${pointerX * 14}px, ${scrollValue * 0.9 + pointerY * 10}px, 0)`;
+                }
+                if (text) {
+                    text.style.transform = `translate3d(${scrollValue * 0.45 + pointerX * 16}px, ${scrollValue * 1.05 + pointerY * 12}px, 0)`;
+                }
+                if (hermisolo) {
+                    hermisolo.style.transform = `translate3d(${scrollValue * -0.95 + pointerX * -12}px, ${scrollValue * 0.72 + pointerY * -6}px, 0)`;
+                }
             }
-            if (hermisolo) {
-                hermisolo.style.top = value * 0.75 + "px";
-                hermisolo.style.left = value * -1.1 + "px";
+            rafPending = false;
+        }
+
+        function scheduleParallax() {
+            if (!rafPending) {
+                window.requestAnimationFrame(applyParallax);
+                rafPending = true;
             }
-            if (purpleflare) purpleflare.style.top = value * 1 + "px";
-        });
-    </script>
+        }
+
+        window.addEventListener(
+            'scroll',
+            () => {
+                scrollValue = window.scrollY || 0;
+                scheduleParallax();
+            },
+            { passive: true }
+        );
+
+        if (window.matchMedia && window.matchMedia('(hover: hover)').matches) {
+            parallax.addEventListener(
+                'pointermove',
+                (e) => {
+                    const rect = parallax.getBoundingClientRect();
+                    pointerX = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
+                    pointerY = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
+                    scheduleParallax();
+                },
+                { passive: true }
+            );
+        }
+
+        applyParallax();
+    })();
+</script>
 }

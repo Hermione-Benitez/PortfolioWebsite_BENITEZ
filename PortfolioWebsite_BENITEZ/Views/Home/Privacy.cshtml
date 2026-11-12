@@ -5,27 +5,53 @@
 
 @section Styles {
 <style>
-    html, body {
-        background-color: #0d001a;
-        color: #ffffff;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    body {
+        background-color: #06020f;
+        background-image: linear-gradient(180deg, rgba(6, 2, 15, 0.85), rgba(6, 2, 15, 0.96)), url('/images/bg.webp');
+        background-size: cover;
+        background-position: center center;
+        background-attachment: fixed;
     }
 
-    .privacy-section {
-        max-width: 860px;
-        margin: 0 auto;
-        padding: 130px 24px 80px;
-        line-height: 1.7;
+    .privacy-wrap {
+        position: relative;
+        z-index: 2;
+        max-width: 840px;
+        margin: clamp(120px, 14vw, 160px) auto 100px;
+        padding: 0 20px;
     }
 
-    .privacy-section h1 {
-        color: #d0aaff;
-        margin-bottom: 24px;
+    .privacy-card {
+        padding: clamp(28px, 5vw, 48px);
+        text-align: left;
+    }
+
+    .privacy-card h1 {
+        font-family: var(--font-display);
+        font-size: clamp(1.9rem, 4vw, 2.8rem);
+        font-weight: 800;
+        margin: 14px 0 18px;
+    }
+
+    .privacy-card p {
+        color: var(--text-secondary);
+        font-size: 1.02rem;
+        line-height: 1.78;
+        margin-bottom: 26px;
     }
 </style>
 }
 
-<section class="privacy-section">
-    <h1>@ViewData["Title"]</h1>
-    <p>This portfolio website is a personal showcase for Hermione Benitez. No personal data is collected, stored, or sold through this website. Contact links (email, phone, and external social media profiles) open directly in your device's mail, phone, or browser application.</p>
+<div class="ambient-canvas" aria-hidden="true">
+    <span class="ambient-orb ambient-orb--one"></span>
+    <span class="ambient-orb ambient-orb--two"></span>
+</div>
+
+<section class="privacy-wrap">
+    <div class="glass-card privacy-card" data-spotlight data-reveal="up">
+        <span class="eyebrow-pill"><span class="eyebrow-dot"></span> Website Notice</span>
+        <h1 class="gradient-text">@ViewData["Title"]</h1>
+        <p>This portfolio website is a personal showcase for Hermione Benitez. No personal data is collected, stored, or sold through this website. Contact links (email, phone, and external social media profiles) open directly in your device's mail, phone, or browser application.</p>
+        <a class="btn-glow" asp-controller="Home" asp-action="Index">Back to Home</a>
+    </div>
 </section>

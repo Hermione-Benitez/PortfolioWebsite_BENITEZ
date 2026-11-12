@@ -5,454 +5,675 @@
 
 @section Styles {
 <style>
-    html, body {
-        background-color: #6300a5;
-        color: white;
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        overflow-x: hidden;
+    body {
+        background-color: #06020f;
+        background-image: linear-gradient(180deg, rgba(6, 2, 15, 0.85), rgba(10, 4, 22, 0.94)), url('/images/bg.webp');
+        background-size: cover;
+        background-position: center top;
+        background-attachment: fixed;
     }
 
-    .header {
-        width: 100%;
-        height: 100px;
-        background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(20,0,40,0.95) 100%);
-    }
-
-    .pubmats-section {
-        padding: 50px 100px;
-        max-width: 2000px;
-        margin: 0 auto;
+    .portfolio-hero {
+        position: relative;
+        z-index: 2;
+        padding: clamp(118px, 14vw, 152px) 20px 36px;
         text-align: center;
-        background-color: transparent;
-        color: white;
     }
 
-        .pubmats-section h1 {
-            font-size: 2.5rem;
-            margin-bottom: 40px;
-            color: #fff;
-        }
-
-    .pubmats-container {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 30px;
-        justify-items: center;
+    .filter-bar {
+        display: inline-flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 28px;
+        padding: 7px;
+        border-radius: 999px;
+        background: rgba(18, 8, 36, 0.82);
+        border: 1px solid rgba(208, 170, 255, 0.22);
+        backdrop-filter: blur(14px);
     }
 
-    .pubmat {
-        background: #fff;
-        color: #6300a5;
-        border-radius: 25px;
-        overflow: hidden;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        max-width: 90%;
-        width: 100%;
+    .filter-btn {
+        border: none;
+        background: transparent;
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+        font-weight: 600;
+        padding: 9px 18px;
+        border-radius: 999px;
+        cursor: pointer;
+        transition: background-color 0.25s ease, color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
     }
 
-        .pubmat:hover {
-            transform: translateY(-10px) scale(1.03);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-        }
-
-        .pubmat img {
-            width: 100%;
-            height: auto;
-            object-fit: cover;
-            border-top-left-radius: 25px;
-            border-top-right-radius: 25px;
-        }
-
-    .info-text {
-        padding: 20px;
-        font-size: 1rem;
-        line-height: 1.5;
-        color: #6300a5;
+    .filter-btn:hover {
+        color: #ffffff;
+        background: rgba(168, 85, 247, 0.18);
     }
 
-    .pubmat-details {
-        padding: 20px;
-        font-size: 1rem;
-        line-height: 1.5;
-        color: #6300a5;
-        background-color: white;
-        border-radius: 25px;
-        text-align: justify;
-        max-width: 90%;
+    .filter-btn.is-active {
+        color: #ffffff;
+        background: linear-gradient(135deg, #7b2cbf, #d946ef);
+        box-shadow: 0 6px 20px rgba(168, 85, 247, 0.45);
     }
 
-    .link-container {
+    .gallery-section {
+        position: relative;
+        z-index: 2;
+        max-width: 1320px;
+        margin: 0 auto;
+        padding: 36px 24px 64px;
+        transition: opacity 0.35s ease, transform 0.35s ease;
+    }
+
+    .gallery-section.is-hidden {
+        display: none;
+    }
+
+    .gallery-section-header {
         display: flex;
         flex-wrap: wrap;
-        align-items: center;
-        width: 100%;
-        margin-bottom: 20px;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 16px;
+        margin-bottom: 30px;
+        padding-bottom: 18px;
+        border-bottom: 1px solid rgba(208, 170, 255, 0.14);
     }
 
-    .download-button {
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        background-color: #f0f0f0;
-        border: 1px solid #d1b3ff;
-        border-radius: 50px;
-        margin: 10px 0;
-        padding: 10px 20px;
-        min-width: 150px;
-        text-decoration: none;
-        color: #4e04a9;
-        transition: all 0.3s ease;
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
+    .gallery-section-header h2 {
+        font-family: var(--font-display);
+        font-size: clamp(1.7rem, 3.2vw, 2.4rem);
+        font-weight: 800;
+        margin: 10px 0 0;
+    }
+
+    .gallery-count-pill {
+        padding: 6px 14px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(208, 170, 255, 0.24);
+        color: var(--orchid-glow);
+        font-size: 0.84rem;
         font-weight: 600;
     }
 
-        .download-button:hover {
-            transform: translateY(-5px) scale(1.03);
-            background: #e9e2f5;
-            box-shadow: 0 6px 20px rgba(167, 95, 255, 0.4);
-        }
-
-    .pubmats-section-2 {
-        padding: 100px;
-        width: 100%;
-        text-align: center;
-        background-color: white;
+    .pubmats-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 26px;
     }
 
-        .pubmats-section-2 h1 {
-            font-size: 2.5rem;
-            margin: 0 0 40px;
-            color: #6300a5;
-        }
-
-    .pubmat-details-2 {
-        padding: 20px;
-        font-size: 1rem;
-        line-height: 1.5;
-        color: white;
-        background-color: #6300a5;
-        border-radius: 25px;
-        text-align: justify;
-        max-width: 90%;
-    }
-
-        .pubmat-details-2 h3 {
-            color: white;
-        }
-
-        .pubmat-details-2 p {
-            margin-bottom: 20px;
-            color: white;
-        }
-
-    .pubmat-2 {
-        background: #fff;
-        color: #6300a5;
-        border-radius: 25px;
-        overflow: hidden;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        max-width: 90%;
-        width: 100%;
-    }
-
-        .pubmat-2:hover {
-            transform: translateY(-10px) scale(1.03);
-            background: rgba(167, 95, 255, 0.3);
-            box-shadow: 0 6px 20px rgba(167, 95, 255, 0.4);
-        }
-
-        .pubmat-2 img {
-            width: 100%;
-            height: auto;
-            object-fit: cover;
-            border-top-left-radius: 25px;
-            border-top-right-radius: 25px;
-        }
-
-    .info-text-2 {
-        padding: 20px;
-        font-size: 1rem;
-        line-height: 1.5;
-        color: #6300a5;
-    }
-
-    .footer-section {
-        background-color: #0d0d0d;
-        color: #aaa;
-        padding: 40px 20px 20px;
-        text-align: center;
-    }
-
-    .footer-content {
+    .work-card {
         display: flex;
-        justify-content: space-around;
-        max-width: 1200px;
-        margin: 0 auto 30px;
-        padding: 0 20px;
-        flex-wrap: nowrap;
+        flex-direction: column;
+        padding: 14px;
+        transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+                    border-color 0.35s ease,
+                    box-shadow 0.35s ease,
+                    opacity 0.35s ease;
     }
 
-    .footer-column {
-        flex: 1;
-        padding: 0 15px;
+    .work-trigger {
+        position: relative;
+        display: block;
+        width: 100%;
+        padding: 0;
+        border: none;
+        border-radius: 16px;
+        overflow: hidden;
+        background: radial-gradient(circle at center, rgba(99, 0, 165, 0.22), #080312 86%);
+        border: 1px solid rgba(208, 170, 255, 0.14);
+        cursor: pointer;
+        aspect-ratio: 3 / 4;
+    }
+
+    .work-trigger--pubmat {
+        aspect-ratio: 16 / 11;
+    }
+
+    .work-trigger img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        padding: 10px;
+        display: block;
+        transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .work-card:hover .work-trigger img {
+        transform: scale(1.05);
+    }
+
+    .work-zoom-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, transparent 45%, rgba(8, 3, 18, 0.88) 100%);
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        padding: 16px;
+        opacity: 0;
+        transition: opacity 0.28s ease;
+    }
+
+    .work-card:hover .work-zoom-overlay,
+    .work-trigger:focus-visible .work-zoom-overlay {
+        opacity: 1;
+    }
+
+    .work-zoom-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 7px 15px;
+        border-radius: 999px;
+        background: rgba(123, 44, 191, 0.88);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: #ffffff;
+        font-size: 0.8rem;
+        font-weight: 700;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
+    }
+
+    .work-body {
+        padding: 16px 8px 8px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        flex-grow: 1;
         text-align: left;
     }
 
-        .footer-column h3 {
-            color: #fff;
-            margin-bottom: 15px;
-            font-size: 1.1rem;
-        }
-
-        .footer-column a {
-            color: #d1b3ff;
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-
-            .footer-column a:hover {
-                color: #fff;
-            }
-
-    .footer-bottom {
-        border-top: 1px solid #333;
-        padding-top: 20px;
-        font-size: 0.85em;
-        text-align: center;
-    }
-
-    .social-icons {
+    .work-tag-row {
         display: flex;
-        gap: 15px;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        margin-bottom: 2px;
     }
 
-        .social-icons a img {
-            width: 35px;
-            height: 35px;
-            object-fit: cover;
-            border-radius: 50%;
-            margin: 0;
-            transition: transform 0.2s;
+    .work-tag {
+        padding: 3px 10px;
+        border-radius: 999px;
+        background: rgba(168, 85, 247, 0.18);
+        border: 1px solid rgba(208, 170, 255, 0.26);
+        color: var(--orchid-glow);
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+    }
+
+    .work-client {
+        color: var(--magenta-flare);
+        font-size: 0.84rem;
+        font-weight: 600;
+    }
+
+    .work-body h3 {
+        font-family: var(--font-display);
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: #ffffff;
+        margin: 0;
+        line-height: 1.3;
+    }
+
+    .work-body p {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+        line-height: 1.55;
+        margin: 4px 0 0;
+    }
+
+    /* Full-width disclaimer & external credits banner */
+    .disclaimer-banner {
+        margin-top: 32px;
+        padding: 26px 28px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+        text-align: left;
+    }
+
+    .disclaimer-copy {
+        max-width: 680px;
+    }
+
+    .disclaimer-copy h3 {
+        font-family: var(--font-display);
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: #ffffff;
+        margin: 0 0 6px;
+    }
+
+    .disclaimer-copy p {
+        color: var(--text-secondary);
+        font-size: 0.92rem;
+        margin: 0;
+        line-height: 1.6;
+    }
+
+    .disclaimer-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    @@media (max-width: 600px) {
+        .gallery-section {
+            padding: 24px 16px 48px;
         }
 
-            .social-icons a img:hover {
-                transform: scale(1.1);
-            }
-
-    @@media (max-width: 768px) {
-        .pubmats-section,
-        .pubmats-section-2 {
-            padding: 40px 20px;
-        }
-
-        .pubmat, .pubmat-2, .pubmat-details, .pubmat-details-2 {
-            max-width: 100%;
-        }
-
-        .download-button {
-            width: auto;
-            font-size: 0.9rem;
-            padding: 8px 18px;
-        }
-
-        .link-container {
-            justify-content: flex-start;
-        }
-
-        .footer-content {
-            flex-direction: column;
-            gap: 30px;
-            padding: 0 10px;
-        }
-
-        .footer-column {
-            flex: none;
-            padding: 0 0 20px 0;
+        .disclaimer-banner {
             text-align: center;
+            justify-content: center;
         }
 
-        .social-icons {
+        .disclaimer-actions {
             justify-content: center;
         }
     }
 </style>
 }
 
-    <div class="header" aria-hidden="true"></div>
-    <div class="pubmats-section">
-        <h1>Commissioned Book Covers</h1>
-        <div class="pubmats-container">
-            <div class="pubmat">
+<div class="ambient-canvas" aria-hidden="true">
+    <span class="ambient-orb ambient-orb--one"></span>
+    <span class="ambient-orb ambient-orb--two"></span>
+</div>
+
+<section class="portfolio-hero">
+    <div class="page-hero-inner" data-reveal="up">
+        <span class="eyebrow-pill"><span class="eyebrow-dot"></span> Creative Showcase • Yuni Graphics</span>
+        <h1 class="gradient-text" style="font-family: var(--font-display); font-size: clamp(2.1rem, 5vw, 3.6rem); font-weight: 800; margin: 16px 0 14px;">Graphic Design Portfolio</h1>
+        <p class="section-subtitle">Commissioned digital book covers, event key visuals, and campus publication materials crafted with IbisPaint and Canva. Click any piece to inspect it in full detail.</p>
+
+        <div class="filter-bar" role="tablist" aria-label="Filter portfolio works">
+            <button type="button" class="filter-btn is-active" data-filter="all" role="tab" aria-selected="true">All Works (13)</button>
+            <button type="button" class="filter-btn" data-filter="covers" role="tab" aria-selected="false">Book Covers (5)</button>
+            <button type="button" class="filter-btn" data-filter="pubmats" role="tab" aria-selected="false">Publication Materials (8)</button>
+        </div>
+    </div>
+</section>
+
+<section class="gallery-section" data-gallery-section="covers">
+    <div class="gallery-section-header" data-reveal="up">
+        <div>
+            <span class="eyebrow-pill"><span class="eyebrow-dot"></span> Commissioned Works</span>
+            <h2 class="gradient-text">Commissioned Book Covers</h2>
+        </div>
+        <span class="gallery-count-pill">5 Illustrated &amp; Typographic Covers</span>
+    </div>
+
+    <div class="pubmats-container">
+        <article class="glass-card work-card" data-work-card data-spotlight data-reveal="up" data-delay="0">
+            <button type="button"
+                    class="work-trigger"
+                    data-lightbox="portfolio-all"
+                    data-lb-src="/images/portfolio/10_20251107_173148_0002.webp"
+                    data-lb-alt="Pain From The Past book cover"
+                    data-lb-category="Book Cover • IbisPaint"
+                    data-lb-title="Pain From The Past"
+                    data-lb-meta="Commissioned by Black_Peny"
+                    data-lb-desc="Fully illustrated Book Cover made from IbisPaint.">
                 <img src="~/images/portfolio/10_20251107_173148_0002.webp" alt="Pain From The Past book cover" loading="lazy" />
-                <div class="info-text">
-                    <h3>Pain From The Past</h3>
-                    <p>by Black_Peny</p>
-                    <p>Fully illustrated Book Cover made from IbisPaint.</p>
+                <span class="work-zoom-overlay"><span class="work-zoom-pill">Preview Artwork</span></span>
+            </button>
+            <div class="work-body">
+                <div class="work-tag-row">
+                    <span class="work-tag">IbisPaint</span>
+                    <span class="work-client">by Black_Peny</span>
                 </div>
+                <h3>Pain From The Past</h3>
+                <p>Fully illustrated Book Cover made from IbisPaint.</p>
             </div>
-            <div class="pubmat">
+        </article>
+
+        <article class="glass-card work-card" data-work-card data-spotlight data-reveal="up" data-delay="60">
+            <button type="button"
+                    class="work-trigger"
+                    data-lightbox="portfolio-all"
+                    data-lb-src="/images/portfolio/BC1_20251107_173148_0000.webp"
+                    data-lb-alt="Playing The Bad Guys book cover"
+                    data-lb-category="Book Cover • Canva"
+                    data-lb-title="Playing The Bad Guys"
+                    data-lb-meta="Commissioned by HourlyOppa"
+                    data-lb-desc="Book Cover made from combined elements and images from Canva.">
                 <img src="~/images/portfolio/BC1_20251107_173148_0000.webp" alt="Playing The Bad Guys book cover" loading="lazy" />
-                <div class="info-text">
-                    <h3>Playing The Bad Guys</h3>
-                    <p>by HourlyOppa</p>
-                    <p>Book Cover made from combined elements and images from Canva.</p>
+                <span class="work-zoom-overlay"><span class="work-zoom-pill">Preview Artwork</span></span>
+            </button>
+            <div class="work-body">
+                <div class="work-tag-row">
+                    <span class="work-tag">Canva</span>
+                    <span class="work-client">by HourlyOppa</span>
                 </div>
+                <h3>Playing The Bad Guys</h3>
+                <p>Book Cover made from combined elements and images from Canva.</p>
             </div>
-            <div class="pubmat">
+        </article>
+
+        <article class="glass-card work-card" data-work-card data-spotlight data-reveal="up" data-delay="120">
+            <button type="button"
+                    class="work-trigger"
+                    data-lightbox="portfolio-all"
+                    data-lb-src="/images/portfolio/9_20251107_173148_0001.webp"
+                    data-lb-alt="Beneath The Sunset book cover"
+                    data-lb-category="Book Cover • IbisPaint &amp; Canva"
+                    data-lb-title="Beneath The Sunset"
+                    data-lb-meta="Commissioned by Scentink"
+                    data-lb-desc="Fully illustrated Book Cover made from IbisPaint with fonts used from Canva.">
                 <img src="~/images/portfolio/9_20251107_173148_0001.webp" alt="Beneath The Sunset book cover" loading="lazy" />
-                <div class="info-text">
-                    <h3>Beneath The Sunset</h3>
-                    <p>by Scentink</p>
-                    <p>Fully illustrated Book Cover made from IbisPaint with fonts used from Canva.</p>
+                <span class="work-zoom-overlay"><span class="work-zoom-pill">Preview Artwork</span></span>
+            </button>
+            <div class="work-body">
+                <div class="work-tag-row">
+                    <span class="work-tag">IbisPaint • Canva</span>
+                    <span class="work-client">by Scentink</span>
                 </div>
+                <h3>Beneath The Sunset</h3>
+                <p>Fully illustrated Book Cover made from IbisPaint with fonts used from Canva.</p>
             </div>
-            <div class="pubmat">
+        </article>
+
+        <article class="glass-card work-card" data-work-card data-spotlight data-reveal="up" data-delay="180">
+            <button type="button"
+                    class="work-trigger"
+                    data-lightbox="portfolio-all"
+                    data-lb-src="/images/portfolio/1.webp"
+                    data-lb-alt="PINNACLE book cover"
+                    data-lb-category="Book Cover • Canva"
+                    data-lb-title="PINNACLE"
+                    data-lb-meta="by Aira Aisyunice, Et. Al."
+                    data-lb-desc="A Book Cover made for a lesson plan, combining curated elements and imagery in Canva.">
                 <img src="~/images/portfolio/1.webp" alt="PINNACLE book cover" loading="lazy" />
-                <div class="info-text">
-                    <h3>PINNACLE</h3>
-                    <p>by Aira Aisyunice, Et. Al.</p>
-                    <p>A Book Cover made for a lesson plan, it is a combination of elements and images from Canva.</p>
+                <span class="work-zoom-overlay"><span class="work-zoom-pill">Preview Artwork</span></span>
+            </button>
+            <div class="work-body">
+                <div class="work-tag-row">
+                    <span class="work-tag">Canva</span>
+                    <span class="work-client">by Aira Aisyunice, Et. Al.</span>
                 </div>
+                <h3>PINNACLE</h3>
+                <p>A Book Cover made for a lesson plan, combining elements and images from Canva.</p>
             </div>
-            <div class="pubmat">
+        </article>
+
+        <article class="glass-card work-card" data-work-card data-spotlight data-reveal="up" data-delay="240">
+            <button type="button"
+                    class="work-trigger"
+                    data-lightbox="portfolio-all"
+                    data-lb-src="/images/portfolio/2.webp"
+                    data-lb-alt="A Dance of Sun and Moon book cover"
+                    data-lb-category="Book Cover • Canva"
+                    data-lb-title="A Dance of Sun and Moon"
+                    data-lb-meta="Commissioned by SaturnFaye24"
+                    data-lb-desc="A fantasy book cover made in Canva, combining artistic typography and ornamental elements.">
                 <img src="~/images/portfolio/2.webp" alt="A Dance of Sun and Moon book cover" loading="lazy" />
-                <div class="info-text">
-                    <h3>A Dance of Sun and Moon</h3>
-                    <p>by SaturnFaye24</p>
-                    <p>A fantasy book made from Canva, combining artistic typography and combination of elements.</p>
+                <span class="work-zoom-overlay"><span class="work-zoom-pill">Preview Artwork</span></span>
+            </button>
+            <div class="work-body">
+                <div class="work-tag-row">
+                    <span class="work-tag">Canva • Fantasy</span>
+                    <span class="work-client">by SaturnFaye24</span>
                 </div>
+                <h3>A Dance of Sun and Moon</h3>
+                <p>A fantasy book cover made from Canva, combining artistic typography and custom elements.</p>
             </div>
-            <div class="pubmat-details">
-                <div class="info-text">
-                    <h3>Disclaimer</h3>
-                    <p>The provided digital assets are intended for the presentation and academic use only. These images are already sold by the respective owners.</p>
-                    <h3>Other Pre-made Book Covers</h3>
-                    <p>Visit my Facebook selling account for more Book Cover Designs.</p>
-                    <div class="link-container">
-                        <a href="https://www.facebook.com/profile.php?id=100083759557247" target="_blank" rel="noopener noreferrer" class="download-button">Yuni Graphics</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+        </article>
     </div>
 
-    <div class="pubmats-section-2">
-        <h1>Publication Materials</h1>
-        <div class="pubmats-container">
-            <div class="pubmat-2">
+    <div class="glass-card disclaimer-banner" data-spotlight data-reveal="up">
+        <div class="disclaimer-copy">
+            <h3>Disclaimer &amp; Pre-made Book Covers</h3>
+            <p>The provided digital assets are intended for presentation and academic use only. These designs are already sold to their respective owners. Visit Hermione's Facebook selling page for more Book Cover Designs.</p>
+        </div>
+        <div class="disclaimer-actions">
+            <a href="https://www.facebook.com/profile.php?id=100083759557247" target="_blank" rel="noopener noreferrer" class="btn-glow">Visit Yuni Graphics</a>
+        </div>
+    </div>
+</section>
+
+<section class="gallery-section" data-gallery-section="pubmats">
+    <div class="gallery-section-header" data-reveal="up">
+        <div>
+            <span class="eyebrow-pill"><span class="eyebrow-dot"></span> Campus &amp; Event Graphics</span>
+            <h2 class="gradient-text">Publication Materials</h2>
+        </div>
+        <span class="gallery-count-pill">8 Posters, Banners &amp; Decks</span>
+    </div>
+
+    <div class="pubmats-container">
+        <article class="glass-card work-card" data-work-card data-spotlight data-reveal="up" data-delay="0">
+            <button type="button"
+                    class="work-trigger work-trigger--pubmat"
+                    data-lightbox="portfolio-all"
+                    data-lb-src="/images/samplethumbnail.webp"
+                    data-lb-alt="Sa Loob ng Utak ni Juana poster"
+                    data-lb-category="Theater Poster • MUSA"
+                    data-lb-title="Sa Loob ng Utak ni Juana"
+                    data-lb-meta="from MUSA • IbisPaint &amp; Canva"
+                    data-lb-desc="Main poster created using image manipulation techniques in IbisPaint and Canva.">
                 <img src="~/images/samplethumbnail.webp" alt="Sa Loob ng Utak ni Juana poster" loading="lazy" />
-                <div class="info-text-2">
-                    <h3>Sa Loob ng Utak ni Juana</h3>
-                    <p>from MUSA</p>
-                    <p>Used the technique of image manipulation. Made from IbisPaint and Canva.</p>
+                <span class="work-zoom-overlay"><span class="work-zoom-pill">Preview Artwork</span></span>
+            </button>
+            <div class="work-body">
+                <div class="work-tag-row">
+                    <span class="work-tag">IbisPaint • Canva</span>
+                    <span class="work-client">from MUSA</span>
                 </div>
+                <h3>Sa Loob ng Utak ni Juana</h3>
+                <p>Used the technique of image manipulation. Made from IbisPaint and Canva.</p>
             </div>
-            <div class="pubmat-2">
+        </article>
+
+        <article class="glass-card work-card" data-work-card data-spotlight data-reveal="up" data-delay="60">
+            <button type="button"
+                    class="work-trigger work-trigger--pubmat"
+                    data-lightbox="portfolio-all"
+                    data-lb-src="/images/portfolio/Mental Health.webp"
+                    data-lb-alt="Mental Health Awareness pubmat"
+                    data-lb-category="Advocacy Pubmat • MUSA"
+                    data-lb-title="Mental Health Awareness"
+                    data-lb-meta="from MUSA • Canva"
+                    data-lb-desc="Made from combined visual elements and imagery in Canva.">
                 <img src="~/images/portfolio/Mental Health.webp" alt="Mental Health Awareness pubmat" loading="lazy" />
-                <div class="info-text-2">
-                    <h3>Mental Health Awareness</h3>
-                    <p>from MUSA</p>
-                    <p>Made from combined elements and images from Canva.</p>
+                <span class="work-zoom-overlay"><span class="work-zoom-pill">Preview Artwork</span></span>
+            </button>
+            <div class="work-body">
+                <div class="work-tag-row">
+                    <span class="work-tag">Canva</span>
+                    <span class="work-client">from MUSA</span>
                 </div>
+                <h3>Mental Health Awareness</h3>
+                <p>Made from combined elements and images from Canva.</p>
             </div>
-            <div class="pubmat-2">
+        </article>
+
+        <article class="glass-card work-card" data-work-card data-spotlight data-reveal="up" data-delay="120">
+            <button type="button"
+                    class="work-trigger work-trigger--pubmat"
+                    data-lightbox="portfolio-all"
+                    data-lb-src="/images/portfolio/MUSA Official Statement Pubmat.webp"
+                    data-lb-alt="MUSA Official Statement pubmat"
+                    data-lb-category="Editorial Layout • MUSA"
+                    data-lb-title="MUSA Official Statement"
+                    data-lb-meta="from MUSA • Canva"
+                    data-lb-desc="Official organizational announcement frame designed with Canva.">
                 <img src="~/images/portfolio/MUSA Official Statement Pubmat.webp" alt="MUSA Official Statement pubmat" loading="lazy" />
-                <div class="info-text-2">
-                    <h3>MUSA Official Statement</h3>
-                    <p>from MUSA</p>
-                    <p>Made from combined elements and images from Canva.</p>
+                <span class="work-zoom-overlay"><span class="work-zoom-pill">Preview Artwork</span></span>
+            </button>
+            <div class="work-body">
+                <div class="work-tag-row">
+                    <span class="work-tag">Canva</span>
+                    <span class="work-client">from MUSA</span>
                 </div>
+                <h3>MUSA Official Statement</h3>
+                <p>Made from combined elements and images from Canva.</p>
             </div>
-            <div class="pubmat-2">
+        </article>
+
+        <article class="glass-card work-card" data-work-card data-spotlight data-reveal="up" data-delay="180">
+            <button type="button"
+                    class="work-trigger work-trigger--pubmat"
+                    data-lightbox="portfolio-all"
+                    data-lb-src="/images/portfolio/Valentine's Day.webp"
+                    data-lb-alt="Valentines Day pubmat"
+                    data-lb-category="Seasonal Pubmat • MUSA"
+                    data-lb-title="Valentines Day Pubmat"
+                    data-lb-meta="from MUSA • Canva"
+                    data-lb-desc="Themed social publication material composed in Canva.">
                 <img src="~/images/portfolio/Valentine's Day.webp" alt="Valentines Day pubmat" loading="lazy" />
-                <div class="info-text-2">
-                    <h3>Valentines Day Pubmat</h3>
-                    <p>from MUSA</p>
-                    <p>Made from combined elements and images from Canva.</p>
+                <span class="work-zoom-overlay"><span class="work-zoom-pill">Preview Artwork</span></span>
+            </button>
+            <div class="work-body">
+                <div class="work-tag-row">
+                    <span class="work-tag">Canva</span>
+                    <span class="work-client">from MUSA</span>
                 </div>
+                <h3>Valentines Day Pubmat</h3>
+                <p>Made from combined elements and images from Canva.</p>
             </div>
-            <div class="pubmat-2">
+        </article>
+
+        <article class="glass-card work-card" data-work-card data-spotlight data-reveal="up" data-delay="0">
+            <button type="button"
+                    class="work-trigger work-trigger--pubmat"
+                    data-lightbox="portfolio-all"
+                    data-lb-src="/images/portfolio/PPT MUSA 2nd GA (Morning).webp"
+                    data-lb-alt="MUSA General Assembly 2025 presentation"
+                    data-lb-category="Presentation Deck • MUSA"
+                    data-lb-title="MUSA General Assembly 2025"
+                    data-lb-meta="from MUSA • Canva"
+                    data-lb-desc="PowerPoint presentation theme and visual assets crafted from combined elements in Canva.">
                 <img src="~/images/portfolio/PPT MUSA 2nd GA (Morning).webp" alt="MUSA General Assembly 2025 presentation" loading="lazy" />
-                <div class="info-text-2">
-                    <h3>MUSA General Assembly 2025</h3>
-                    <p>from MUSA</p>
-                    <p>Powerpoint presentation made from combined elements and images from Canva.</p>
+                <span class="work-zoom-overlay"><span class="work-zoom-pill">Preview Artwork</span></span>
+            </button>
+            <div class="work-body">
+                <div class="work-tag-row">
+                    <span class="work-tag">Presentation</span>
+                    <span class="work-client">from MUSA</span>
                 </div>
+                <h3>MUSA General Assembly 2025</h3>
+                <p>Powerpoint presentation made from combined elements and images from Canva.</p>
             </div>
-            <div class="pubmat-2">
+        </article>
+
+        <article class="glass-card work-card" data-work-card data-spotlight data-reveal="up" data-delay="60">
+            <button type="button"
+                    class="work-trigger work-trigger--pubmat"
+                    data-lightbox="portfolio-all"
+                    data-lb-src="/images/portfolio/MUSA PPT.webp"
+                    data-lb-alt="MUSA General Assembly 2024 presentation"
+                    data-lb-category="Presentation Deck • MUSA"
+                    data-lb-title="MUSA General Assembly 2024"
+                    data-lb-meta="from MUSA • Canva"
+                    data-lb-desc="PowerPoint presentation visual backdrop and typography made from combined elements in Canva.">
                 <img src="~/images/portfolio/MUSA PPT.webp" alt="MUSA General Assembly 2024 presentation" loading="lazy" />
-                <div class="info-text-2">
-                    <h3>MUSA General Assembly 2024</h3>
-                    <p>from MUSA</p>
-                    <p>Powerpoint presentation made from combined elements and images from Canva.</p>
+                <span class="work-zoom-overlay"><span class="work-zoom-pill">Preview Artwork</span></span>
+            </button>
+            <div class="work-body">
+                <div class="work-tag-row">
+                    <span class="work-tag">Presentation</span>
+                    <span class="work-client">from MUSA</span>
                 </div>
+                <h3>MUSA General Assembly 2024</h3>
+                <p>Powerpoint presentation made from combined elements and images from Canva.</p>
             </div>
-            <div class="pubmat-2">
+        </article>
+
+        <article class="glass-card work-card" data-work-card data-spotlight data-reveal="up" data-delay="120">
+            <button type="button"
+                    class="work-trigger work-trigger--pubmat"
+                    data-lightbox="portfolio-all"
+                    data-lb-src="/images/portfolio/MUSA Front Page (1).webp"
+                    data-lb-alt="MUSA Incoming Officers pubmat"
+                    data-lb-category="Front Page Banner • MUSA"
+                    data-lb-title="MUSA Incoming Officers Pubmat"
+                    data-lb-meta="from MUSA • Canva"
+                    data-lb-desc="Organizational cover banner crafted with layered visual elements in Canva.">
                 <img src="~/images/portfolio/MUSA Front Page (1).webp" alt="MUSA Incoming Officers pubmat" loading="lazy" />
-                <div class="info-text-2">
-                    <h3>MUSA Incoming Officers Pubmat</h3>
-                    <p>from MUSA</p>
-                    <p>Front page made from combined elements and images from Canva.</p>
+                <span class="work-zoom-overlay"><span class="work-zoom-pill">Preview Artwork</span></span>
+            </button>
+            <div class="work-body">
+                <div class="work-tag-row">
+                    <span class="work-tag">Banner</span>
+                    <span class="work-client">from MUSA</span>
                 </div>
+                <h3>MUSA Incoming Officers Pubmat</h3>
+                <p>Front page made from combined elements and images from Canva.</p>
             </div>
-            <div class="pubmat-2">
+        </article>
+
+        <article class="glass-card work-card" data-work-card data-spotlight data-reveal="up" data-delay="180">
+            <button type="button"
+                    class="work-trigger work-trigger--pubmat"
+                    data-lightbox="portfolio-all"
+                    data-lb-src="/images/portfolio/COMMITS Front Page (2).webp"
+                    data-lb-alt="COMMITS Intramurals IT Representatives pubmat"
+                    data-lb-category="Front Page Banner • COMMITS"
+                    data-lb-title="COMMITS Intramurals IT Representatives"
+                    data-lb-meta="from COMMITS • Canva"
+                    data-lb-desc="Front page banner for Intramurals IT Representatives crafted in Canva.">
                 <img src="~/images/portfolio/COMMITS Front Page (2).webp" alt="COMMITS Intramurals IT Representatives pubmat" loading="lazy" />
-                <div class="info-text-2">
-                    <h3>COMMITS Intramurals IT Representatives Pubmat</h3>
-                    <p>from COMMITS</p>
-                    <p>Front page made from combined elements and images from Canva.</p>
+                <span class="work-zoom-overlay"><span class="work-zoom-pill">Preview Artwork</span></span>
+            </button>
+            <div class="work-body">
+                <div class="work-tag-row">
+                    <span class="work-tag">Banner</span>
+                    <span class="work-client">from COMMITS</span>
                 </div>
+                <h3>COMMITS Intramurals IT Representatives</h3>
+                <p>Front page made from combined elements and images from Canva.</p>
             </div>
-            <div class="pubmat-details-2">
-                <div class="info-text-2">
-                    <h3>Disclaimer</h3>
-                    <p>The provided digital assets are intended for the presentation and academic use only. Credits to the rightful owners of these images.</p>
-                    <h3>These PubMats belongs to the following organization.</h3>
-                    <div class="link-container">
-                        <a href="https://www.facebook.com/MUSAPUPQUEZONCITY" target="_blank" rel="noopener noreferrer" class="download-button">MUSA PUP QC</a>
-                    </div>
-                    <div class="link-container">
-                        <a href="https://www.facebook.com/CommITSPUPQC" target="_blank" rel="noopener noreferrer" class="download-button">PUP QC COMMITS</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+        </article>
     </div>
 
-    <footer class="footer-section">
-        <div class="footer-content">
-            <div class="footer-column">
-                <h3>Get In Touch</h3>
-                <p>Quezon City, Metro Manila, Philippines</p>
-                <p>
-                    <a href="mailto:benitezhermione@gmail.com">benitezhermione@gmail.com</a>
-                </p>
-                <p>
-                    <a href="tel:+639396204267">(+63) 939 620 4267</a>
-                </p>
-            </div>
-            <div class="footer-column">
-                <h3>Connect</h3>
-                <div class="social-icons">
-                    <a href="https://www.linkedin.com/in/hermione-benitez-934335334/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><img src="~/images/linkedin.jpg" alt="LinkedIn" /></a>
-                    <a href="https://github.com/Hermione-Benitez" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><img src="~/images/github.png" alt="GitHub" /></a>
-                    <a href="https://www.facebook.com/lekantier.jinpier" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><img src="~/images/fblogo.png" alt="Facebook" /></a>
-                </div>
-            </div>
-            <div class="footer-column">
-                <h3>Portfolio Focus</h3>
-                <p>Basic Information</p>
-                <p>Graphic Design Portfolio</p>
-                <p>Achievements and Experiences</p>
-            </div>
+    <div class="glass-card disclaimer-banner" data-spotlight data-reveal="up">
+        <div class="disclaimer-copy">
+            <h3>Credits &amp; Partner Organizations</h3>
+            <p>The provided digital assets are intended for presentation and academic use only. Credits to the rightful owners of these images. These PubMats belong to the following student organizations:</p>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 Hermione B. Benitez. All Rights Reserved.</p>
+        <div class="disclaimer-actions">
+            <a href="https://www.facebook.com/MUSAPUPQUEZONCITY" target="_blank" rel="noopener noreferrer" class="btn-glass">MUSA PUP QC</a>
+            <a href="https://www.facebook.com/CommITSPUPQC" target="_blank" rel="noopener noreferrer" class="btn-glass">PUP QC COMMITS</a>
         </div>
-    </footer>
+    </div>
+</section>
+
+@section Scripts {
+<script>
+    (() => {
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const sections = document.querySelectorAll('[data-gallery-section]');
+        if (!filterBtns.length || !sections.length) return;
+
+        filterBtns.forEach((btn) => {
+            btn.addEventListener('click', () => {
+                const filter = btn.getAttribute('data-filter');
+
+                filterBtns.forEach((b) => {
+                    const active = b === btn;
+                    b.classList.toggle('is-active', active);
+                    b.setAttribute('aria-selected', active ? 'true' : 'false');
+                });
+
+                sections.forEach((sec) => {
+                    const key = sec.getAttribute('data-gallery-section');
+                    const show = filter === 'all' || filter === key;
+                    sec.classList.toggle('is-hidden', !show);
+
+                    sec.querySelectorAll('[data-work-card]').forEach((card) => {
+                        card.classList.toggle('is-filtered-out', !show);
+                        if (show) {
+                            card.classList.add('is-visible');
+                        }
+                    });
+                });
+            });
+        });
+    })();
+</script>
+}

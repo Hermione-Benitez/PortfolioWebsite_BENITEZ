@@ -5,313 +5,561 @@
 
 @section Styles {
 <style>
-    html, body {
-        margin: 0;
-        padding: 0;
-        width: 100%;
-        color: white;
-        font-family: 'Poppins', 'Segoe UI', sans-serif;
-        overflow-x: hidden;
-        background-color: #000;
+    body {
+        background-color: #06020f;
+        color: #ffffff;
     }
 
     .bg-video {
         position: fixed;
-        top: 0;
-        left: 0;
+        inset: 0;
         width: 100%;
         height: 100%;
         overflow: hidden;
-        background-color: #000;
-        z-index: -1;
+        background-color: #06020f;
+        z-index: 0;
         pointer-events: none;
     }
 
-        .bg-video video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+    .bg-video video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.45;
+    }
 
-        .bg-video:-webkit-full-screen {
-            display: none;
-        }
+    .bg-video::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+            radial-gradient(ellipse at 50% 20%, rgba(123, 44, 191, 0.25), transparent 65%),
+            linear-gradient(180deg, rgba(6, 2, 15, 0.72) 0%, rgba(10, 4, 24, 0.65) 50%, rgba(6, 2, 15, 0.88) 100%);
+    }
 
-    section {
-        padding: 60px 20px;
+    .achievements-hero {
+        position: relative;
+        z-index: 2;
+        padding: clamp(118px, 14vw, 150px) 20px 36px;
         text-align: center;
-        align-items: center;
-        backdrop-filter: blur(10px);
-        border-radius: 15px;
-        margin: 40px;
     }
 
-    .Org-roles {
-        margin: 120px 100px 60px;
-    }
-    .experiences-awards {
-        margin: 60px 100px 100px;
-    }
-
-    h2 {
-        font-size: 2em;
-        margin-bottom: 50px;
-        font-weight: 700;
+    .achievements-hero-stats {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+        margin: 24px auto 28px;
     }
 
-    h3 {
-        color: #6300a5;
+    .stat-chip {
+        padding: 8px 16px;
+        border-radius: 999px;
+        background: rgba(19, 9, 38, 0.78);
+        border: 1px solid rgba(208, 170, 255, 0.24);
+        backdrop-filter: blur(12px);
+        color: #f3e8ff;
+        font-size: 0.86rem;
         font-weight: 600;
+    }
+
+    .section-jump-pills {
+        display: inline-flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        padding: 6px;
+        border-radius: 999px;
+        background: rgba(18, 8, 36, 0.75);
+        border: 1px solid rgba(208, 170, 255, 0.2);
+        backdrop-filter: blur(14px);
+    }
+
+    .jump-pill {
+        padding: 9px 20px;
+        border-radius: 999px;
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 600;
+        transition: background-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
+    }
+
+    .jump-pill:hover,
+    .jump-pill--primary {
+        background: linear-gradient(135deg, rgba(123, 44, 191, 0.72), rgba(217, 70, 239, 0.45));
+        color: #ffffff;
+    }
+
+    /* ===== TIMELINE SECTIONS ===== */
+    .timeline-section {
+        position: relative;
+        z-index: 2;
+        max-width: 1180px;
+        margin: 28px auto 70px;
+        padding: clamp(32px, 4vw, 52px) clamp(16px, 3vw, 40px);
+        border-radius: 28px;
+        background: rgba(14, 6, 28, 0.62);
+        border: 1px solid rgba(208, 170, 255, 0.16);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+        overflow: hidden;
+        scroll-margin-top: 88px;
+    }
+
+    .timeline-header {
+        text-align: center;
+        margin-bottom: 46px;
+    }
+
+    .timeline-header h2 {
+        font-family: var(--font-display);
+        font-size: clamp(1.65rem, 3.2vw, 2.4rem);
+        font-weight: 800;
+        margin: 12px 0 8px;
+    }
+
+    .timeline-header p {
+        color: var(--text-secondary);
+        font-size: 0.96rem;
+        margin: 0;
     }
 
     .card-container {
         position: relative;
-        display: block;
-        align-items: center;
-        animation: movedown 1s linear forwards;
-        opacity: 0;
+        padding: 10px 0 18px;
     }
-    @@keyframes movedown {
-        0% {
-            transform: translateY(-30px);
-            opacity: 0;
-        }
-        100% {
-            transform: translateY(0);
-            opacity: 1;
-        }
+
+    /* Animated central spine (preserving moveline motion) */
+    .card-container::before {
+        content: "";
+        position: absolute;
+        top: 12px;
+        bottom: 12px;
+        left: 50%;
+        width: 4px;
+        transform: translateX(-50%);
+        background: rgba(208, 170, 255, 0.14);
+        border-radius: 999px;
     }
 
     .card-container::after {
         content: "";
         position: absolute;
-        width: 6px;
-        height: 93%;
-        background: white;
-        top: 2%;
+        top: 12px;
         left: 50%;
-        margin-left: -3px;
-        z-index: -1;
-        animation: moveline 6s linear forwards;
+        width: 4px;
+        height: 0;
+        transform: translateX(-50%);
+        background: linear-gradient(180deg, #e056fd 0%, #a855f7 55%, #6ee7ff 100%);
+        border-radius: 999px;
+        box-shadow: 0 0 18px rgba(208, 170, 255, 0.65);
+        z-index: 1;
     }
+
+    .timeline-section.is-visible .card-container::after {
+        animation: moveline 2.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
     @@keyframes moveline {
         0% {
             height: 0;
         }
         100% {
-            height: 96%;
+            height: calc(100% - 24px);
         }
+    }
+
+    .timeline-row {
+        position: relative;
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 28px;
+    }
+
+    .timeline-row:last-child {
+        margin-bottom: 0;
+    }
+
+    .timeline-row--left {
+        justify-content: flex-start;
+    }
+
+    .timeline-row--right {
+        justify-content: flex-end;
+    }
+
+    .timeline-node {
+        position: absolute;
+        left: 50%;
+        top: 26px;
+        transform: translateX(-50%);
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #6300a5, #c026d3);
+        border: 3px solid rgba(255, 255, 255, 0.85);
+        color: #ffffff;
+        font-family: var(--font-display);
+        font-weight: 800;
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 4;
+        box-shadow: 0 0 22px rgba(208, 170, 255, 0.55);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .timeline-row:hover .timeline-node {
+        transform: translateX(-50%) scale(1.16);
+        box-shadow: 0 0 30px rgba(224, 86, 253, 0.85);
     }
 
     .info-card {
+        width: calc(50% - 44px);
+        padding: 24px 26px;
+        text-align: left;
+    }
+
+    .timeline-badge {
+        display: inline-block;
+        padding: 4px 11px;
+        border-radius: 999px;
+        background: rgba(168, 85, 247, 0.2);
+        border: 1px solid rgba(208, 170, 255, 0.3);
+        color: var(--orchid-glow);
+        font-size: 0.74rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+    }
+
+    .info-card h3 {
+        font-family: var(--font-display);
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #ffffff;
+        margin: 0 0 8px;
+        line-height: 1.3;
+    }
+
+    .info-card p {
+        color: var(--text-secondary);
+        font-size: 0.94rem;
+        line-height: 1.6;
+        margin: 0;
+    }
+
+    .timeline-cta-banner {
         position: relative;
-        background: white;
-        color: #3b0153;
-        border-radius: 15px;
-        padding: 20px;
-        margin: 20px;
-        width: 40%;
-        transition: transform 0.3s ease, background 0.3s ease;
+        z-index: 2;
+        max-width: 1180px;
+        margin: 0 auto 90px;
+        padding: 36px 28px;
+        text-align: center;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
     }
 
-        .info-card:hover {
-            transform: translateY(-5px);
-            background: #f0f0f0;
-        }
-
-    .left-card {
-        left: 3.5%;
+    .timeline-cta-banner h3 {
+        font-family: var(--font-display);
+        font-size: 1.45rem;
+        font-weight: 800;
+        margin: 0 0 4px;
+        text-align: left;
     }
 
-        .left-card h2 {
-            position: absolute;
-            width: 40px;
-            height: 40px;
-            line-height: 40px;
-            background-color: white;
-            color: #6300a5;
-            font-weight: 700;
-            font-size: 1.25rem;
-            border-radius: 50%;
-            top: 50px;
-            right: -60px;
-            z-index: 10;
-            margin: 0;
-        }
-
-    .right-card {
-        left: 50%;
+    .timeline-cta-banner p {
+        color: var(--text-secondary);
+        margin: 0;
+        text-align: left;
     }
 
-        .right-card h2 {
-            position: absolute;
-            width: 40px;
-            height: 40px;
-            line-height: 40px;
-            background-color: white;
-            color: #6300a5;
-            font-weight: 700;
-            font-size: 1.25rem;
-            border-radius: 50%;
-            top: 50px;
-            left: -60px;
-            z-index: 10;
-            margin: 0;
+    @@media (max-width: 820px) {
+        .timeline-section {
+            margin: 20px 14px 48px;
+            padding: 28px 16px;
         }
 
-    @@media (max-width: 768px) {
-        .Org-roles {
-            margin: 100px 16px 40px;
-            padding: 36px 16px;
-        }
-
-        .experiences-awards {
-            margin: 30px 16px 60px;
-            padding: 36px 16px;
-        }
-
+        .card-container::before,
         .card-container::after {
-            left: 14px;
-            margin-left: 0;
+            left: 20px;
+            transform: none;
+        }
+
+        .timeline-row,
+        .timeline-row--left,
+        .timeline-row--right {
+            justify-content: flex-end;
+        }
+
+        .timeline-node {
+            left: 20px;
+            width: 36px;
+            height: 36px;
+            font-size: 0.88rem;
+            top: 22px;
         }
 
         .info-card {
-            width: auto;
-            margin: 16px 0 16px 42px;
-            text-align: left;
+            width: calc(100% - 54px);
+            padding: 20px;
         }
 
-        .left-card, .right-card {
-            left: 0;
-        }
-
-        .left-card h2, .right-card h2 {
-            width: 34px;
-            height: 34px;
-            line-height: 34px;
-            font-size: 1rem;
-            top: 20px;
-            left: -42px;
-            right: auto;
+        .timeline-cta-banner {
+            margin: 0 14px 70px;
+            justify-content: center;
             text-align: center;
+        }
+
+        .timeline-cta-banner h3,
+        .timeline-cta-banner p {
+            text-align: center;
+        }
+    }
+
+    @@media (prefers-reduced-motion: reduce) {
+        .card-container::after {
+            height: calc(100% - 24px);
+            animation: none !important;
         }
     }
 </style>
 }
 
-    <div class="bg-video">
-        <video autoplay muted loop playsinline>
-            <source src="~/images/bgvideo.mp4" type="video/mp4" />
-        </video>
+<div class="bg-video" aria-hidden="true">
+    <video autoplay muted loop playsinline>
+        <source src="~/images/bgvideo.mp4" type="video/mp4" />
+    </video>
+</div>
+
+<section class="achievements-hero">
+    <div class="page-hero-inner" data-reveal="up">
+        <span class="eyebrow-pill"><span class="eyebrow-dot"></span> Journey &amp; Milestones</span>
+        <h1 class="gradient-text" style="font-family: var(--font-display); font-size: clamp(2.1rem, 5vw, 3.5rem); font-weight: 800; margin: 16px 0 14px;">Experiences &amp; Achievements</h1>
+        <p class="section-subtitle">A chronological record of student leadership, creative committees, campus events, and system development milestones.</p>
+
+        <div class="achievements-hero-stats">
+            <span class="stat-chip">9 Organizational Roles</span>
+            <span class="stat-chip">10 Events &amp; Projects</span>
+            <span class="stat-chip">2020 – 2026</span>
+        </div>
+
+        <nav class="section-jump-pills" aria-label="Timeline sections">
+            <a class="jump-pill jump-pill--primary" href="#org-roles">Academic Organizational Roles</a>
+            <a class="jump-pill" href="#experiences-awards">Experiences &amp; Awards</a>
+        </nav>
+    </div>
+</section>
+
+<section class="timeline-section" id="org-roles">
+    <div class="timeline-header" data-reveal="up">
+        <span class="eyebrow-pill"><span class="eyebrow-dot"></span> Leadership Track</span>
+        <h2 class="gradient-text">Academic Organizational Roles</h2>
+        <p>Serving student organizations through communications, creative direction, web development, and executive governance.</p>
     </div>
 
-    <section class="Org-roles">
-        <h2>Academic Organizational Roles</h2>
-        <div class="card-container">
-            <div class="info-card left-card">
-                <h2>1</h2>
+    <div class="card-container">
+        <div class="timeline-row timeline-row--left">
+            <span class="timeline-node">1</span>
+            <article class="glass-card info-card" data-spotlight data-reveal="left">
+                <span class="timeline-badge">2020 – 2021 • High School</span>
                 <h3>Public Information Officer</h3>
                 <p>Integrity Warriors of Komhay (IWK) 2020–2021 in Commonwealth High School</p>
-            </div>
-            <div class="info-card right-card">
-                <h2>2</h2>
+            </article>
+        </div>
+
+        <div class="timeline-row timeline-row--right">
+            <span class="timeline-node">2</span>
+            <article class="glass-card info-card" data-spotlight data-reveal="right">
+                <span class="timeline-badge">2023 – 2024 • PUPQC</span>
                 <h3>Creative Technical Platform Officer</h3>
                 <p>PUPQC Council of Leaders 2023–2024</p>
-            </div>
-            <div class="info-card left-card">
-                <h2>3</h2>
+            </article>
+        </div>
+
+        <div class="timeline-row timeline-row--left">
+            <span class="timeline-node">3</span>
+            <article class="glass-card info-card" data-spotlight data-reveal="left">
+                <span class="timeline-badge">2024 – 2025 • Arts Org</span>
                 <h3>Lupon Layout Artist</h3>
                 <p>PUPQC Mag-aaral ng Unibersidad sa Sining at Adhika (MUSA) 2024–2025</p>
-            </div>
-            <div class="info-card right-card">
-                <h2>4</h2>
+            </article>
+        </div>
+
+        <div class="timeline-row timeline-row--right">
+            <span class="timeline-node">4</span>
+            <article class="glass-card info-card" data-spotlight data-reveal="right">
+                <span class="timeline-badge">2024 – 2025 • IT Society</span>
                 <h3>Public Information Officer</h3>
                 <p>PUPQC Commonwealth Information Society 2024–2025</p>
-            </div>
-            <div class="info-card left-card">
-                <h2>5</h2>
+            </article>
+        </div>
+
+        <div class="timeline-row timeline-row--left">
+            <span class="timeline-node">5</span>
+            <article class="glass-card info-card" data-spotlight data-reveal="left">
+                <span class="timeline-badge">2024 – 2025 • Tech Community</span>
                 <h3>GDG WebDev Member</h3>
                 <p>Google Developer Group 2024–2025</p>
-            </div>
-            <div class="info-card right-card">
-                <h2>6</h2>
+            </article>
+        </div>
+
+        <div class="timeline-row timeline-row--right">
+            <span class="timeline-node">6</span>
+            <article class="glass-card info-card" data-spotlight data-reveal="right">
+                <span class="timeline-badge">2024 – 2025 • Creative QA</span>
                 <h3>Lupon ng Malikhaing Paggawa</h3>
                 <p>PUPQC Mag-aaral ng Unibersidad sa Sining at Adhika (MUSA) 2024–2025</p>
-            </div>
-            <div class="info-card left-card">
-                <h2>7</h2>
+            </article>
+        </div>
+
+        <div class="timeline-row timeline-row--left">
+            <span class="timeline-node">7</span>
+            <article class="glass-card info-card" data-spotlight data-reveal="left">
+                <span class="timeline-badge">2025 • Founding Anniversary</span>
                 <h3>Creatives Member</h3>
                 <p>PUPQC Sinagtala (2025)</p>
-            </div>
-            <div class="info-card right-card">
-                <h2>8</h2>
+            </article>
+        </div>
+
+        <div class="timeline-row timeline-row--right">
+            <span class="timeline-node">8</span>
+            <article class="glass-card info-card" data-spotlight data-reveal="right">
+                <span class="timeline-badge">2024 – 2026 • Class Officer</span>
                 <h3>Class Vice President</h3>
                 <p>BSIT 3-2 A.Y. 2024–2025 and 2025–2026</p>
-            </div>
-            <div class="info-card left-card">
-                <h2>9</h2>
+            </article>
+        </div>
+
+        <div class="timeline-row timeline-row--left">
+            <span class="timeline-node">9</span>
+            <article class="glass-card info-card" data-spotlight data-reveal="left">
+                <span class="timeline-badge">2025 – 2026 • Executive</span>
                 <h3>Vice President for Internal Affairs</h3>
                 <p>PUPQC Commonwealth Information Society 2025–2026</p>
-            </div>
+            </article>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section class="experiences-awards">
-        <h2>Experiences and Awards</h2>
-        <div class="card-container">
-            <div class="info-card left-card">
-                <h2>1</h2>
+<section class="timeline-section" id="experiences-awards">
+    <div class="timeline-header" data-reveal="up">
+        <span class="eyebrow-pill"><span class="eyebrow-dot"></span> Projects &amp; Participation</span>
+        <h2 class="gradient-text">Experiences and Awards</h2>
+        <p>Hands-on facilitation, campus creative committees, technical assemblies, and full-stack software systems.</p>
+    </div>
+
+    <div class="card-container">
+        <div class="timeline-row timeline-row--left">
+            <span class="timeline-node">1</span>
+            <article class="glass-card info-card" data-spotlight data-reveal="left">
+                <span class="timeline-badge">2023 • Event Operations</span>
                 <h3>Program Usherette</h3>
                 <p>Commonwealth High School Work Immersion Seminar (2023)</p>
-            </div>
-            <div class="info-card right-card">
-                <h2>2</h2>
+            </article>
+        </div>
+
+        <div class="timeline-row timeline-row--right">
+            <span class="timeline-node">2</span>
+            <article class="glass-card info-card" data-spotlight data-reveal="right">
+                <span class="timeline-badge">2023 • Volunteer</span>
                 <h3>STEM Registration Volunteer</h3>
                 <p>Commonwealth High School (2023)</p>
-            </div>
-            <div class="info-card left-card">
-                <h2>3</h2>
-                <h3>Certificate & Invitation Committee</h3>
+            </article>
+        </div>
+
+        <div class="timeline-row timeline-row--left">
+            <span class="timeline-node">3</span>
+            <article class="glass-card info-card" data-spotlight data-reveal="left">
+                <span class="timeline-badge">2024 • MUSA</span>
+                <h3>Certificate &amp; Invitation Committee</h3>
                 <p>MUSA General Assembly: The Rise of Benders (2024)</p>
-            </div>
-            <div class="info-card right-card">
-                <h2>4</h2>
+            </article>
+        </div>
+
+        <div class="timeline-row timeline-row--right">
+            <span class="timeline-node">4</span>
+            <article class="glass-card info-card" data-spotlight data-reveal="right">
+                <span class="timeline-badge">2024 • CommITs</span>
                 <h3>IT General Assembly Facilitator</h3>
                 <p>CommITs Start-up Event (2024)</p>
-            </div>
-            <div class="info-card left-card">
-                <h2>5</h2>
+            </article>
+        </div>
+
+        <div class="timeline-row timeline-row--left">
+            <span class="timeline-node">5</span>
+            <article class="glass-card info-card" data-spotlight data-reveal="left">
+                <span class="timeline-badge">2024 • External Tech</span>
                 <h3>CommITs External Partnership Attendee</h3>
                 <p>FEU JPCS: Ground Zero (2024) • UP Diliman: Disruptive Innovations (2024)</p>
-            </div>
-            <div class="info-card right-card">
-                <h2>6</h2>
-                <h3>Certificate & Invitation Committee</h3>
+            </article>
+        </div>
+
+        <div class="timeline-row timeline-row--right">
+            <span class="timeline-node">6</span>
+            <article class="glass-card info-card" data-spotlight data-reveal="right">
+                <span class="timeline-badge">2025 • MUSA Events</span>
+                <h3>Certificate &amp; Invitation Committee</h3>
                 <p>
                     MUSA Street Indak Fighter (2025)<br>
                     MUSA 2nd General Assembly (2025)<br>
                     MUSA Kulturaktor: Teatro Workshop (2025)
                 </p>
-            </div>
-            <div class="info-card left-card">
-                <h2>7</h2>
+            </article>
+        </div>
+
+        <div class="timeline-row timeline-row--left">
+            <span class="timeline-node">7</span>
+            <article class="glass-card info-card" data-spotlight data-reveal="left">
+                <span class="timeline-badge">2025 • Esports</span>
                 <h3>Game Facilitator</h3>
                 <p>CommITs IT Esports Events (2025)</p>
-            </div>
-            <div class="info-card right-card">
-                <h2>8</h2>
-                <h3>IT Competition Watcher</h3>
-                <p>CommITs Hackathon: Case Closed & Prototype (2025)</p>
-            </div>
-            <div class="info-card left-card">
-                <h2>9</h2>
-                <h3>Project Manager & Full Stack Developer</h3>
-                <p>PUPQC Gym Reservation System (2025)</p>
-            </div>
-            <div class="info-card right-card">
-                <h2>10</h2>
-                <h3>Back-End & Database Developer</h3>
-                <p>Pet Health and Vaccination Record System (2025)</p>
-            </div>
+            </article>
         </div>
-    </section>
+
+        <div class="timeline-row timeline-row--right">
+            <span class="timeline-node">8</span>
+            <article class="glass-card info-card" data-spotlight data-reveal="right">
+                <span class="timeline-badge">2025 • Hackathon</span>
+                <h3>IT Competition Watcher</h3>
+                <p>CommITs Hackathon: Case Closed &amp; Prototype (2025)</p>
+            </article>
+        </div>
+
+        <div class="timeline-row timeline-row--left">
+            <span class="timeline-node">9</span>
+            <article class="glass-card info-card" data-spotlight data-reveal="left">
+                <span class="timeline-badge">2025 • System Development</span>
+                <h3>Project Manager &amp; Full Stack Developer</h3>
+                <p>PUPQC Gym Reservation System (2025)</p>
+            </article>
+        </div>
+
+        <div class="timeline-row timeline-row--right">
+            <span class="timeline-node">10</span>
+            <article class="glass-card info-card" data-spotlight data-reveal="right">
+                <span class="timeline-badge">2025 • System Development</span>
+                <h3>Back-End &amp; Database Developer</h3>
+                <p>Pet Health and Vaccination Record System (2025)</p>
+            </article>
+        </div>
+    </div>
+</section>
+
+<div class="glass-card timeline-cta-banner" data-spotlight data-reveal="up">
+    <div>
+        <h3>Want to see the visual craft behind these roles?</h3>
+        <p>Explore commissioned book covers, event posters, and organization publication materials.</p>
+    </div>
+    <div class="d-flex flex-wrap gap-3 justify-content-center">
+        <a class="btn-glow" asp-controller="Home" asp-action="Portfolio">View Design Portfolio</a>
+        <a class="btn-glass" asp-controller="Home" asp-action="Contact">Download Resume</a>
+    </div>
+</div>

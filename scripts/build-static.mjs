@@ -262,11 +262,18 @@ function main() {
   const errorRaw = fs.readFileSync(path.join(viewsDir, 'Shared', 'Error.cshtml'), 'utf8');
   const { sectionContent: errStylesRaw } = extractSection(errorRaw, 'Styles');
   const errBody = `
+<div class="ambient-canvas" aria-hidden="true">
+    <span class="ambient-orb ambient-orb--one"></span>
+    <span class="ambient-orb ambient-orb--two"></span>
+</div>
+
 <section class="error-container">
-    <div class="error-code">404</div>
-    <h1>Page Not Found</h1>
-    <p class="error-message">The page you are looking for doesn't exist or has been moved.</p>
-    <a class="error-home-btn" href="/">Back to Home</a>
+    <div class="glass-card error-card" data-spotlight data-reveal="scale">
+        <div class="error-code">404</div>
+        <h1>Page Not Found</h1>
+        <p class="error-message">The page you are looking for doesn't exist or has been moved.</p>
+        <a class="btn-glow" href="/">Back to Home</a>
+    </div>
 </section>`.trim();
   const errHtml = layoutTransformed
     .replace(/@ViewData\["Title"\]/g, 'Page Not Found')

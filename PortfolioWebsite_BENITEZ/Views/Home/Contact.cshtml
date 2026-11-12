@@ -5,300 +5,455 @@
 
 @section Styles {
 <style>
-    html, body {
-        background-image: url('/images/bg.webp');
+    body {
+        background-color: #06020f;
+        background-image: linear-gradient(180deg, rgba(6, 2, 15, 0.8), rgba(8, 3, 18, 0.94)), url('/images/bg.webp');
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center center;
         background-attachment: fixed;
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        overflow-x: hidden;
     }
 
-    .header {
-        width: 100%;
-        height: 100px;
-        background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(20,0,40,0.95) 100%);
-    }
-
-    .hover-section {
-        color: #6300a5;
-        padding: 40px 5% 150px;
-        min-height: 80vh;
+    .contact-hero {
         position: relative;
-        z-index: 10;
+        z-index: 2;
+        padding: clamp(118px, 14vw, 150px) 20px 32px;
         text-align: center;
-        background-color: white;
     }
 
-    .resume-card {
-        padding: 0;
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
-        gap: 20px;
-        flex-wrap: nowrap;
+    .contact-workspace {
+        position: relative;
+        z-index: 2;
+        max-width: 1220px;
+        margin: 0 auto 100px;
+        padding: 18px 24px 0;
+        display: grid;
+        grid-template-columns: minmax(290px, 430px) minmax(0, 1fr);
+        gap: 28px;
+        align-items: start;
     }
 
-        .resume-card img {
-            width: 40vw;
-            height: auto;
-            max-width: 400px;
-            border-radius: 10px;
-        }
-
-    .link-container {
+    /* ===== LEFT COLUMN: RESUME PREVIEW & DOWNLOADS ===== */
+    .resume-showcase {
+        padding: 22px;
         display: flex;
-        flex-wrap: wrap;
-        align-items: center;
+        flex-direction: column;
+        gap: 18px;
+        position: sticky;
+        top: 96px;
+    }
+
+    .resume-preview-btn {
+        position: relative;
+        display: block;
         width: 100%;
-        margin-bottom: 30px;
+        padding: 0;
+        border: 1px solid rgba(208, 170, 255, 0.25);
+        border-radius: 16px;
+        overflow: hidden;
+        background: #0d051a;
+        cursor: pointer;
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
     }
 
-        .link-container img {
-            width: clamp(32px, 3vw, 44px);
-            height: clamp(32px, 3vw, 44px);
-            object-fit: cover;
-            margin-right: 10px;
-            border-radius: 50%;
-        }
+    .resume-preview-btn img {
+        width: 100%;
+        height: auto;
+        display: block;
+        transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    }
 
-    .download-button {
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        background-color: #f0f0f0;
-        border: 1px solid #d1b3ff;
-        border-radius: 50px;
-        margin: 10px;
-        padding: 10px 20px;
-        min-width: 150px;
-        text-decoration: none;
-        color: #4e04a9;
-        transition: all 0.3s ease;
-        display: inline-flex;
+    .resume-preview-btn:hover img {
+        transform: scale(1.03);
+    }
+
+    .resume-zoom-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, transparent 55%, rgba(8, 3, 18, 0.88) 100%);
+        display: flex;
+        align-items: flex-end;
         justify-content: center;
-        align-items: center;
-        text-align: center;
-        font-weight: 600;
+        padding: 16px;
+        opacity: 0;
+        transition: opacity 0.28s ease;
     }
 
-        .download-button:hover {
-            transform: translateY(-5px) scale(1.03);
-            background: #e9e2f5;
-            box-shadow: 0 6px 20px rgba(167, 95, 255, 0.4);
-        }
+    .resume-preview-btn:hover .resume-zoom-overlay,
+    .resume-preview-btn:focus-visible .resume-zoom-overlay {
+        opacity: 1;
+    }
 
-    .info-card {
-        background-color: rgba(255, 255, 255, 0.9);
-        border-radius: 20px;
-        padding: 25px;
-        color: #6300a5;
-        margin: 10px;
-        width: 40vw;
-        max-width: 600px;
+    .resume-zoom-badge {
+        padding: 8px 16px;
+        border-radius: 999px;
+        background: rgba(123, 44, 191, 0.9);
+        border: 1px solid rgba(255, 255, 255, 0.32);
+        color: #ffffff;
+        font-size: 0.82rem;
+        font-weight: 700;
+    }
+
+    .download-stack {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .download-stack .btn-glow,
+    .download-stack .btn-glass {
+        width: 100%;
+    }
+
+    /* ===== RIGHT COLUMN: CONTACT, SOCIALS, COVER LETTER ===== */
+    .contact-stack {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    .contact-panel {
+        padding: 28px;
         text-align: left;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    }
+
+    .panel-heading {
+        font-family: var(--font-display);
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: #ffffff;
+        margin: 0 0 18px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .panel-heading::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: linear-gradient(90deg, rgba(208, 170, 255, 0.35), transparent);
+    }
+
+    .direct-contact-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 14px;
+    }
+
+    .contact-tile {
+        padding: 16px;
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(208, 170, 255, 0.18);
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        transition: border-color 0.25s ease, background-color 0.25s ease, transform 0.25s ease;
+    }
+
+    .contact-tile:hover {
+        border-color: rgba(224, 86, 253, 0.5);
+        background: rgba(168, 85, 247, 0.12);
+        transform: translateY(-2px);
+    }
+
+    .contact-tile-label {
+        font-size: 0.74rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--orchid-glow);
+    }
+
+    .contact-tile-value {
+        color: #ffffff;
+        font-weight: 600;
+        font-size: 0.94rem;
+        text-decoration: none;
+        word-break: break-word;
+    }
+
+    .contact-tile-value:hover {
+        color: #f0abfc;
+    }
+
+    .copy-mini-btn {
+        align-self: flex-start;
+        margin-top: 6px;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 5px 12px;
+        border-radius: 999px;
+        border: 1px solid rgba(208, 170, 255, 0.3);
+        background: rgba(123, 44, 191, 0.25);
+        color: #f3e8ff;
+        font-size: 0.78rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .copy-mini-btn:hover {
+        background: rgba(168, 85, 247, 0.45);
+        transform: translateY(-1px);
+    }
+
+    .copy-mini-btn.is-copied {
+        background: rgba(16, 185, 129, 0.28);
+        border-color: rgba(52, 211, 153, 0.65);
+        color: #d1fae5;
+    }
+
+    .social-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+        gap: 14px;
+    }
+
+    .social-card-link {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 14px 16px;
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(208, 170, 255, 0.2);
+        color: #ffffff;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.94rem;
+        transition: transform 0.25s ease, background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .social-card-link:hover {
+        color: #ffffff;
+        background: rgba(168, 85, 247, 0.22);
+        border-color: rgba(224, 86, 253, 0.6);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 24px rgba(123, 44, 191, 0.35);
+    }
+
+    .social-card-icon {
+        width: 38px;
+        height: 38px;
+        border-radius: 11px;
+        background: rgba(168, 85, 247, 0.2);
+        border: 1px solid rgba(208, 170, 255, 0.3);
+        color: var(--orchid-glow);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
         flex-shrink: 0;
     }
 
-        .info-card h3 {
-            font-size: 1.5rem;
-            color: #4e04a9;
-            margin: 20px 0 10px 0;
-            border-bottom: 2px solid #d1b3ff;
-            padding-bottom: 5px;
-        }
-
-        .info-card p {
-            font-size: 1rem;
-            line-height: 1.6;
-        }
-
-    .coverletter {
-        text-align: justify;
-        margin: 10px 0;
-        color: #333;
+    .social-card-arrow {
+        margin-left: auto;
+        opacity: 0.65;
+        transition: transform 0.25s ease, opacity 0.25s ease;
     }
 
-    .footer-section {
-        background-color: #0d0d0d;
-        color: #aaa;
-        padding: 40px 20px 20px;
-        text-align: center;
+    .social-card-link:hover .social-card-arrow {
+        opacity: 1;
+        transform: translate(2px, -2px);
     }
 
-    .footer-content {
-        display: flex;
-        justify-content: space-around;
-        max-width: 1200px;
-        margin: 0 auto 30px;
-        padding: 0 20px;
-        flex-wrap: nowrap;
+    .coverletter-box {
+        padding: 20px 22px;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.03);
+        border-left: 3px solid #a855f7;
+        color: var(--text-secondary);
+        font-size: 0.97rem;
+        line-height: 1.78;
     }
 
-    .footer-column {
-        flex: 1;
-        padding: 0 15px;
-        text-align: left;
+    .coverletter-box p {
+        margin: 0 0 14px;
     }
 
-        .footer-column h3 {
-            color: #fff;
-            margin-bottom: 15px;
-            font-size: 1.1rem;
-        }
-
-        .footer-column a {
-            color: #d1b3ff;
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-
-            .footer-column a:hover {
-                color: #fff;
-            }
-
-    .footer-bottom {
-        border-top: 1px solid #333;
-        padding-top: 20px;
-        font-size: 0.85em;
-        text-align: center;
+    .coverletter-box p:last-child {
+        margin-bottom: 0;
     }
 
-    .social-icons {
-        display: flex;
-        gap: 15px;
+    .coverletter-sign {
+        color: #ffffff;
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: 1.05rem;
     }
 
-        .social-icons a img {
-            width: 35px;
-            height: 35px;
-            object-fit: cover;
-            border-radius: 50%;
-            margin: 0;
-            transition: transform 0.2s;
+    @@media (max-width: 940px) {
+        .contact-workspace {
+            grid-template-columns: 1fr;
         }
 
-            .social-icons a img:hover {
-                transform: scale(1.1);
-            }
+        .resume-showcase {
+            position: static;
+            max-width: 460px;
+            width: 100%;
+            margin: 0 auto;
+        }
+    }
 
-    @@media (max-width: 768px) {
-        .hover-section {
-            padding: 30px 15px 80px;
+    @@media (max-width: 600px) {
+        .contact-workspace {
+            padding: 12px 16px 0;
+            margin-bottom: 70px;
         }
 
-        .resume-card {
-            flex-direction: column;
-            align-items: center;
-        }
-
-            .resume-card > img {
-                width: 90%;
-                max-width: 400px;
-                margin-bottom: 20px;
-            }
-
-        .info-card {
-            width: 95%;
-            margin: 0;
-        }
-
-        .download-button {
-            width: auto;
-            margin: 5px;
-            font-size: 0.9rem;
-            padding: 8px 15px;
-        }
-
-        .link-container {
-            justify-content: flex-start;
-        }
-
-        .footer-content {
-            flex-direction: column;
-            gap: 30px;
-            padding: 0 10px;
-        }
-
-        .footer-column {
-            flex: none;
-            padding: 0 0 20px 0;
-            text-align: center;
-        }
-
-        .social-icons {
-            justify-content: center;
+        .contact-panel {
+            padding: 22px 18px;
         }
     }
 </style>
 }
 
-    <div class="header" aria-hidden="true"></div>
-    <section class="hover-section">
-        <h2>Resume</h2>
-        <div class="resume-card">
-            <img src="~/images/resume.webp" alt="Hermione Benitez Resume" />
-            <div class="info-card">
-                <h3>Downloadable Links</h3>
-                <div class="link-container">
-                    <a href="~/images/resumepdf.pdf" download class="download-button">Resume (PDF)</a>
-                    <a href="~/images/PORTFOLIO.pdf" download class="download-button">Digital Portfolio (PDF)</a>
-                </div>
-                <h3>Social Accounts</h3>
-                <div class="link-container">
-                    <img src="~/images/linkedin.jpg" alt="LinkedIn" />
-                    <a href="https://www.linkedin.com/in/hermione-benitez-934335334/" target="_blank" rel="noopener noreferrer" class="download-button">LinkedIn</a>
-                    <img src="~/images/github.png" alt="GitHub" />
-                    <a href="https://github.com/Hermione-Benitez" target="_blank" rel="noopener noreferrer" class="download-button">GitHub</a>
-                    <img src="~/images/fblogo.png" alt="Facebook" />
-                    <a href="https://www.facebook.com/lekantier.jinpier" target="_blank" rel="noopener noreferrer" class="download-button">Facebook</a>
-                </div>
-                <h3>Cover Letter</h3>
-                <p class="coverletter">
-                    Dear Employers,<br /><br />
-                    I am writing to express my keen interest in the job positions such as Graphic Designing, Website UI/UX Developer, Project Manager, and Quality Assurance. As a third-year BSIT student at Polytechnic University of the Philippines - Quezon City Campus, I am eager to apply my skills and knowledge in a practical setting and contribute to your team.<br /><br />
-                    My resume and portfolio, attached for your review, detail my academic achievements and projects, highlighting my proficiency in graphic design, project management, and visual editing. I am a highly motivated and quick learner, consistently seeking opportunities to expand my skillset and contribute meaningfully to a dynamic work environment.<br /><br />
-                    I am confident that my enthusiasm and dedication align perfectly with the requirements of this position. I am available for an interview at your earliest convenience. You can reach me via email at benitezhermione@gmail.com or by phone at 09396204267.<br /><br />
-                    Thank you for your time and consideration.<br /><br />
-                    Sincerely,<br /><br />
-                    Hermione Benitez
-                </p>
-            </div>
-        </div>
-    </section>
+<div class="ambient-canvas" aria-hidden="true">
+    <span class="ambient-orb ambient-orb--one"></span>
+    <span class="ambient-orb ambient-orb--two"></span>
+</div>
 
-    <footer class="footer-section">
-        <div class="footer-content">
-            <div class="footer-column">
-                <h3>Get In Touch</h3>
-                <p>Quezon City, Metro Manila, Philippines</p>
-                <p>
-                    <a href="mailto:benitezhermione@gmail.com">benitezhermione@gmail.com</a>
-                </p>
-                <p>
-                    <a href="tel:+639396204267">(+63) 939 620 4267</a>
-                </p>
-            </div>
-            <div class="footer-column">
-                <h3>Connect</h3>
-                <div class="social-icons">
-                    <a href="https://www.linkedin.com/in/hermione-benitez-934335334/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><img src="~/images/linkedin.jpg" alt="LinkedIn" /></a>
-                    <a href="https://github.com/Hermione-Benitez" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><img src="~/images/github.png" alt="GitHub" /></a>
-                    <a href="https://www.facebook.com/lekantier.jinpier" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><img src="~/images/fblogo.png" alt="Facebook" /></a>
+<section class="contact-hero">
+    <div class="page-hero-inner" data-reveal="up">
+        <span class="eyebrow-pill"><span class="eyebrow-dot"></span> Open to Opportunities</span>
+        <h1 class="gradient-text" style="font-family: var(--font-display); font-size: clamp(2.1rem, 5vw, 3.5rem); font-weight: 800; margin: 16px 0 14px;">Contact &amp; Resume</h1>
+        <p class="section-subtitle">Download Hermione's resume and digital portfolio, reach out directly, or explore her cover letter.</p>
+    </div>
+</section>
+
+<section class="contact-workspace">
+    <aside class="glass-card resume-showcase" data-spotlight data-reveal="left">
+        <button type="button"
+                class="resume-preview-btn"
+                data-lightbox="resume-viewer"
+                data-lb-src="/images/resume.webp"
+                data-lb-alt="Hermione Benitez Resume"
+                data-lb-category="Curriculum Vitae"
+                data-lb-title="Hermione B. Benitez — Resume"
+                data-lb-meta="BSIT Student • PUP Quezon City"
+                data-lb-desc="Download the PDF version below for printing or sharing with hiring teams.">
+            <img src="~/images/resume.webp" alt="Hermione Benitez Resume" />
+            <span class="resume-zoom-overlay">
+                <span class="resume-zoom-badge">Click to Preview Full Resume</span>
+            </span>
+        </button>
+
+        <div class="download-stack">
+            <a href="~/images/resumepdf.pdf" download class="btn-glow">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                Download Resume (PDF)
+            </a>
+            <a href="~/images/PORTFOLIO.pdf" download class="btn-glass">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="12" y1="18" x2="12" y2="12"></line>
+                    <polyline points="9 15 12 18 15 15"></polyline>
+                </svg>
+                Digital Portfolio (PDF)
+            </a>
+        </div>
+    </aside>
+
+    <div class="contact-stack">
+        <div class="glass-card contact-panel" data-spotlight data-reveal="right" data-delay="40">
+            <h2 class="panel-heading">Direct Contact</h2>
+            <div class="direct-contact-grid">
+                <div class="contact-tile">
+                    <span class="contact-tile-label">Email Address</span>
+                    <a class="contact-tile-value" href="mailto:benitezhermione@gmail.com">benitezhermione@gmail.com</a>
+                    <button type="button" class="copy-mini-btn" data-copy="benitezhermione@gmail.com">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                        </svg>
+                        <span data-copy-label>Copy Email</span>
+                    </button>
+                </div>
+
+                <div class="contact-tile">
+                    <span class="contact-tile-label">Mobile / Phone</span>
+                    <a class="contact-tile-value" href="tel:+639396204267">(+63) 939 620 4267</a>
+                    <span style="font-size: 0.82rem; color: var(--text-muted);">Available for calls &amp; interviews</span>
+                </div>
+
+                <div class="contact-tile">
+                    <span class="contact-tile-label">Location</span>
+                    <span class="contact-tile-value">Quezon City, Metro Manila</span>
+                    <span style="font-size: 0.82rem; color: var(--text-muted);">Philippines</span>
                 </div>
             </div>
-            <div class="footer-column">
-                <h3>Portfolio Focus</h3>
-                <p>Basic Information</p>
-                <p>Graphic Design Portfolio</p>
-                <p>Achievements and Experiences</p>
+        </div>
+
+        <div class="glass-card contact-panel" data-spotlight data-reveal="right" data-delay="100">
+            <h2 class="panel-heading">Social Accounts</h2>
+            <div class="social-grid">
+                <a href="https://www.linkedin.com/in/hermione-benitez-934335334/" target="_blank" rel="noopener noreferrer" class="social-card-link">
+                    <span class="social-card-icon" aria-hidden="true">
+                        <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 3A2 2 0 0 1 21 5V19A2 2 0 0 1 19 21H5A2 2 0 0 1 3 19V5A2 2 0 0 1 5 3H19M18.5 18.5V13.2A3.26 3.26 0 0 0 15.24 9.94C14.39 9.94 13.4 10.46 12.92 11.24V10.13H10.13V18.5H12.92V13.57C12.92 12.8 13.54 12.17 14.31 12.17A1.4 1.4 0 0 1 15.71 13.57V18.5H18.5M6.88 8.56A1.68 1.68 0 0 0 8.56 6.88C8.56 5.95 7.81 5.19 6.88 5.19A1.69 1.69 0 0 0 5.19 6.88C5.19 7.81 5.95 8.56 6.88 8.56M8.27 18.5V10.13H5.5V18.5H8.27Z"/>
+                        </svg>
+                    </span>
+                    <span>LinkedIn</span>
+                    <svg class="social-card-arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <line x1="7" y1="17" x2="17" y2="7"></line>
+                        <polyline points="7 7 17 7 17 17"></polyline>
+                    </svg>
+                </a>
+
+                <a href="https://github.com/Hermione-Benitez" target="_blank" rel="noopener noreferrer" class="social-card-link">
+                    <span class="social-card-icon" aria-hidden="true">
+                        <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5c.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34c-.46-1.16-1.11-1.47-1.11-1.47c-.91-.62.07-.6.07-.6c1 .07 1.53 1.03 1.53 1.03c.87 1.52 2.34 1.07 2.91.83c.09-.65.35-1.09.63-1.34c-2.22-.25-4.55-1.11-4.55-4.92c0-1.11.38-2 1.03-2.71c-.1-.25-.45-1.29.1-2.64c0 0 .84-.27 2.75 1.02c.79-.22 1.65-.33 2.5-.33s1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02c.55 1.35.2 2.39.1 2.64c.65.71 1.03 1.6 1.03 2.71c0 3.82-2.34 4.66-4.57 4.91c.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2Z"/>
+                        </svg>
+                    </span>
+                    <span>GitHub</span>
+                    <svg class="social-card-arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <line x1="7" y1="17" x2="17" y2="7"></line>
+                        <polyline points="7 7 17 7 17 17"></polyline>
+                    </svg>
+                </a>
+
+                <a href="https://www.facebook.com/lekantier.jinpier" target="_blank" rel="noopener noreferrer" class="social-card-link">
+                    <span class="social-card-icon" aria-hidden="true">
+                        <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2.04c-5.5 0-10 4.49-10 10.02c0 5 3.66 9.15 8.44 9.9v-7H7.9v-2.9h2.54V9.85c0-2.51 1.49-3.89 3.78-3.89c1.09 0 2.23.19 2.23.19v2.47h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.45 2.9h-2.33v7a10 10 0 0 0 8.44-9.9c0-5.53-4.5-10.02-10-10.02Z"/>
+                        </svg>
+                    </span>
+                    <span>Facebook</span>
+                    <svg class="social-card-arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <line x1="7" y1="17" x2="17" y2="7"></line>
+                        <polyline points="7 7 17 7 17 17"></polyline>
+                    </svg>
+                </a>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 Hermione B. Benitez. All Rights Reserved.</p>
+
+        <div class="glass-card contact-panel" data-spotlight data-reveal="right" data-delay="160">
+            <h2 class="panel-heading">Cover Letter</h2>
+            <div class="coverletter-box">
+                <p><strong>Dear Employers,</strong></p>
+                <p>
+                    I am writing to express my keen interest in job positions such as Graphic Designing, Website UI/UX Developer, Project Manager, and Quality Assurance. As a third-year BSIT student at Polytechnic University of the Philippines – Quezon City Campus, I am eager to apply my skills and knowledge in a practical setting and contribute to your team.
+                </p>
+                <p>
+                    My resume and portfolio, attached for your review, detail my academic achievements and projects, highlighting my proficiency in graphic design, project management, and visual editing. I am a highly motivated and quick learner, consistently seeking opportunities to expand my skillset and contribute meaningfully to a dynamic work environment.
+                </p>
+                <p>
+                    I am confident that my enthusiasm and dedication align well with the requirements of these roles. I am available for an interview at your earliest convenience and can be reached via email at <strong>benitezhermione@gmail.com</strong> or by phone at <strong>09396204267</strong>.
+                </p>
+                <p>Thank you for your time and consideration.</p>
+                <p>
+                    Sincerely,<br />
+                    <span class="coverletter-sign">Hermione Benitez</span>
+                </p>
+            </div>
         </div>
-    </footer>
+    </div>
+</section>

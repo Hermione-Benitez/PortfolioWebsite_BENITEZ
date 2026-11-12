@@ -6,64 +6,75 @@
 
 @section Styles {
 <style>
-    html, body {
-        background-color: #0d001a;
-        color: #ffffff;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    body {
+        background-color: #06020f;
+        background-image: linear-gradient(180deg, rgba(6, 2, 15, 0.85), rgba(6, 2, 15, 0.96)), url('/images/bg.webp');
+        background-size: cover;
+        background-position: center center;
+        background-attachment: fixed;
     }
 
     .error-container {
-        min-height: 85vh;
+        position: relative;
+        z-index: 2;
+        min-height: 76vh;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         text-align: center;
-        padding: 120px 20px 60px;
+        padding: 130px 20px 80px;
+    }
+
+    .error-card {
+        max-width: 580px;
+        width: 100%;
+        padding: clamp(32px, 5vw, 52px);
     }
 
     .error-code {
-        font-size: clamp(4rem, 12vw, 7rem);
-        font-weight: 900;
-        color: #d0aaff;
+        font-family: var(--font-display);
+        font-size: clamp(4.2rem, 12vw, 6.8rem);
+        font-weight: 800;
         line-height: 1;
-        margin-bottom: 16px;
+        margin-bottom: 12px;
+        background: linear-gradient(120deg, #ffffff, #d0aaff, #e056fd);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+
+    .error-card h1 {
+        font-family: var(--font-display);
+        font-weight: 800;
+        color: #ffffff;
+        margin-bottom: 12px;
     }
 
     .error-message {
-        font-size: 1.25rem;
-        color: #ccc;
-        max-width: 520px;
-        margin-bottom: 32px;
-    }
-
-    .error-home-btn {
-        display: inline-block;
-        padding: 12px 28px;
-        border-radius: 50px;
-        background-color: #6300a5;
-        color: #ffffff;
-        text-decoration: none;
-        font-weight: 600;
-        transition: transform 0.2s ease, background-color 0.2s ease;
-    }
-
-    .error-home-btn:hover {
-        background-color: #7c1ec2;
-        color: #ffffff;
-        transform: translateY(-2px);
+        font-size: 1.05rem;
+        color: var(--text-secondary);
+        max-width: 460px;
+        margin: 0 auto 28px;
+        line-height: 1.65;
     }
 </style>
 }
 
-<section class="error-container">
-    <div class="error-code">@statusCode</div>
-    <h1>@(isNotFound ? "Page Not Found" : "Something Went Wrong")</h1>
-    <p class="error-message">
-        @(isNotFound
-            ? "The page you are looking for doesn't exist or has been moved."
-            : "An unexpected error occurred while processing your request.")
-    </p>
-    <a class="error-home-btn" asp-controller="Home" asp-action="Index">Back to Home</a>
-</section>
+<div class="ambient-canvas" aria-hidden="true">
+    <span class="ambient-orb ambient-orb--one"></span>
+    <span class="ambient-orb ambient-orb--two"></span>
+</div>
 
+<section class="error-container">
+    <div class="glass-card error-card" data-spotlight data-reveal="scale">
+        <div class="error-code">@statusCode</div>
+        <h1>@(isNotFound ? "Page Not Found" : "Something Went Wrong")</h1>
+        <p class="error-message">
+            @(isNotFound
+                ? "The page you are looking for doesn't exist or has been moved."
+                : "An unexpected error occurred while processing your request.")
+        </p>
+        <a class="btn-glow" asp-controller="Home" asp-action="Index">Back to Home</a>
+    </div>
+</section>
