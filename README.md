@@ -20,3 +20,11 @@ CREDITS FOR IMAGES AND ICONS
 - Images and Elements from Canva and Ibispaint.
 - Video clip made from Capcut and Canva. 
 - DISCLAIMER:  Credits to the rightful owners for the images presented. This is intended for academic purposes only.
+
+HOW TO DEPLOY TO VERCEL (PRODUCTION):
+
+- Connect this GitHub repository to Vercel (Framework Preset: Other, or auto-detected via `vercel.json`).
+- Vercel will run `npm run build` (`node scripts/build-static.mjs`) and publish `dist/` to the Vercel Edge CDN with clean URLs, security headers, and cache rules configured in `vercel.json`.
+- Note: Deploy via GitHub integration rather than `vercel` CLI on the Hobby plan because the downloadable `PORTFOLIO.pdf` (~84 MB) and MP4 videos (~50 MB) bring total static output over the 100 MB Hobby CLI upload cap.
+- Local full-resolution image backups are stored in `assets-originals/` (gitignored).
+

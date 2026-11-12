@@ -1,14 +1,16 @@
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Experiences & Achievements";
+    ViewData["Description"] = "Academic organizational roles, leadership experiences, projects, and awards of Hermione Benitez.";
 }
 
+@section Styles {
 <style>
     html, body {
         margin: 0;
         padding: 0;
         width: 100%;
         color: white;
-        font-family: 'Poppins', sans-serif;
+        font-family: 'Poppins', 'Segoe UI', sans-serif;
         overflow-x: hidden;
         background-color: #000;
     }
@@ -21,6 +23,8 @@
         height: 100%;
         overflow: hidden;
         background-color: #000;
+        z-index: -1;
+        pointer-events: none;
     }
 
         .bg-video video {
@@ -33,26 +37,6 @@
             display: none;
         }
 
-    @@media (min-aspect-ratio: 16/9) {
-        .bg-video video
-
-    {
-        width: 100%;
-        height: auto;
-    }
-
-    }
-
-    @@media (max-aspect-ratio: 16/9) {
-        .bg-video video
-
-    {
-        width: auto;
-        height: 100%;
-    }
-
-    }
-
     section {
         padding: 60px 20px;
         text-align: center;
@@ -63,12 +47,11 @@
     }
 
     .Org-roles {
-        margin: 120px 100px;
+        margin: 120px 100px 60px;
     }
     .experiences-awards {
-        margin: 120px 100px;
+        margin: 60px 100px 100px;
     }
-
 
     h2 {
         font-size: 2em;
@@ -81,9 +64,8 @@
         font-weight: 600;
     }
 
-
-
     .card-container {
+        position: relative;
         display: block;
         align-items: center;
         animation: movedown 1s linear forwards;
@@ -106,8 +88,8 @@
         width: 6px;
         height: 93%;
         background: white;
-        top: 5.8%;
-        left: 48.5%;
+        top: 2%;
+        left: 50%;
         margin-left: -3px;
         z-index: -1;
         animation: moveline 6s linear forwards;
@@ -117,9 +99,8 @@
             height: 0;
         }
         100% {
-            height: 90%;
+            height: 96%;
         }
-
     }
 
     .info-card {
@@ -145,13 +126,17 @@
         .left-card h2 {
             position: absolute;
             width: 40px;
+            height: 40px;
+            line-height: 40px;
             background-color: white;
             color: #6300a5;
             font-weight: 700;
+            font-size: 1.25rem;
             border-radius: 50%;
             top: 50px;
             right: -60px;
             z-index: 10;
+            margin: 0;
         }
 
     .right-card {
@@ -161,24 +146,64 @@
         .right-card h2 {
             position: absolute;
             width: 40px;
+            height: 40px;
+            line-height: 40px;
             background-color: white;
             color: #6300a5;
             font-weight: 700;
+            font-size: 1.25rem;
             border-radius: 50%;
             top: 50px;
             left: -60px;
             z-index: 10;
+            margin: 0;
         }
-</style>
 
-<body>
+    @@media (max-width: 768px) {
+        .Org-roles {
+            margin: 100px 16px 40px;
+            padding: 36px 16px;
+        }
+
+        .experiences-awards {
+            margin: 30px 16px 60px;
+            padding: 36px 16px;
+        }
+
+        .card-container::after {
+            left: 14px;
+            margin-left: 0;
+        }
+
+        .info-card {
+            width: auto;
+            margin: 16px 0 16px 42px;
+            text-align: left;
+        }
+
+        .left-card, .right-card {
+            left: 0;
+        }
+
+        .left-card h2, .right-card h2 {
+            width: 34px;
+            height: 34px;
+            line-height: 34px;
+            font-size: 1rem;
+            top: 20px;
+            left: -42px;
+            right: auto;
+            text-align: center;
+        }
+    }
+</style>
+}
 
     <div class="bg-video">
-        <video autoplay muted loop>
+        <video autoplay muted loop playsinline>
             <source src="~/images/bgvideo.mp4" type="video/mp4" />
         </video>
     </div>
-
 
     <section class="Org-roles">
         <h2>Academic Organizational Roles</h2>
@@ -230,7 +255,6 @@
             </div>
         </div>
     </section>
-
 
     <section class="experiences-awards">
         <h2>Experiences and Awards</h2>
@@ -291,5 +315,3 @@
             </div>
         </div>
     </section>
-
-</body>

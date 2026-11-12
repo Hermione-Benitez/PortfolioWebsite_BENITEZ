@@ -361,3 +361,10 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# Vercel and static production build outputs
+dist/
+.vercel/
+
+# Local backups of unoptimized oversized source images
+assets-originals/

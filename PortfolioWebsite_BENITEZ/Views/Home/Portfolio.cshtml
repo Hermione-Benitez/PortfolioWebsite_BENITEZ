@@ -1,9 +1,10 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+@{
+    ViewData["Title"] = "Portfolio";
+    ViewData["Description"] = "Graphic design portfolio of Hermione Benitez: commissioned book covers and publication materials.";
 }
 
+@section Styles {
 <style>
-
     html, body {
         background-color: #6300a5;
         color: white;
@@ -17,12 +18,13 @@
     .header {
         width: 100%;
         height: 100px;
-        background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(20,0,40,0.95) 100%)
+        background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(20,0,40,0.95) 100%);
     }
 
     .pubmats-section {
         padding: 50px 100px;
         max-width: 2000px;
+        margin: 0 auto;
         text-align: center;
         background-color: transparent;
         color: white;
@@ -49,6 +51,7 @@
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         transition: transform 0.3s ease, box-shadow 0.3s ease;
         max-width: 90%;
+        width: 100%;
     }
 
         .pubmat:hover {
@@ -56,10 +59,9 @@
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
         }
 
-
         .pubmat img {
             width: 100%;
-            height: 100%x;
+            height: auto;
             object-fit: cover;
             border-top-left-radius: 25px;
             border-top-right-radius: 25px;
@@ -80,7 +82,7 @@
         background-color: white;
         border-radius: 25px;
         text-align: justify;
-
+        max-width: 90%;
     }
 
     .link-container {
@@ -88,29 +90,25 @@
         flex-wrap: wrap;
         align-items: center;
         width: 100%;
-        margin-bottom: 30px;
+        margin-bottom: 20px;
     }
-
-        .link-container img {
-            width: 5vw;
-            height: 100%;
-            margin-right: 10px;
-            border-radius: 50%;
-        }
 
     .download-button {
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         background-color: #f0f0f0;
         border: 1px solid #d1b3ff;
         border-radius: 50px;
-        margin: 10px;
+        margin: 10px 0;
         padding: 10px 20px;
-        width: 150px;
+        min-width: 150px;
         text-decoration: none;
         color: #4e04a9;
         transition: all 0.3s ease;
-        display: flex;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
         text-align: center;
+        font-weight: 600;
     }
 
         .download-button:hover {
@@ -118,6 +116,7 @@
             background: #e9e2f5;
             box-shadow: 0 6px 20px rgba(167, 95, 255, 0.4);
         }
+
     .pubmats-section-2 {
         padding: 100px;
         width: 100%;
@@ -127,7 +126,7 @@
 
         .pubmats-section-2 h1 {
             font-size: 2.5rem;
-            margin: 40px;
+            margin: 0 0 40px;
             color: #6300a5;
         }
 
@@ -139,6 +138,7 @@
         background-color: #6300a5;
         border-radius: 25px;
         text-align: justify;
+        max-width: 90%;
     }
 
         .pubmat-details-2 h3 {
@@ -158,6 +158,7 @@
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         transition: transform 0.3s ease, box-shadow 0.3s ease;
         max-width: 90%;
+        width: 100%;
     }
 
         .pubmat-2:hover {
@@ -166,10 +167,9 @@
             box-shadow: 0 6px 20px rgba(167, 95, 255, 0.4);
         }
 
-
         .pubmat-2 img {
             width: 100%;
-            height: 100%x;
+            height: auto;
             object-fit: cover;
             border-top-left-radius: 25px;
             border-top-right-radius: 25px;
@@ -233,8 +233,9 @@
     }
 
         .social-icons a img {
-            width: 100%;
+            width: 35px;
             height: 35px;
+            object-fit: cover;
             border-radius: 50%;
             margin: 0;
             transition: transform 0.2s;
@@ -245,35 +246,23 @@
             }
 
     @@media (max-width: 768px) {
-        .hover-section {
-            padding: 20px 10px 80px;
+        .pubmats-section,
+        .pubmats-section-2 {
+            padding: 40px 20px;
         }
 
-        .resume-card {
-            flex-direction: column;
-            align-items: center;
-        }
-
-            .resume-card img {
-                width: 90%;
-                max-width: 400px;
-                margin-bottom: 20px;
-            }
-
-        .info-card {
-            width: 90%;
-            margin: 0;
+        .pubmat, .pubmat-2, .pubmat-details, .pubmat-details-2 {
+            max-width: 100%;
         }
 
         .download-button {
-            width: 45%;
-            margin: 5px;
+            width: auto;
             font-size: 0.9rem;
-            padding: 8px 15px;
+            padding: 8px 18px;
         }
 
         .link-container {
-            justify-content: space-around;
+            justify-content: flex-start;
         }
 
         .footer-content {
@@ -292,17 +281,15 @@
             justify-content: center;
         }
     }
-
 </style>
+}
 
-
-<body>
-    <div class="header">.</div>
+    <div class="header" aria-hidden="true"></div>
     <div class="pubmats-section">
-        <h1>Commissioned Book Covers</h1> 
+        <h1>Commissioned Book Covers</h1>
         <div class="pubmats-container">
             <div class="pubmat">
-                <img src="~/images/portfolio/10_20251107_173148_0002.jpg" />
+                <img src="~/images/portfolio/10_20251107_173148_0002.webp" alt="Pain From The Past book cover" loading="lazy" />
                 <div class="info-text">
                     <h3>Pain From The Past</h3>
                     <p>by Black_Peny</p>
@@ -310,7 +297,7 @@
                 </div>
             </div>
             <div class="pubmat">
-                <img src="~/images/portfolio/bc1_20251107_173148_0000.jpg" />
+                <img src="~/images/portfolio/BC1_20251107_173148_0000.webp" alt="Playing The Bad Guys book cover" loading="lazy" />
                 <div class="info-text">
                     <h3>Playing The Bad Guys</h3>
                     <p>by HourlyOppa</p>
@@ -318,7 +305,7 @@
                 </div>
             </div>
             <div class="pubmat">
-                <img src="~/images/portfolio/9_20251107_173148_0001.jpg" />
+                <img src="~/images/portfolio/9_20251107_173148_0001.webp" alt="Beneath The Sunset book cover" loading="lazy" />
                 <div class="info-text">
                     <h3>Beneath The Sunset</h3>
                     <p>by Scentink</p>
@@ -326,7 +313,7 @@
                 </div>
             </div>
             <div class="pubmat">
-                <img src="~/images/portfolio/1.jpg" />
+                <img src="~/images/portfolio/1.webp" alt="PINNACLE book cover" loading="lazy" />
                 <div class="info-text">
                     <h3>PINNACLE</h3>
                     <p>by Aira Aisyunice, Et. Al.</p>
@@ -334,7 +321,7 @@
                 </div>
             </div>
             <div class="pubmat">
-                <img src="~/images/portfolio/2.jpg" />
+                <img src="~/images/portfolio/2.webp" alt="A Dance of Sun and Moon book cover" loading="lazy" />
                 <div class="info-text">
                     <h3>A Dance of Sun and Moon</h3>
                     <p>by SaturnFaye24</p>
@@ -345,10 +332,10 @@
                 <div class="info-text">
                     <h3>Disclaimer</h3>
                     <p>The provided digital assets are intended for the presentation and academic use only. These images are already sold by the respective owners.</p>
-                    <h3>Other Pre-made Book Covers </h3>
+                    <h3>Other Pre-made Book Covers</h3>
                     <p>Visit my Facebook selling account for more Book Cover Designs.</p>
                     <div class="link-container">
-                        <a href="https://www.facebook.com/profile.php?id=100083759557247" class="download-button">Yuni Graphics</a>
+                        <a href="https://www.facebook.com/profile.php?id=100083759557247" target="_blank" rel="noopener noreferrer" class="download-button">Yuni Graphics</a>
                     </div>
                 </div>
             </div>
@@ -359,7 +346,7 @@
         <h1>Publication Materials</h1>
         <div class="pubmats-container">
             <div class="pubmat-2">
-                <img src="~/images/samplethumbnail.png" />
+                <img src="~/images/samplethumbnail.webp" alt="Sa Loob ng Utak ni Juana poster" loading="lazy" />
                 <div class="info-text-2">
                     <h3>Sa Loob ng Utak ni Juana</h3>
                     <p>from MUSA</p>
@@ -367,7 +354,7 @@
                 </div>
             </div>
             <div class="pubmat-2">
-                <img src="~/images/portfolio/mental health.png" />
+                <img src="~/images/portfolio/Mental Health.webp" alt="Mental Health Awareness pubmat" loading="lazy" />
                 <div class="info-text-2">
                     <h3>Mental Health Awareness</h3>
                     <p>from MUSA</p>
@@ -375,7 +362,7 @@
                 </div>
             </div>
             <div class="pubmat-2">
-                <img src="~/images/portfolio/musa official statement pubmat.png" />
+                <img src="~/images/portfolio/MUSA Official Statement Pubmat.webp" alt="MUSA Official Statement pubmat" loading="lazy" />
                 <div class="info-text-2">
                     <h3>MUSA Official Statement</h3>
                     <p>from MUSA</p>
@@ -383,7 +370,7 @@
                 </div>
             </div>
             <div class="pubmat-2">
-                <img src="~/images/portfolio/valentine's day.png" />
+                <img src="~/images/portfolio/Valentine's Day.webp" alt="Valentines Day pubmat" loading="lazy" />
                 <div class="info-text-2">
                     <h3>Valentines Day Pubmat</h3>
                     <p>from MUSA</p>
@@ -391,7 +378,7 @@
                 </div>
             </div>
             <div class="pubmat-2">
-                <img src="~/images/portfolio/ppt musa 2nd ga (morning).png" />
+                <img src="~/images/portfolio/PPT MUSA 2nd GA (Morning).webp" alt="MUSA General Assembly 2025 presentation" loading="lazy" />
                 <div class="info-text-2">
                     <h3>MUSA General Assembly 2025</h3>
                     <p>from MUSA</p>
@@ -399,7 +386,7 @@
                 </div>
             </div>
             <div class="pubmat-2">
-                <img src="~/images/portfolio/musa ppt.png" />
+                <img src="~/images/portfolio/MUSA PPT.webp" alt="MUSA General Assembly 2024 presentation" loading="lazy" />
                 <div class="info-text-2">
                     <h3>MUSA General Assembly 2024</h3>
                     <p>from MUSA</p>
@@ -407,7 +394,7 @@
                 </div>
             </div>
             <div class="pubmat-2">
-                <img src="~/images/portfolio/musa front page (1).png" />
+                <img src="~/images/portfolio/MUSA Front Page (1).webp" alt="MUSA Incoming Officers pubmat" loading="lazy" />
                 <div class="info-text-2">
                     <h3>MUSA Incoming Officers Pubmat</h3>
                     <p>from MUSA</p>
@@ -415,7 +402,7 @@
                 </div>
             </div>
             <div class="pubmat-2">
-                <img src="~/images/portfolio/commits front page (2).png" />
+                <img src="~/images/portfolio/COMMITS Front Page (2).webp" alt="COMMITS Intramurals IT Representatives pubmat" loading="lazy" />
                 <div class="info-text-2">
                     <h3>COMMITS Intramurals IT Representatives Pubmat</h3>
                     <p>from COMMITS</p>
@@ -428,10 +415,10 @@
                     <p>The provided digital assets are intended for the presentation and academic use only. Credits to the rightful owners of these images.</p>
                     <h3>These PubMats belongs to the following organization.</h3>
                     <div class="link-container">
-                        <a href="https://www.facebook.com/MUSAPUPQUEZONCITY" class="download-button">MUSA PUP QC </a>
+                        <a href="https://www.facebook.com/MUSAPUPQUEZONCITY" target="_blank" rel="noopener noreferrer" class="download-button">MUSA PUP QC</a>
                     </div>
                     <div class="link-container">
-                        <a href="https://www.facebook.com/CommITSPUPQC" class="download-button">PUP QC COMMITS</a>
+                        <a href="https://www.facebook.com/CommITSPUPQC" target="_blank" rel="noopener noreferrer" class="download-button">PUP QC COMMITS</a>
                     </div>
                 </div>
             </div>
@@ -453,9 +440,9 @@
             <div class="footer-column">
                 <h3>Connect</h3>
                 <div class="social-icons">
-                    <a href="https://www.linkedin.com/in/hermione-benitez-934335334/" aria-label="LinkedIn"><img src="~/images/linkedin.jpg" /></a>
-                    <a href="https://github.com/Hermione-Benitez" aria-label="GitHub"><img src="~/images/github.png" /></a>
-                    <a href="https://www.facebook.com/lekantier.jinpier" aria-label="Facebook"><img src="~/images/fblogo.png" /></a>
+                    <a href="https://www.linkedin.com/in/hermione-benitez-934335334/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><img src="~/images/linkedin.jpg" alt="LinkedIn" /></a>
+                    <a href="https://github.com/Hermione-Benitez" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><img src="~/images/github.png" alt="GitHub" /></a>
+                    <a href="https://www.facebook.com/lekantier.jinpier" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><img src="~/images/fblogo.png" alt="Facebook" /></a>
                 </div>
             </div>
             <div class="footer-column">
@@ -469,4 +456,3 @@
             <p>&copy; 2025 Hermione B. Benitez. All Rights Reserved.</p>
         </div>
     </footer>
-</body>

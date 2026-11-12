@@ -1,6 +1,31 @@
-﻿@{
+@{
     ViewData["Title"] = "Privacy Policy";
+    ViewData["Description"] = "Privacy policy for Hermione Benitez's portfolio website.";
 }
-<h1>@ViewData["Title"]</h1>
 
-<p>Use this page to detail your site's privacy policy.</p>
+@section Styles {
+<style>
+    html, body {
+        background-color: #0d001a;
+        color: #ffffff;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .privacy-section {
+        max-width: 860px;
+        margin: 0 auto;
+        padding: 130px 24px 80px;
+        line-height: 1.7;
+    }
+
+    .privacy-section h1 {
+        color: #d0aaff;
+        margin-bottom: 24px;
+    }
+</style>
+}
+
+<section class="privacy-section">
+    <h1>@ViewData["Title"]</h1>
+    <p>This portfolio website is a personal showcase for Hermione Benitez. No personal data is collected, stored, or sold through this website. Contact links (email, phone, and external social media profiles) open directly in your device's mail, phone, or browser application.</p>
+</section>

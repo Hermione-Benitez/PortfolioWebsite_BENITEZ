@@ -3,38 +3,43 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - BENITEZ_PortfolioWebsite</title>
+    <title>@ViewData["Title"] - Hermione Benitez</title>
+    <meta name="description" content="@(ViewData["Description"] ?? "Portfolio website of Hermione Benitez — BSIT student, UI/UX Designer, Graphic Designer, and Frontend Developer.")" />
+    <meta property="og:title" content="@ViewData["Title"] - Hermione Benitez" />
+    <meta property="og:description" content="@(ViewData["Description"] ?? "Portfolio website of Hermione Benitez — BSIT student, UI/UX Designer, Graphic Designer, and Frontend Developer.")" />
+    <meta property="og:type" content="website" />
+    <link rel="icon" type="image/x-icon" href="~/favicon.ico" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/BENITEZ_PortfolioWebsite.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/PortfolioWebsite_BENITEZ.styles.css" asp-append-version="true" />
 
     <style>
-       
         html, body {
             margin: 0;
             padding: 0;
-            box-sizing: border-box; 
+            box-sizing: border-box;
             overflow-x: hidden;
         }
         .logo {
-            width: 5vw;
+            width: clamp(36px, 4.5vw, 56px);
+            height: auto;
             padding-right: 10px;
         }
-        h5 {
+        .brand-title {
             color: white;
-            padding-top: 5px;
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
         }
-
 
         .transparent-navbar {
             background-color: transparent !important;
             border: none !important;
             box-shadow: none !important;
             transition: all 0.4s ease-in-out;
-            padding: 25px 25px;
+            padding: 20px 25px;
             z-index: 9999;
         }
-
 
             .transparent-navbar .nav-link {
                 color: #ffffff !important;
@@ -52,21 +57,32 @@
                 box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
             }
 
+        @@media (max-width: 575.98px) {
+            .transparent-navbar .navbar-collapse {
+                background: rgba(15, 0, 30, 0.96);
+                padding: 12px 16px;
+                border-radius: 12px;
+                margin-top: 10px;
+            }
+        }
 
         .navbar {
             transition: background-color 0.4s ease, box-shadow 0.4s ease;
         }
     </style>
+    @await RenderSectionAsync("Styles", required: false)
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm transparent-navbar fixed-top">
+        <nav class="navbar navbar-expand-sm navbar-dark transparent-navbar fixed-top">
             <div class="container-fluid">
+                <a class="navbar-brand d-flex align-items-center text-white text-decoration-none" asp-controller="Home" asp-action="Index">
+                    <img src="~/images/Yunii.png" alt="Yunii logo" class="logo" />
+                    <span class="brand-title">Portfolio Website</span>
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <img src="~/images/yunii.png" class="logo"/>
-                <h5>Portfolio Website</h5>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
@@ -87,13 +103,14 @@
         </nav>
     </header>
 
-    <main role="main" class="pb-3">
+    <main role="main">
         @RenderBody()
     </main>
 
     <script>
         window.addEventListener('scroll', function () {
             const navbar = document.querySelector('.transparent-navbar');
+            if (!navbar) return;
             if (window.scrollY > 50) {
                 navbar.classList.add('scrolled');
             } else {

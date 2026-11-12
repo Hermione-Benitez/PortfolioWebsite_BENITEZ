@@ -1,10 +1,12 @@
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "About";
+    ViewData["Description"] = "About Hermione Benitez — BSIT student, aspiring UI/UX Designer, Graphic Designer, Frontend Developer, QA, and System Architect.";
 }
 
+@section Styles {
 <style>
     html, body {
-        background-image: url('images/bg.png');
+        background-image: url('/images/bg.webp');
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center center;
@@ -22,15 +24,15 @@
         justify-content: center;
         align-items: center;
         height: 100vh;
-        width: 100vw;
+        width: 100%;
         overflow: hidden;
     }
 
     #text {
         position: absolute;
         font-size: 10vw;
-        color: #ffff;
-        font-family: 'Arial';
+        color: #fff;
+        font-family: 'Arial', sans-serif;
         font-weight: 900;
         white-space: nowrap;
     }
@@ -46,7 +48,6 @@
     }
 
     .title {
-
         text-align: center;
         padding: 60px 20px 70px;
         color: #fff;
@@ -60,15 +61,16 @@
         }
 
     #Hi {
-        font-size: 3vw;
+        font-size: clamp(1.6rem, 3vw, 2.8rem);
         margin-bottom: 5px;
     }
     .text-changer {
-        font-size: 3vw;
+        font-size: clamp(1.3rem, 3vw, 2.6rem);
         font-weight: 700;
         margin: 15px;
         padding: 0;
         display: flex;
+        flex-wrap: wrap;
         justify-content: center;
         align-items: center;
     }
@@ -79,7 +81,7 @@
             margin-left: 15px;
             color: #d1b3ff;
         }
-        .role{
+        .role {
             display: block;
             height: 100%;
             font-size: 1.1em;
@@ -100,20 +102,18 @@
         100% {transform: translateY(-400%);}
     }
 
-
-
     .hover-section {
         color: #fff;
-        padding: 100px 0 150px;
+        padding: 100px 20px 150px;
         min-height: 80vh;
         position: relative;
-        z-index: 10; 
+        z-index: 10;
         text-align: center;
         background-color: white;
     }
 
         .hover-section h2 {
-            font-size: 3em;
+            font-size: clamp(2rem, 4vw, 3rem);
             color: #6300a5;
             margin-bottom: 40px;
         }
@@ -160,18 +160,17 @@
         background-color: transparent;
     }
         .Skill-section h2 {
-            font-size: 5vw;
             text-align: center;
             color: #fff;
             padding: 60px 20px 40px;
-            font-size: 3em;
+            font-size: clamp(2rem, 4vw, 3rem);
         }
 
     .Skills {
-        height: 60vh;
+        min-height: 420px;
         gap: 1em;
         display: flex;
-        padding-top: 5vh;
+        padding: 20px 0 40px;
         align-items: flex-start;
         overflow-x: auto;
         justify-content: flex-start;
@@ -189,12 +188,11 @@
             display: none;
         }
         .skill {
-            flex: 0 0 5em;
-            height: 7.5em;
-            padding: 0.7em;
+            flex: 0 0 280px;
+            min-height: 320px;
+            padding: 28px 24px;
             background-color: white;
             border-radius: 30px;
-            font-size: 3em;
             font-weight: 600;
             margin: 0 10px;
             align-content: flex-start;
@@ -206,15 +204,17 @@
                 box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
         }
         .skill h3 {
-            font-weight:500;
-            font-size: 2.5vw;
+            font-weight: 600;
+            font-size: 1.45rem;
             color: #2d006b;
         }
         .skill p {
-            font-size: 1.1vw; 
-            margin-top: 1vh; 
-            text-align: start; 
-            line-height: 1.3;
+            font-size: 0.95rem;
+            font-weight: 400;
+            color: #333;
+            margin-top: 12px;
+            text-align: start;
+            line-height: 1.5;
         }
     @@keyframes spin {
         from {translate: 0;}
@@ -279,7 +279,7 @@
         .role-item-image img {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Key for fixing image fit */
+            object-fit: cover;
             display: block;
         }
 
@@ -329,7 +329,7 @@
         }
 
         .role-item {
-            width: 80%;
+            width: 90%;
             max-width: 400px;
         }
     }
@@ -399,7 +399,6 @@
         }
     }
 
-
     .footer-section {
         background-color: #0d0d0d;
         color: #aaa;
@@ -451,8 +450,9 @@
     }
 
         .social-icons a img {
-            width: 100%;
+            width: 35px;
             height: 35px;
+            object-fit: cover;
             border-radius: 50%;
             margin: 0;
             transition: transform 0.2s;
@@ -464,34 +464,12 @@
 
     @@media (max-width: 768px) {
         .hover-section {
-            padding: 20px 10px 80px;
+            padding: 40px 10px 80px;
         }
-
-        .resume-card {
-            flex-direction: column;
-            align-items: center;
-        }
-
-            .resume-card img {
-                width: 90%;
-                max-width: 400px;
-                margin-bottom: 20px;
-            }
 
         .info-card {
             width: 90%;
-            margin: 0;
-        }
-
-        .download-button {
-            width: 45%;
-            margin: 5px;
-            font-size: 0.9rem;
-            padding: 8px 15px;
-        }
-
-        .link-container {
-            justify-content: space-around;
+            margin: 8px 0;
         }
 
         .footer-content {
@@ -511,16 +489,14 @@
         }
     }
 </style>
-
-
-<body>
+}
 
     <section class="Parallax">
-        <img src="~/images/bg.png" id="bg">
-        <img src="~/images/purpleflare.png" id="purpleflare" />
+        <img src="~/images/bg.webp" alt="Background landscape" id="bg" />
+        <img src="~/images/purpleflare.webp" alt="" id="purpleflare" />
         <h1 id="text">HERMIONE</h1>
-        <img src="~/images/hermisolo.png" id="hermisolo">
-        <img src="~/images/transition.png" id="transition" />
+        <img src="~/images/hermisolo.webp" alt="Hermione Benitez portrait" id="hermisolo" />
+        <img src="~/images/transition.webp" alt="" id="transition" />
     </section>
 
     <section class="title">
@@ -608,7 +584,7 @@
                     </p>
                 </div>
             </div>
-            <div aria-hidden class="skillgroup">
+            <div aria-hidden="true" class="skillgroup">
                 <div class="skill">
                     <h3>Graphic Designing</h3>
                     <p>Skilled in creating publication materials and other digital products using Canva and Ibispaint. Can do image manipulation, retouching, and creating detailed graphics for various media.</p>
@@ -647,7 +623,7 @@
         <div class="roles-grid">
             <div class="role-item">
                 <div class="role-item-image">
-                    <img src="~/images/commits.jpg" />
+                    <img src="~/images/commits.webp" alt="CommITs Vice President in Internal Affairs" loading="lazy" />
                 </div>
                 <div class="role-item-details">
                     <h3>Vice President in Internal Affairs, CommITs 2024-2025</h3>
@@ -657,7 +633,7 @@
 
             <div class="role-item">
                 <div class="role-item-image">
-                    <img src="~/images/musa.jpeg" />
+                    <img src="~/images/musa.jpeg" alt="Lupon ng Malikhaing Paggawa, MUSA" loading="lazy" />
                 </div>
                 <div class="role-item-details">
                     <h3>Lupon ng Malikhaing Paggawa, MUSA 2024-2025</h3>
@@ -667,7 +643,7 @@
 
             <div class="role-item">
                 <div class="role-item-image">
-                    <img src="~/images/class.jpeg" />
+                    <img src="~/images/class.jpeg" alt="Class Vice President, BSIT 3-2" loading="lazy" />
                 </div>
                 <div class="role-item-details">
                     <h3>Class Vice President, BSIT 3-2 2024-2025</h3>
@@ -677,7 +653,7 @@
 
             <div class="role-item">
                 <div class="role-item-image">
-                    <img src="~/images/sinagtala.jpeg" />
+                    <img src="~/images/sinagtala.webp" alt="Creatives Member, Sinagtala" loading="lazy" />
                 </div>
                 <div class="role-item-details">
                     <h3>Creatives Member, Sinagtala 2024-2025</h3>
@@ -694,13 +670,13 @@
             MUSA's Theater Play titled "Sa Loob ng Utak ni Juana" that was featured on September 15, 2025.
         </p>
         <div class="video-container">
-            <video controls autoplay muted loop poster="~/images/samplethumbnail.png">
+            <video controls autoplay muted loop playsinline preload="metadata" poster="/images/samplethumbnail.webp">
                 <source src="~/images/lv_0_20251107005003.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
             </video>
         </div>
 
-        <a class="nav-link text-white fw-semibold" asp-controller="Home" asp-action="Portfolio">
+        <a class="nav-link text-white fw-semibold mt-4 d-inline-block" asp-controller="Home" asp-action="Portfolio">
             Click Here to View More of Her Work
         </a>
     </section>
@@ -721,9 +697,9 @@
             <div class="footer-column">
                 <h3>Connect</h3>
                 <div class="social-icons">
-                    <a href="https://www.linkedin.com/in/hermione-benitez-934335334/" aria-label="LinkedIn"><img src="~/images/linkedin.jpg" /></a>
-                    <a href="https://github.com/Hermione-Benitez" aria-label="GitHub"><img src="~/images/github.png" /></a>
-                    <a href="https://www.facebook.com/lekantier.jinpier" aria-label="Facebook"><img src="~/images/fblogo.png" /></a>
+                    <a href="https://www.linkedin.com/in/hermione-benitez-934335334/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><img src="~/images/linkedin.jpg" alt="LinkedIn" /></a>
+                    <a href="https://github.com/Hermione-Benitez" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><img src="~/images/github.png" alt="GitHub" /></a>
+                    <a href="https://www.facebook.com/lekantier.jinpier" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><img src="~/images/fblogo.png" alt="Facebook" /></a>
                 </div>
             </div>
             <div class="footer-column">
@@ -738,6 +714,7 @@
         </div>
     </footer>
 
+@section Scripts {
     <script>
         let bg = document.getElementById("bg");
         let hermisolo = document.getElementById("hermisolo");
@@ -747,16 +724,16 @@
         window.addEventListener("scroll", function () {
             let value = window.scrollY;
 
-            bg.style.top = value * 0.5 + "px";
-
-            text.style.marginTop = value * 1.1 + "px";
-            text.style.marginLeft = value * 0.5 + "px";
-
-            hermisolo.style.top = value * 0.75 + "px";
-            hermisolo.style.left = value * -1.1 + "px";
-
-            purpleflare.style.top = value * 1 + "px";
+            if (bg) bg.style.top = value * 0.5 + "px";
+            if (text) {
+                text.style.marginTop = value * 1.1 + "px";
+                text.style.marginLeft = value * 0.5 + "px";
+            }
+            if (hermisolo) {
+                hermisolo.style.top = value * 0.75 + "px";
+                hermisolo.style.left = value * -1.1 + "px";
+            }
+            if (purpleflare) purpleflare.style.top = value * 1 + "px";
         });
     </script>
-
-</body>
+}

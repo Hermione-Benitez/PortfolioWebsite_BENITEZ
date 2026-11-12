@@ -1,0 +1,11 @@
+{
+  "name": "portfolio-website-benitez",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static production build pipeline for Hermione Benitez's Portfolio Website on Vercel",
+  "scripts": {
+    "build": "node scripts/build-static.mjs",
+    "verify": "node scripts/build-static.mjs --verify-only"
+  }
+}
+

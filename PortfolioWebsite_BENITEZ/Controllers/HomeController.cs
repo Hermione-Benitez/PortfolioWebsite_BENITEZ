@@ -35,5 +35,13 @@ namespace PortfolioWebsite_BENITEZ.Controllers
         {
             return View();
         }
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error(int? statusCode = null)
+        {
+            ViewData["StatusCode"] = statusCode ?? 500;
+            ViewData["RequestId"] = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
+            return View();
+        }
     }
 }
