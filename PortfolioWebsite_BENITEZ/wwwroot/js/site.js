@@ -91,10 +91,7 @@
     const targets = document.querySelectorAll('[data-reveal], .timeline-section');
     if (!targets.length) return;
 
-    const prefersReduced =
-      window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    if (prefersReduced || !('IntersectionObserver' in window)) {
+    if (!('IntersectionObserver' in window)) {
       targets.forEach((el) => el.classList.add('is-visible'));
       return;
     }
@@ -109,8 +106,8 @@
         });
       },
       {
-        threshold: 0.1,
-        rootMargin: '0px 0px -40px 0px',
+        threshold: 0.08,
+        rootMargin: '0px 0px -30px 0px',
       }
     );
 
@@ -121,6 +118,61 @@
       }
       observer.observe(el);
     });
+  }
+
+  function initScrollDynamics() {
+    const floatEls = Array.from(document.querySelectorAll('[data-scroll-float]'));
+    const timelineRows = Array.from(document.querySelectorAll('.timeline-row'));
+    let ticking = false;
+
+    function updateDynamics() {
+      const scrollY = window.scrollY || window.pageYOffset;
+      const vh = window.innerHeight || 900;
+      document.documentElement.style.setProperty('--scroll-y', scrollY.toFixed(1) + 'px');
+
+      floatEls.forEach((el) => {
+        const rect = el.getBoundingClientRect();
+        const centerOffset = (rect.top + rect.height * 0.5 - vh * 0.5) / vh;
+        const speed = parseFloat(el.getAttribute('data-scroll-float')) || 18;
+        const clamped = Math.max(-1, Math.min(1, centerOffset));
+        el.style.setProperty('--scroll-offset', (clamped * speed).toFixed(2) + 'px');
+      });
+
+      if (timelineRows.length) {
+        const focusLine = vh * 0.52;
+        let closestRow = null;
+        let minDist = Infinity;
+
+        timelineRows.forEach((row) => {
+          const rect = row.getBoundingClientRect();
+          const mid = rect.top + rect.height * 0.5;
+          const dist = Math.abs(mid - focusLine);
+          if (rect.bottom > 80 && rect.top < vh - 80 && dist < minDist) {
+            minDist = dist;
+            closestRow = row;
+          }
+        });
+
+        timelineRows.forEach((row) => {
+          row.classList.toggle('is-in-focus', row === closestRow);
+        });
+      }
+
+      ticking = false;
+    }
+
+    window.addEventListener(
+      'scroll',
+      () => {
+        if (!ticking) {
+          window.requestAnimationFrame(updateDynamics);
+          ticking = true;
+        }
+      },
+      { passive: true }
+    );
+
+    updateDynamics();
   }
 
   function initSpotlightCards() {
@@ -303,6 +355,7 @@
     initScrollChrome();
     initActiveNav();
     initRevealObserver();
+    initScrollDynamics();
     initSpotlightCards();
     initCopyButtons();
     initLightbox();

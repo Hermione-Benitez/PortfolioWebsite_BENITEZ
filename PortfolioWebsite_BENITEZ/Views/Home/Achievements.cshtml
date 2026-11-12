@@ -212,9 +212,15 @@
         transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .timeline-row:hover .timeline-node {
+    .timeline-row:hover .timeline-node,
+    .timeline-row.is-in-focus .timeline-node {
         transform: translateX(-50%) scale(1.16);
-        box-shadow: 0 0 30px rgba(224, 86, 253, 0.85);
+        box-shadow: 0 0 0 8px rgba(208, 170, 255, 0.16), 0 0 34px rgba(224, 86, 253, 0.9);
+    }
+
+    .timeline-row.is-in-focus .info-card {
+        border-color: rgba(212, 165, 255, 0.52);
+        box-shadow: 0 22px 54px rgba(8, 2, 22, 0.78), 0 0 38px rgba(168, 85, 247, 0.28);
     }
 
     .info-card {
@@ -321,13 +327,6 @@
         .timeline-cta-banner h3,
         .timeline-cta-banner p {
             text-align: center;
-        }
-    }
-
-    @@media (prefers-reduced-motion: reduce) {
-        .card-container::after {
-            height: calc(100% - 24px);
-            animation: none !important;
         }
     }
 </style>

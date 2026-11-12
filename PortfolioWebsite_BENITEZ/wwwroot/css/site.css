@@ -525,31 +525,49 @@ main[role="main"] {
 /* Scroll Reveal Animations */
 [data-reveal] {
   opacity: 0;
-  transition: opacity 0.72s cubic-bezier(0.22, 1, 0.36, 1),
-              transform 0.72s cubic-bezier(0.22, 1, 0.36, 1);
+  filter: blur(6px);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.85s cubic-bezier(0.16, 1, 0.3, 1);
   transition-delay: var(--reveal-delay, 0ms);
-  will-change: opacity, transform;
+  will-change: opacity, transform, filter;
 }
 
 [data-reveal="up"] {
-  transform: translate3d(0, 32px, 0);
+  transform: translate3d(0, 44px, 0) scale(0.97);
 }
 
 [data-reveal="left"] {
-  transform: translate3d(-36px, 0, 0);
+  transform: translate3d(-44px, 0, 0) scale(0.98);
 }
 
 [data-reveal="right"] {
-  transform: translate3d(36px, 0, 0);
+  transform: translate3d(44px, 0, 0) scale(0.98);
 }
 
 [data-reveal="scale"] {
-  transform: scale(0.93);
+  transform: translate3d(0, 24px, 0) scale(0.91);
 }
 
 [data-reveal].is-visible {
   opacity: 1;
+  filter: blur(0);
   transform: translate3d(0, 0, 0) scale(1);
+}
+
+/* Scroll-linked parallax float wrapper */
+[data-scroll-float] {
+  transform: translate3d(0, var(--scroll-offset, 0px), 0);
+  will-change: transform;
+}
+
+/* Scroll-driven depth for ambient orbs */
+.ambient-orb--one {
+  margin-top: calc(var(--scroll-y, 0px) * -0.06);
+}
+
+.ambient-orb--two {
+  margin-bottom: calc(var(--scroll-y, 0px) * 0.05);
 }
 
 /* =========================================================
@@ -922,23 +940,6 @@ a:focus-visible,
 button:focus-visible {
   outline: 2px solid var(--orchid-glow);
   outline-offset: 3px;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
-  .ambient-orb,
-  .eyebrow-dot {
-    animation: none;
-  }
-
-  [data-reveal] {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
 }
 
 @media (max-width: 768px) {

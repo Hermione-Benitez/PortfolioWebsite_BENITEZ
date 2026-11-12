@@ -41,6 +41,12 @@
 
     #purpleflare {
         z-index: 2;
+        animation: flare-breathe 7s ease-in-out infinite alternate;
+    }
+
+    @@keyframes flare-breathe {
+        0% { opacity: 0.82; }
+        100% { opacity: 1; }
     }
 
     #text {
@@ -52,15 +58,29 @@
         letter-spacing: 0.02em;
         color: #ffffff;
         white-space: nowrap;
-        text-shadow: 0 12px 45px rgba(12, 0, 32, 0.75), 0 0 38px rgba(208, 170, 255, 0.42);
+        text-shadow: 0 12px 45px rgba(12, 0, 32, 0.75), 0 0 38px rgba(208, 170, 255, 0.48);
         user-select: none;
-        will-change: transform;
+        will-change: transform, opacity;
         margin: 0;
+        animation: hero-fade-in 0.95s cubic-bezier(0.16, 1, 0.3, 1) both;
     }
 
     #hermisolo {
         z-index: 4;
         object-position: center center;
+        filter: drop-shadow(0 20px 45px rgba(0, 0, 0, 0.55));
+        animation: hero-fade-in 1.15s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+    }
+
+    @@keyframes hero-fade-in {
+        0% {
+            opacity: 0;
+            filter: blur(8px);
+        }
+        100% {
+            opacity: 1;
+            filter: blur(0);
+        }
     }
 
     #transition {
@@ -166,43 +186,45 @@
     }
 
     .aspiringroles {
+        position: relative;
         display: inline-block;
-        height: 1.65em;
-        line-height: 1.65em;
+        height: 1.7em;
+        line-height: 1.7em;
         overflow: hidden;
-        padding: 0 20px;
+        padding: 0 22px;
         border-radius: 999px;
-        background: rgba(14, 4, 30, 0.45);
-        border: 1px solid rgba(255, 255, 255, 0.28);
-        box-shadow: 0 8px 28px rgba(10, 0, 30, 0.35);
-        backdrop-filter: blur(10px);
+        background: rgba(14, 4, 30, 0.52);
+        border: 1px solid rgba(224, 170, 255, 0.35);
+        box-shadow: 0 10px 30px rgba(10, 0, 30, 0.42), inset 0 0 18px rgba(168, 85, 247, 0.18);
+        backdrop-filter: blur(12px);
+        -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 18%, #000 82%, transparent 100%);
+        mask-image: linear-gradient(180deg, transparent 0%, #000 18%, #000 82%, transparent 100%);
     }
 
     .role-track {
         display: flex;
         flex-direction: column;
-        animation: role-change 11s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+        animation: role-change 10s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+        will-change: transform;
     }
 
     .role {
         display: block;
-        height: 1.65em;
-        line-height: 1.65em;
+        height: 1.7em;
+        line-height: 1.7em;
         white-space: nowrap;
         font-weight: 800;
-        background: linear-gradient(90deg, #ffffff, #f0abfc, #c4b5fd);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
+        color: #f8edff;
+        text-shadow: 0 0 22px rgba(224, 86, 253, 0.55);
     }
 
     @@keyframes role-change {
-        0%, 14% { transform: translateY(0); }
-        19%, 34% { transform: translateY(-16.6667%); }
-        39%, 54% { transform: translateY(-33.3333%); }
-        59%, 74% { transform: translateY(-50%); }
-        79%, 94% { transform: translateY(-66.6667%); }
-        100% { transform: translateY(-83.3333%); }
+        0%, 15% { transform: translate3d(0, 0, 0); }
+        20%, 35% { transform: translate3d(0, -16.6667%, 0); }
+        40%, 55% { transform: translate3d(0, -33.3333%, 0); }
+        60%, 75% { transform: translate3d(0, -50%, 0); }
+        80%, 95% { transform: translate3d(0, -66.6667%, 0); }
+        100% { transform: translate3d(0, -83.3333%, 0); }
     }
 
     .intro-bio {
@@ -362,10 +384,16 @@
     .Skills {
         display: flex;
         gap: 0;
-        overflow: hidden;
-        padding: 20px 0 36px;
+        overflow: hidden !important;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        padding: 32px 0 46px;
         -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
         mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+    }
+
+    .Skills::-webkit-scrollbar {
+        display: none;
     }
 
     .skillgroup {
@@ -374,7 +402,7 @@
         align-items: stretch;
         gap: 24px;
         padding-right: 24px;
-        animation: spin 26s linear infinite;
+        animation: spin 24s linear infinite;
         will-change: transform;
     }
 
@@ -391,6 +419,7 @@
         justify-content: flex-start;
         gap: 12px;
         text-align: left;
+        border-top: 2px solid rgba(208, 170, 255, 0.42);
     }
 
     .skill-badge {
@@ -630,18 +659,6 @@
         .tool-chip-row,
         .video-cta-row {
             justify-content: center;
-        }
-    }
-
-    @@media (prefers-reduced-motion: reduce) {
-        .role-track,
-        .skillgroup,
-        .hero-scroll-cue svg {
-            animation: none;
-        }
-
-        .Skills {
-            overflow-x: auto;
         }
     }
 </style>
@@ -910,15 +927,15 @@
 </section>
 
 <section class="video-section">
-    <div class="glass-card video-showcase-card" data-spotlight data-reveal="up">
-        <div class="video-frame">
+    <div class="glass-card video-showcase-card" data-spotlight data-reveal="scale">
+        <div class="video-frame" data-scroll-float="-14">
             <video controls autoplay muted loop playsinline preload="metadata" poster="/images/samplethumbnail.webp">
                 <source src="~/images/lv_0_20251107005003.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
             </video>
         </div>
 
-        <div class="video-copy">
+        <div class="video-copy" data-scroll-float="12">
             <span class="eyebrow-pill"><span class="eyebrow-dot"></span> Featured Process Reel</span>
             <h2>Sample Work</h2>
             <p class="video-description">
@@ -950,46 +967,70 @@
         const text = document.getElementById('text');
         const purpleflare = document.getElementById('purpleflare');
         const parallax = document.querySelector('.Parallax');
-        const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-        if (prefersReduced || !parallax) return;
+        if (!parallax) return;
 
         let scrollValue = window.scrollY || 0;
-        let pointerX = 0;
-        let pointerY = 0;
-        let rafPending = false;
+        let targetX = 0;
+        let targetY = 0;
+        let currentX = 0;
+        let currentY = 0;
+        let animatingPointer = false;
 
-        function applyParallax() {
-            const heroLimit = parallax.offsetHeight + 180;
-            if (scrollValue <= heroLimit) {
+        function renderParallax() {
+            const heroH = parallax.offsetHeight || window.innerHeight || 800;
+            const progress = Math.min(1.2, Math.max(0, scrollValue / heroH));
+
+            if (scrollValue <= heroH + 220) {
                 if (bg) {
-                    bg.style.transform = `translate3d(${pointerX * -8}px, ${scrollValue * 0.45 + pointerY * -8}px, 0) scale(1.04)`;
+                    const bgScale = 1.05 + progress * 0.1;
+                    bg.style.transform = `translate3d(${(currentX * -12).toFixed(2)}px, ${(scrollValue * 0.48 + currentY * -10).toFixed(2)}px, 0) scale(${bgScale.toFixed(3)})`;
                 }
                 if (purpleflare) {
-                    purpleflare.style.transform = `translate3d(${pointerX * 14}px, ${scrollValue * 0.9 + pointerY * 10}px, 0)`;
+                    const flareScale = 1.02 + progress * 0.08;
+                    purpleflare.style.transform = `translate3d(${(currentX * 20).toFixed(2)}px, ${(scrollValue * 0.9 + currentY * 14).toFixed(2)}px, 0) scale(${flareScale.toFixed(3)})`;
                 }
                 if (text) {
-                    text.style.transform = `translate3d(${scrollValue * 0.45 + pointerX * 16}px, ${scrollValue * 1.05 + pointerY * 12}px, 0)`;
+                    const textScale = Math.max(0.84, 1 - progress * 0.14);
+                    text.style.transform = `translate3d(${(scrollValue * 0.48 + currentX * 24).toFixed(2)}px, ${(scrollValue * 1.06 + currentY * 16).toFixed(2)}px, 0) scale(${textScale.toFixed(3)})`;
+                    text.style.opacity = Math.max(0.08, 1 - progress * 1.05).toFixed(3);
                 }
                 if (hermisolo) {
-                    hermisolo.style.transform = `translate3d(${scrollValue * -0.95 + pointerX * -12}px, ${scrollValue * 0.72 + pointerY * -6}px, 0)`;
+                    const portraitScale = 1 + progress * 0.04;
+                    hermisolo.style.transform = `translate3d(${(scrollValue * -0.95 + currentX * -16).toFixed(2)}px, ${(scrollValue * 0.72 + currentY * -8).toFixed(2)}px, 0) scale(${portraitScale.toFixed(3)})`;
                 }
             }
-            rafPending = false;
         }
 
-        function scheduleParallax() {
-            if (!rafPending) {
-                window.requestAnimationFrame(applyParallax);
-                rafPending = true;
+        function tickPointer() {
+            const dx = targetX - currentX;
+            const dy = targetY - currentY;
+            currentX += dx * 0.09;
+            currentY += dy * 0.09;
+            renderParallax();
+
+            if (Math.abs(dx) > 0.002 || Math.abs(dy) > 0.002) {
+                window.requestAnimationFrame(tickPointer);
+            } else {
+                currentX = targetX;
+                currentY = targetY;
+                renderParallax();
+                animatingPointer = false;
             }
         }
 
+        let scrollRaf = false;
         window.addEventListener(
             'scroll',
             () => {
                 scrollValue = window.scrollY || 0;
-                scheduleParallax();
+                if (!scrollRaf) {
+                    window.requestAnimationFrame(() => {
+                        renderParallax();
+                        scrollRaf = false;
+                    });
+                    scrollRaf = true;
+                }
             },
             { passive: true }
         );
@@ -999,15 +1040,27 @@
                 'pointermove',
                 (e) => {
                     const rect = parallax.getBoundingClientRect();
-                    pointerX = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
-                    pointerY = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
-                    scheduleParallax();
+                    targetX = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
+                    targetY = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
+                    if (!animatingPointer) {
+                        animatingPointer = true;
+                        window.requestAnimationFrame(tickPointer);
+                    }
                 },
                 { passive: true }
             );
+
+            parallax.addEventListener('pointerleave', () => {
+                targetX = 0;
+                targetY = 0;
+                if (!animatingPointer) {
+                    animatingPointer = true;
+                    window.requestAnimationFrame(tickPointer);
+                }
+            });
         }
 
-        applyParallax();
+        renderParallax();
     })();
 </script>
 }
