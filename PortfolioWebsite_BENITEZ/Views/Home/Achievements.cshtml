@@ -296,7 +296,7 @@
         .card-container::before,
         .card-container::after {
             left: 20px;
-            transform: none;
+            transform: translateX(-50%);
         }
 
         .timeline-row,
@@ -326,6 +326,19 @@
 
         .timeline-cta-banner h3,
         .timeline-cta-banner p {
+            text-align: center;
+        }
+    }
+
+    @@media (max-width: 560px) {
+        .section-jump-pills {
+            border-radius: 20px;
+            width: 100%;
+            max-width: 360px;
+        }
+
+        .jump-pill {
+            width: 100%;
             text-align: center;
         }
     }

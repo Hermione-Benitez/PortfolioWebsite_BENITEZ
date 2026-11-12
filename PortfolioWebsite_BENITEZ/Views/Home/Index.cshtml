@@ -20,7 +20,8 @@
         justify-content: center;
         align-items: center;
         height: 100vh;
-        min-height: 580px;
+        height: 100svh;
+        min-height: 540px;
         width: 100%;
         overflow: hidden;
     }
@@ -53,7 +54,7 @@
         position: relative;
         z-index: 3;
         font-family: var(--font-display);
-        font-size: clamp(2rem, 9.5vw, 9rem);
+        font-size: clamp(1.85rem, 8.8vw, 8.8rem);
         font-weight: 800;
         letter-spacing: 0.02em;
         color: #ffffff;
@@ -87,55 +88,75 @@
         z-index: 5;
     }
 
-    .hero-top-badge {
+    .hero-bottom-stack {
         position: absolute;
-        bottom: clamp(104px, 14vh, 134px);
+        bottom: clamp(22px, 5vh, 52px);
         left: 50%;
         transform: translateX(-50%);
         z-index: 6;
-        max-width: calc(100vw - 32px);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 14px;
+        width: max-content;
+        max-width: calc(100vw - 28px);
         pointer-events: none;
+    }
+
+    .hero-top-badge {
         text-align: center;
     }
 
     .hero-top-badge .eyebrow-pill {
         white-space: nowrap;
-        font-size: clamp(0.68rem, 2.2vw, 0.82rem);
+        font-size: clamp(0.64rem, 2.2vw, 0.82rem);
         padding: 6px 14px;
     }
 
     .hero-scroll-cue {
-        position: absolute;
-        bottom: clamp(44px, 7vh, 78px);
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 6;
+        pointer-events: auto;
         display: inline-flex;
-        flex-direction: column;
         align-items: center;
-        gap: 6px;
+        gap: 8px;
         color: #f3e8ff;
         text-decoration: none;
-        font-size: 0.78rem;
-        font-weight: 600;
+        font-size: 0.76rem;
+        font-weight: 700;
         letter-spacing: 0.14em;
         text-transform: uppercase;
-        padding: 8px 16px;
+        padding: 9px 20px;
         border-radius: 999px;
-        background: rgba(14, 5, 30, 0.52);
-        border: 1px solid rgba(208, 170, 255, 0.3);
-        backdrop-filter: blur(10px);
-        transition: background-color 0.25s ease, transform 0.25s ease;
+        background: rgba(14, 5, 30, 0.62);
+        border: 1px solid rgba(208, 170, 255, 0.34);
+        backdrop-filter: blur(12px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+        transition: background-color 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
     }
 
     .hero-scroll-cue:hover {
         color: #ffffff;
-        background: rgba(99, 0, 165, 0.65);
-        transform: translateX(-50%) translateY(-2px);
+        background: rgba(99, 0, 165, 0.72);
+        border-color: rgba(224, 86, 253, 0.65);
+        transform: translateY(-2px);
     }
 
     .hero-scroll-cue svg {
         animation: scroll-bob 1.8s ease-in-out infinite;
+    }
+
+    @@media (max-height: 640px) {
+        .hero-bottom-stack {
+            bottom: 16px;
+            gap: 10px;
+        }
+    }
+
+    @@media (max-width: 420px) {
+        .hero-top-badge .eyebrow-pill {
+            white-space: normal;
+            text-align: center;
+            line-height: 1.35;
+        }
     }
 
     @@keyframes scroll-bob {
@@ -188,10 +209,11 @@
     .aspiringroles {
         position: relative;
         display: inline-block;
+        max-width: calc(100vw - 32px);
         height: 1.7em;
         line-height: 1.7em;
         overflow: hidden;
-        padding: 0 22px;
+        padding: 0 clamp(14px, 3vw, 22px);
         border-radius: 999px;
         background: rgba(14, 4, 30, 0.52);
         border: 1px solid rgba(224, 170, 255, 0.35);
@@ -199,6 +221,12 @@
         backdrop-filter: blur(12px);
         -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 18%, #000 82%, transparent 100%);
         mask-image: linear-gradient(180deg, transparent 0%, #000 18%, #000 82%, transparent 100%);
+    }
+
+    @@media (max-width: 480px) {
+        .text-changer {
+            font-size: clamp(1rem, 4.4vw, 1.35rem);
+        }
     }
 
     .role-track {
@@ -561,8 +589,15 @@
     }
 
     @@media (max-width: 600px) {
+        .skill {
+            flex: 0 0 260px;
+            min-height: 260px;
+            padding: 22px 20px;
+        }
+
         .roles-grid {
             grid-template-columns: 1fr;
+            max-width: 420px;
         }
     }
 
@@ -667,18 +702,20 @@
 <section class="Parallax" data-hero-section>
     <img src="~/images/bg.webp" alt="Background landscape" id="bg" />
     <img src="~/images/purpleflare.webp" alt="" id="purpleflare" />
-    <div class="hero-top-badge">
-        <span class="eyebrow-pill"><span class="eyebrow-dot"></span> BSIT • Creative Designer • Developer</span>
-    </div>
     <h1 id="text">HERMIONE</h1>
     <img src="~/images/hermisolo.webp" alt="Hermione Benitez portrait" id="hermisolo" />
     <img src="~/images/transition.webp" alt="" id="transition" />
-    <a href="#about-intro" class="hero-scroll-cue" aria-label="Scroll to introduction">
-        <span>Scroll</span>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M6 9l6 6 6-6"></path>
-        </svg>
-    </a>
+    <div class="hero-bottom-stack">
+        <div class="hero-top-badge">
+            <span class="eyebrow-pill"><span class="eyebrow-dot"></span> BSIT • Creative Designer • Developer</span>
+        </div>
+        <a href="#about-intro" class="hero-scroll-cue" aria-label="Scroll to introduction">
+            <span>Scroll</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M6 9l6 6 6-6"></path>
+            </svg>
+        </a>
+    </div>
 </section>
 
 <section class="title" id="about-intro">

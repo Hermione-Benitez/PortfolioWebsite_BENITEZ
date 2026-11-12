@@ -99,7 +99,7 @@
 
     .pubmats-container {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
         gap: 26px;
     }
 
@@ -264,6 +264,17 @@
     }
 
     @@media (max-width: 600px) {
+        .filter-bar {
+            border-radius: 22px;
+            width: 100%;
+            max-width: 380px;
+        }
+
+        .filter-btn {
+            flex: 1 1 auto;
+            text-align: center;
+        }
+
         .gallery-section {
             padding: 24px 16px 48px;
         }
